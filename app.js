@@ -32,7 +32,8 @@ const STORE_CONTACTS = {
   tiktokUrl: "https://www.tiktok.com/@lujbow_pirog777"
 };
 
-// Конфігурація пагінації
+// Конфігурація пагінації та версіонування ассетів
+const ASSET_VERSION = '2026.2.7';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -176,7 +177,7 @@ function updateCategoryBanner(catId) {
   const descEl = document.getElementById('categoryBannerDesc');
 
   if (imgEl && catObj.banner) {
-    imgEl.src = catObj.banner;
+    imgEl.src = `${catObj.banner}?v=${ASSET_VERSION}`;
     imgEl.alt = catObj.title || catObj.name;
   }
   if (titleEl) {
@@ -382,8 +383,8 @@ function renderPromoSets() {
     const card = document.createElement('div');
     card.className = 'set-card';
     card.innerHTML = `
-      <div class="set-card-media" onclick="openImagePreview('${set.image}', '${escapeHtml(set.name)}')">
-        <img src="${set.image}" alt="${escapeHtml(set.name)}" loading="lazy">
+      <div class="set-card-media" onclick="openImagePreview('${set.image}?v=${ASSET_VERSION}', '${escapeHtml(set.name)}')">
+        <img src="${set.image}?v=${ASSET_VERSION}" alt="${escapeHtml(set.name)}" loading="lazy">
         <div class="set-zoom-badge">🔍 Збільшити фото</div>
         ${set.badge ? `<div class="set-badge-float">${set.badge}</div>` : ''}
       </div>
@@ -487,8 +488,8 @@ function renderCatalog() {
 
     card.innerHTML = `
       ${p.image ? `
-        <div class="product-card-img" onclick="openImagePreview('${p.image}', '${escapeHtml(cleanName)}')">
-          <img src="${p.image}" alt="${escapeHtml(cleanName)}" loading="lazy">
+        <div class="product-card-img" onclick="openImagePreview('${p.image}?v=${ASSET_VERSION}', '${escapeHtml(cleanName)}')">
+          <img src="${p.image}?v=${ASSET_VERSION}" alt="${escapeHtml(cleanName)}" loading="lazy">
           <span class="img-zoom-hint">🔍 Фото</span>
         </div>
       ` : ''}
