@@ -387,8 +387,12 @@ input, select, textarea, button {
   color: #FFFFFF;
 }
 
-.hero-title span {
+.hero-title span, .hero-title-accent {
   color: #F8C346;
+}
+
+.nowrap {
+  white-space: nowrap !important;
 }
 
 .hero-subtitle {
