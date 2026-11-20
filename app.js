@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   renderPromoSets();
   renderCatalog();
+  updateCategoryBanner(currentCategory);
   updateCartBadge();
   setupEventListeners();
 });
@@ -154,7 +155,39 @@ function selectCategory(catId) {
     btn.classList.toggle('active', isActive);
   });
 
+  updateCategoryBanner(catId);
   renderCatalog();
+}
+
+function updateCategoryBanner(catId) {
+  const bannerContainer = document.getElementById('categoryShowcaseBanner');
+  if (!bannerContainer || typeof CATALOG_DATA === 'undefined' || !CATALOG_DATA.categories) return;
+
+  const catObj = CATALOG_DATA.categories.find(c => c.id === catId);
+  if (!catObj || !catObj.banner) {
+    bannerContainer.style.display = 'none';
+    return;
+  }
+
+  bannerContainer.style.display = '';
+  const imgEl = document.getElementById('categoryBannerImg');
+  const titleEl = document.getElementById('categoryBannerTitle');
+  const tagEl = document.getElementById('categoryBannerTag');
+  const descEl = document.getElementById('categoryBannerDesc');
+
+  if (imgEl && catObj.banner) {
+    imgEl.src = catObj.banner;
+    imgEl.alt = catObj.title || catObj.name;
+  }
+  if (titleEl) {
+    titleEl.textContent = catObj.title || catObj.name;
+  }
+  if (tagEl) {
+    tagEl.textContent = catObj.tag || catObj.name;
+  }
+  if (descEl) {
+    descEl.textContent = catObj.desc || '';
+  }
 }
 
 // ============================================================
