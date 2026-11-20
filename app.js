@@ -136,21 +136,48 @@ function updateCardInCartIndicators() {
 }
 
 // ============================================================
+// ВИБІР ТА ПЕРЕМИКАННЯ КАТЕГОРІЙ
+// ============================================================
+function selectCategory(catId) {
+  currentCategory = catId;
+  visibleCount = ITEMS_PER_PAGE;
+
+  // Оновлюємо стан верхніх головних кнопок (Всі саджанці / Акційні набори)
+  const tabAll = document.getElementById('tabMainAll');
+  const tabSets = document.getElementById('tabMainSets');
+  if (tabAll) tabAll.classList.toggle('active', catId === 'all');
+  if (tabSets) tabSets.classList.toggle('active', catId === 'sets');
+
+  // Оновлюємо стан кнопок окремих видів у нижньому скролі
+  document.querySelectorAll('.cat-tab-btn').forEach(btn => {
+    const isActive = btn.dataset.category === catId;
+    btn.classList.toggle('active', isActive);
+  });
+
+  renderCatalog();
+}
+
+// ============================================================
 // КАТЕГОРІЇ З ПІДРАХУНКОМ КІЛЬКОСТІ СОРТІВ
 // ============================================================
 function initCategoryTabs() {
   const container = document.getElementById('categoryTabs');
   if (!container || !CATALOG_DATA || !CATALOG_DATA.categories) return;
 
+  // Оновлюємо лічильники для двох верхніх головних кнопок
+  const totalAll = CATALOG_DATA.products.filter(p => p.category !== 'sets').length;
+  const totalSets = CATALOG_DATA.products.filter(p => p.category === 'sets').length;
+  const countAllBadge = document.getElementById('countAllBadge');
+  const countSetsBadge = document.getElementById('countSetsBadge');
+  if (countAllBadge) countAllBadge.textContent = totalAll;
+  if (countSetsBadge) countSetsBadge.textContent = totalSets;
+
   container.innerHTML = '';
+  // У нижню стрічку додаємо ТІЛЬКИ види рослин (без 'all' та 'sets')
   CATALOG_DATA.categories.forEach(cat => {
-    let count = 0;
-    if (cat.id === 'all') {
-      // У загальній вкладці рахуємо поштучні саджанці без акційних наборів
-      count = CATALOG_DATA.products.filter(p => p.category !== 'sets').length;
-    } else {
-      count = CATALOG_DATA.products.filter(p => p.category === cat.id).length;
-    }
+    if (cat.id === 'all' || cat.id === 'sets') return;
+
+    const count = CATALOG_DATA.products.filter(p => p.category === cat.id).length;
 
     const btn = document.createElement('button');
     btn.className = `cat-tab-btn ${cat.id === currentCategory ? 'active' : ''}`;
@@ -161,11 +188,8 @@ function initCategoryTabs() {
       <span class="cat-count">${count}</span>
     `;
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.cat-tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentCategory = cat.id;
-      visibleCount = ITEMS_PER_PAGE;
-      renderCatalog();
+      selectCategory(cat.id);
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     });
     container.appendChild(btn);
   });
@@ -429,6 +453,12 @@ function renderCatalog() {
     card.dataset.id = p.id;
 
     card.innerHTML = `
+      ${p.image ? `
+        <div class="product-card-img" onclick="openImagePreview('${p.image}', '${escapeHtml(cleanName)}')">
+          <img src="${p.image}" alt="${escapeHtml(cleanName)}" loading="lazy">
+          <span class="img-zoom-hint">🔍 Фото</span>
+        </div>
+      ` : ''}
       <div class="product-top-row">
         <span class="product-category-tag">${catIcon} ${catName}</span>
         ${p.season ? `<span class="product-season-badge">⏱ ${escapeHtml(p.season)}</span>` : ''}
@@ -439,7 +469,7 @@ function renderCatalog() {
       <div class="product-bottom-block">
         <div class="product-price-row">
           <div class="product-price-val">${p.price} грн</div>
-          <div class="product-price-unit">за 1 саджанець</div>
+          <div class="product-price-unit">${p.isSet ? 'за весь набір' : 'за 1 саджанець'}</div>
         </div>
         <div class="product-buy-row">
           <div class="card-qty-stepper">
@@ -847,8 +877,7 @@ function showToast(message) {
 // Навігація до каталогу
 function scrollToCatalog(categoryId) {
   if (categoryId) {
-    const btn = document.querySelector(`.cat-tab-btn[data-category="${categoryId}"]`);
-    if (btn) btn.click();
+    selectCategory(categoryId);
   }
   const el = document.getElementById('catalogSection');
   if (el) {

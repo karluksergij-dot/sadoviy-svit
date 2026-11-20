@@ -193,7 +193,21 @@
           <button id="searchClearBtn" class="search-clear-btn" title="Очистити пошук">✕</button>
         </div>
 
-        <!-- КАТЕГОРІЇ З ГОРИЗОНТАЛЬНИМ СКРОЛОМ ТА КНОПКАМИ-СТРІЛКАМИ ДЛЯ ПК -->
+        <!-- РЯДОК 1: ГОЛОВНІ РЕЖИМИ (ВСІ САДЖАНЦІ ТА АКЦІЙНІ НАБОРИ) -->
+        <div class="category-main-grid" id="categoryMainGrid">
+          <button class="cat-pill-main active" id="tabMainAll" onclick="selectCategory('all')" title="Показати всі поштучні саджанці">
+            <span class="cat-pill-icon">🌱</span>
+            <span class="cat-pill-title">Всі саджанці</span>
+            <span class="cat-pill-count" id="countAllBadge">153</span>
+          </button>
+          <button class="cat-pill-main cat-pill-sets" id="tabMainSets" onclick="selectCategory('sets')" title="Показати акційні готові набори">
+            <span class="cat-pill-icon">🎁</span>
+            <span class="cat-pill-title">Акційні набори</span>
+            <span class="cat-pill-count sets-count" id="countSetsBadge">6</span>
+          </button>
+        </div>
+
+        <!-- РЯДОК 2: КАТЕГОРІЇ ПО ВИДАХ З ГОРИЗОНТАЛЬНИМ СКРОЛОМ ТА СТРІЛКАМИ ВПРАВО -->
         <div class="category-tabs-wrapper">
           <button class="cat-nav-arrow cat-nav-left" id="catScrollLeft" onclick="scrollCategories('left')" aria-label="Гортати категорії вліво" title="Попередні категорії">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
@@ -202,7 +216,7 @@
           </button>
 
           <div class="category-tabs-scroll" id="categoryTabs">
-            <!-- Генерується з catalog.js -->
+            <!-- Генеруються тільки окремі види: Яблуні, Груші, Персики тощо -->
           </div>
 
           <button class="cat-nav-arrow cat-nav-right visible" id="catScrollRight" onclick="scrollCategories('right')" aria-label="Гортати категорії вправо" title="Наступні категорії">
