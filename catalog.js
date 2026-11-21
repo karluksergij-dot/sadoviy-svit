@@ -678,7 +678,7 @@ const CATALOG_DATA = {
       "desc": "Великі пізні плоди з високим вмістом цукру. Кісточка добре відділяється.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_pch-1.jpg"
+      "image": "images/products/prod_pch-1.jpg?v=2"
     },
     {
       "id": "pch-2",
@@ -1635,7 +1635,7 @@ const CATALOG_DATA = {
       "desc": "Один із найкращих сортів фундука у світі з високим виходом ядра.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-14.jpg"
+      "image": "images/products/prod_exo-14.jpg?v=2"
     },
     {
       "id": "exo-15",
