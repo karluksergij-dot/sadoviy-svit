@@ -11,7 +11,7 @@ const CATALOG_DATA = {
     "tiktok": "https://www.tiktok.com/@lujbow_pirog777",
     "tiktokHandle": "@lujbow_pirog777",
     "delivery": "Нова Пошта / Укрпошта по всій Україні",
-    "packaging": "Професійне пакування: коріння у вологій тирсі з глиняною бовтанкою"
+    "packaging": "Надійне маркування та пакування: 100% сортова відповідність та огляд при отриманні"
   },
   "categories": [
     {
@@ -403,7 +403,7 @@ const CATALOG_DATA = {
       "desc": "Ранньолітній сорт. Перші ніжні білі яблука з приємною освіжаючою кислинкою.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-19.jpg"
+      "image": "images/products/prod_apl-19.jpg?v=2"
     },
     {
       "id": "apl-20",
@@ -502,7 +502,7 @@ const CATALOG_DATA = {
       "desc": "Декоративні та компактні яблучка для райського варення, компотів та прикраси саду.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-28.jpg"
+      "image": "images/products/prod_apl-28.jpg?v=2"
     },
     {
       "id": "pear-1",
@@ -997,7 +997,7 @@ const CATALOG_DATA = {
       "desc": "Ніжна рожева черешня десертного солодкого смаку з високою врожайністю.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-3.jpg"
+      "image": "images/products/prod_chr-3.jpg?v=2"
     },
     {
       "id": "chr-4",
@@ -1107,7 +1107,7 @@ const CATALOG_DATA = {
       "desc": "Перевірений часом сорт вишні. Ідеальний баланс солодкості та кислинки.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-13.jpg"
+      "image": "images/products/prod_chr-13.jpg?v=2"
     },
     {
       "id": "plm-1",
@@ -1283,7 +1283,7 @@ const CATALOG_DATA = {
       "desc": "Угорський надранній сорт. Стійкий до морозів до -29°C і хвороб.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_grp-1.jpg"
+      "image": "images/products/prod_grp-1.jpg?v=2"
     },
     {
       "id": "grp-2",
@@ -1294,7 +1294,7 @@ const CATALOG_DATA = {
       "desc": "Великі рожеві ягоди з мускатним ароматом та вагою грона до 1,5 кг.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_grp-2.jpg"
+      "image": "images/products/prod_grp-2.jpg?v=2"
     },
     {
       "id": "grp-3",
@@ -1305,7 +1305,7 @@ const CATALOG_DATA = {
       "desc": "Ранній сорт з красивими малиново-рожевими ягодами приємного смаку.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_grp-3.jpg"
+      "image": "images/products/prod_grp-3.jpg?v=2"
     },
     {
       "id": "grp-4",
@@ -1316,7 +1316,7 @@ const CATALOG_DATA = {
       "desc": "Гігантські білі ягоди розміром зі сливу. М’якоть щільна, хрустка.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_grp-4.jpg"
+      "image": "images/products/prod_grp-4.jpg?v=2"
     },
     {
       "id": "grp-5",
@@ -1327,7 +1327,7 @@ const CATALOG_DATA = {
       "desc": "Безнасінний сорт (кишмиш) з США. Морозостійкий, з мускатно-ягідним смаком.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_grp-5.jpg"
+      "image": "images/products/prod_grp-5.jpg?v=2"
     },
     {
       "id": "grp-6",
@@ -1338,7 +1338,7 @@ const CATALOG_DATA = {
       "desc": "Безнасінний сорт для свіжого вживання та приготування якісних соків.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_grp-6.jpg"
+      "image": "images/products/prod_grp-6.jpg?v=2"
     },
     {
       "id": "bry-1",
@@ -1778,7 +1778,7 @@ const CATALOG_DATA = {
       "desc": "Однорічний саджанець справжньої англійської морозостійкої лаванди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-11.jpg"
+      "image": "images/products/prod_flw-11.jpg?v=2"
     },
     {
       "id": "flw-12",
