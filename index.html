@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=2026.3.6">
+  <link rel="stylesheet" href="styles.css?v=2026.3.8">
 </head>
 <body>
 
@@ -142,18 +142,18 @@
       <div class="hero-bento-card">
         <div class="bento-grid">
           <!-- ГОЛОВНЕ ВЕЛИКЕ ФОТО -->
-          <div class="bento-cell bento-main" onclick="openImagePreview('images/set-large.jpg', 'Великий супер-набір Щедрий Сад (7 саджанців)')">
-            <img src="images/set-large.jpg" alt="Великий набір саджанців Щедрий Сад" class="bento-img" loading="eager">
+          <div class="bento-cell bento-main" onclick="openImagePreview('images/set-large.webp', 'Великий супер-набір Щедрий Сад (7 саджанців)')">
+            <img src="images/set-large.webp" alt="Великий набір саджанців Щедрий Сад" class="bento-img" loading="eager">
             <div class="bento-badge"><svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg> ТОП · 7 саджанців 700 грн</div>
           </div>
           <!-- ПРАВЕ ВЕРХНЄ ФОТО -->
-          <div class="bento-cell bento-sub-top" onclick="openImagePreview('images/set-peach.jpg', 'Акційний набір соковитих персиків (5 сортів)')">
-            <img src="images/set-peach.jpg" alt="Набір соковитих персиків" class="bento-img" loading="eager">
+          <div class="bento-cell bento-sub-top" onclick="openImagePreview('images/set-peach.webp', 'Акційний набір соковитих персиків (5 сортів)')">
+            <img src="images/set-peach.webp" alt="Набір соковитих персиків" class="bento-img" loading="eager">
             <div class="bento-badge">Персики 500 грн</div>
           </div>
           <!-- ПРАВЕ НИЖНЄ ФОТО -->
-          <div class="bento-cell bento-sub-bottom" onclick="openImagePreview('images/set-apple.jpg', 'Акційний набір сортових яблунь (5 сортів)')">
-            <img src="images/set-apple.jpg" alt="Набір елітних яблунь" class="bento-img" loading="eager">
+          <div class="bento-cell bento-sub-bottom" onclick="openImagePreview('images/set-apple.webp', 'Акційний набір сортових яблунь (5 сортів)')">
+            <img src="images/set-apple.webp" alt="Набір елітних яблунь" class="bento-img" loading="eager">
             <div class="bento-badge">Яблуні 500 грн</div>
           </div>
         </div>
@@ -494,6 +494,11 @@
 
         <!-- ФОРМА ОФОРМЛЕННЯ ЗАМОВЛЕННЯ -->
         <form id="orderForm" style="display: none;">
+          <!-- Захист від спам-ботів (Honeypot) -->
+          <div style="position: absolute; left: -9999px; top: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
+            <label for="orderWebsite">Вебсайт компанії</label>
+            <input type="text" id="orderWebsite" name="website" tabindex="-1" autocomplete="off">
+          </div>
           <h4 class="order-form-title"><svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="m9 14 2 2 4-4"/></svg> Дані для доставки саджанців</h4>
 
           <div class="form-group">
@@ -606,7 +611,7 @@
   </div>
 
   <!-- СКРИПТИ -->
-  <script src="catalog.js?v=2026.3.7"></script>
-  <script src="app.js?v=2026.3.6"></script>
+  <script src="catalog.js?v=2026.3.8"></script>
+  <script src="app.js?v=2026.3.8"></script>
 </body>
 </html>

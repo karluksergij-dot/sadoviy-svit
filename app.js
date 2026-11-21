@@ -792,7 +792,10 @@ function renderCartModal() {
   document.getElementById('cartTotalSum').innerHTML = `<span class="total-sum-val">${totalSum} грн</span>`;
 }
 
+let cartModalOpenedAt = Date.now();
+
 function openCartModal() {
+  cartModalOpenedAt = Date.now();
   renderCartModal();
   openModal('cartModal');
 }
@@ -808,14 +811,33 @@ async function handleOrderSubmit(e, viaViber = false) {
     return;
   }
 
+  // Захист від повторних спам-кліків (кулдаун 15 секунд)
+  const lastOrderTs = sessionStorage.getItem('last_order_ts');
+  const now = Date.now();
+  if (lastOrderTs && now - parseInt(lastOrderTs, 10) < 15000) {
+    alert('Ваше замовлення вже обробляється! Наш менеджер зателефонує вам найближчим часом для підтвердження.');
+    return;
+  }
+
   const name = document.getElementById('customerName').value.trim();
   const phone = document.getElementById('customerPhone').value.trim();
   const address = document.getElementById('customerAddress').value.trim();
   const payment = document.getElementById('paymentMethod').value;
   const comment = document.getElementById('customerComment').value.trim();
 
+  // Honeypot перевірка (приховане поле-пастка)
+  const honeypotVal = document.getElementById('orderWebsite') ? document.getElementById('orderWebsite').value.trim() : '';
+  const formTimeMs = now - (cartModalOpenedAt || now);
+
   if (!name || !phone) {
     alert('Будь ласка, вкажіть ваше ім’я та номер телефону для зв’язку!');
+    return;
+  }
+
+  // Перевірка формату українського номера телефону
+  const phoneDigits = phone.replace(/[^\d]/g, '');
+  if (phoneDigits.length < 9) {
+    alert('Будь ласка, перевірте правильність номера телефону (мінімум 9 цифр, наприклад: 096 639 47 13)!');
     return;
   }
 
@@ -840,15 +862,18 @@ async function handleOrderSubmit(e, viaViber = false) {
     totalSum
   };
 
-  // 1. Відправляємо в Telegram-бот (прямий запит)
+  // 1. Відправляємо в Telegram-бот через захищену Vercel Serverless функцію з антиспамом
   let telegramSent = false;
-  if (TELEGRAM_CONFIG.isEnabled && TELEGRAM_CONFIG.token && TELEGRAM_CONFIG.chatId) {
+  if (TELEGRAM_CONFIG.isEnabled) {
     try {
-      telegramSent = await sendToTelegram(orderData);
+      telegramSent = await sendToTelegram(orderData, honeypotVal, formTimeMs);
     } catch (err) {
       console.warn('Помилка відправки в Telegram:', err);
     }
   }
+
+  // Зберігаємо таймстемп успішного замовлення для захисту від спаму
+  sessionStorage.setItem('last_order_ts', Date.now().toString());
 
   // 2. Якщо клієнт натиснув "Замовити через Viber"
   if (viaViber) {
@@ -869,8 +894,8 @@ async function handleOrderSubmit(e, viaViber = false) {
   }
 }
 
-async function sendToTelegram(order) {
-  if (!TELEGRAM_CONFIG.isEnabled || !TELEGRAM_CONFIG.token || !TELEGRAM_CONFIG.chatId) {
+async function sendToTelegram(order, honeypot = '', formTime = 0) {
+  if (!TELEGRAM_CONFIG.isEnabled) {
     return false;
   }
 
@@ -899,12 +924,14 @@ async function sendToTelegram(order) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         text: msg,
-        orderId: order.orderId
+        orderId: order.orderId,
+        website: honeypot,
+        formTime: formTime
       })
     });
 
     const data = await resp.json();
-    if (!data.ok) {
+    if (!data.ok && !data.filtered) {
       console.warn('Telegram response:', data);
     }
     return data.ok === true;
