@@ -425,7 +425,7 @@ const CATALOG_DATA = {
       "desc": "Суперранній сорт літнього дозрівання. Гарний рум’янець, прекрасний смак.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-21.jpg"
+      "image": "images/products/prod_apl-21.jpg?v=3"
     },
     {
       "id": "apl-22",
@@ -436,7 +436,7 @@ const CATALOG_DATA = {
       "desc": "Улюблений сорт дитинства. Раннє дозрівання, соковиті ароматні плоди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-22.jpg"
+      "image": "images/products/prod_apl-22.jpg?v=3"
     },
     {
       "id": "apl-23",

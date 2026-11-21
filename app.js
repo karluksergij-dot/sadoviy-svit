@@ -424,6 +424,8 @@ function formatSetVarieties(desc) {
   return `<p class="set-desc">${escapeHtml(desc)}</p>`;
 }
 
+let promoSetsExpanded = false;
+
 function renderPromoSets() {
   const container = document.getElementById('promoSetsGrid');
   if (!container || !CATALOG_DATA) return;
@@ -431,9 +433,15 @@ function renderPromoSets() {
   const sets = CATALOG_DATA.products.filter(p => p.category === 'sets');
   container.innerHTML = '';
 
-  sets.forEach(set => {
+  const initialLimit = 2; // Показувати спочатку 2 набори для швидкого переходу до каталогу
+
+  sets.forEach((set, idx) => {
     const card = document.createElement('div');
     card.className = 'set-card';
+    if (!promoSetsExpanded && idx >= initialLimit) {
+      card.classList.add('set-card-collapsed');
+      card.style.display = 'none';
+    }
     card.innerHTML = `
       <div class="set-card-media" onclick="openImagePreview('${set.image}?v=${ASSET_VERSION}', '${escapeHtml(set.name)}')">
         <img src="${set.image}?v=${ASSET_VERSION}" alt="${escapeHtml(set.name)}" loading="lazy">
@@ -461,6 +469,37 @@ function renderPromoSets() {
     `;
     container.appendChild(card);
   });
+
+  // Кнопка перемикання "Показати ще акційні набори"
+  let toggleWrap = document.getElementById('promoSetsToggleWrap');
+  if (!toggleWrap) {
+    toggleWrap = document.createElement('div');
+    toggleWrap.id = 'promoSetsToggleWrap';
+    toggleWrap.className = 'promo-sets-toggle-wrap';
+    container.parentNode.appendChild(toggleWrap);
+  }
+
+  const remainingCount = sets.length - initialLimit;
+  if (remainingCount > 0) {
+    toggleWrap.style.display = 'flex';
+    toggleWrap.innerHTML = `
+      <button type="button" class="btn-toggle-sets" onclick="togglePromoSets()">
+        <span>${promoSetsExpanded ? 'Згорнути акційні набори' : `Показати ще ${remainingCount} акційні набори`}</span>
+        <svg class="ui-icon" style="transform: ${promoSetsExpanded ? 'rotate(180deg)' : 'rotate(0deg)'}; transition: transform 0.25s;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    `;
+  } else {
+    toggleWrap.style.display = 'none';
+  }
+}
+
+function togglePromoSets() {
+  promoSetsExpanded = !promoSetsExpanded;
+  renderPromoSets();
+  if (!promoSetsExpanded) {
+    const el = document.getElementById('promoSetsSection');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
 }
 
 function addSetToCart(setId) {
@@ -973,6 +1012,8 @@ function showToast(message) {
 // Навігація до каталогу
 function scrollToCatalog(categoryId) {
   if (categoryId === 'sets') {
+    promoSetsExpanded = true;
+    renderPromoSets();
     selectCategory('sets');
     const el = document.getElementById('promoSetsSection');
     if (el) {

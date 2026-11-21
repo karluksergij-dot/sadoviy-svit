@@ -3728,7 +3728,6 @@ html, body {
 }
 
 /* Text and headings inside cards wrap cleanly */
-.product-name,
 .product-desc,
 .set-title,
 .set-desc,
@@ -3740,7 +3739,124 @@ html, body {
   word-break: break-word !important;
 }
 
+.product-name {
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  hyphens: none !important;
+}
+
+/* Toggle promo sets button */
+.promo-sets-toggle-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  width: 100%;
+}
+.btn-toggle-sets {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 28px;
+  border-radius: var(--radius-full);
+  background: #FFFFFF;
+  border: 1.5px solid var(--border-card);
+  color: var(--text-headline);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+  width: 100%;
+  max-width: 420px;
+}
+.btn-toggle-sets:hover {
+  background: var(--surface-sage);
+  border-color: var(--btn-secondary);
+  color: var(--btn-secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
 @media (max-width: 768px) {
+  /* Header mobile anti-overflow: cart pill stays cleanly inside viewport */
+  .main-header {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: clip !important;
+    padding: 0 !important;
+  }
+  .header-inner {
+    padding: 8px 0 !important;
+    gap: 8px !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+  .brand-wrapper {
+    gap: 8px !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+  }
+  .brand-logo-emblem {
+    width: 34px !important;
+    height: 34px !important;
+    flex-shrink: 0 !important;
+  }
+  .brand-text-block {
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+  .brand-title {
+    font-size: 1.05rem !important;
+    white-space: nowrap !important;
+    color: var(--text-headline) !important;
+  }
+  .brand-subtitle {
+    display: none !important; /* Hide long subtitle on phones so cart pill has plenty of room */
+  }
+  .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
+    gap: 0 !important;
+  }
+  .cart-btn-header {
+    padding: 6px 12px !important;
+    font-size: 0.82rem !important;
+    gap: 6px !important;
+    flex-shrink: 0 !important;
+    max-width: fit-content !important;
+    white-space: nowrap !important;
+    border-radius: var(--radius-full) !important;
+    box-shadow: 0 2px 8px rgba(200, 90, 50, 0.25) !important;
+  }
+  .cart-btn-sum {
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+  }
+  .cart-count-badge {
+    font-size: 0.72rem !important;
+    padding: 2px 6px !important;
+    min-width: 18px !important;
+    height: 18px !important;
+    line-height: 14px !important;
+  }
+
+  /* Card titles: clean single-line fit for long single words (e.g. Старкримсон) */
+  .product-name {
+    font-size: clamp(0.85rem, 3.4vw, 0.96rem) !important;
+    line-height: 1.22 !important;
+    letter-spacing: -0.02em !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    hyphens: none !important;
+    white-space: normal !important;
+  }
+
   .features-grid {
     grid-template-columns: 1fr !important;
     gap: 14px !important;
