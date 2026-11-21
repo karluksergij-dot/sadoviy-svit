@@ -76,7 +76,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.3.0';
+const ASSET_VERSION = '2026.3.1';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -415,6 +415,39 @@ function initSearch() {
 // ============================================================
 // РЕНДЕРИНГ АКЦІЙНИХ НАБОРІВ
 // ============================================================
+function formatSetVarieties(desc) {
+  if (!desc) return '';
+  if (desc.includes(':')) {
+    const parts = desc.split(':', 1);
+    const intro = parts[0].trim();
+    const rest = desc.substring(desc.indexOf(':') + 1).trim();
+    const dotIdx = rest.indexOf('.');
+    const varietiesText = dotIdx !== -1 ? rest.substring(0, dotIdx) : rest;
+    const extra = dotIdx !== -1 ? rest.substring(dotIdx + 1).trim() : '';
+
+    const items = varietiesText.split(',').map(s => s.trim()).filter(Boolean);
+    if (items.length >= 3) {
+      const listHtml = items.map(item => `
+        <li class="set-variety-item">
+          <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>${escapeHtml(item)}</span>
+        </li>
+      `).join('');
+
+      return `
+        <div class="set-content-wrap">
+          <p class="set-intro-text">${escapeHtml(intro)}:</p>
+          <ul class="set-varieties-list">
+            ${listHtml}
+          </ul>
+          ${extra ? `<p class="set-extra-text">${escapeHtml(extra)}</p>` : ''}
+        </div>
+      `;
+    }
+  }
+  return `<p class="set-desc">${escapeHtml(desc)}</p>`;
+}
+
 function renderPromoSets() {
   const container = document.getElementById('promoSetsGrid');
   if (!container || !CATALOG_DATA) return;
@@ -428,22 +461,26 @@ function renderPromoSets() {
     card.innerHTML = `
       <div class="set-card-media" onclick="openImagePreview('${set.image}?v=${ASSET_VERSION}', '${escapeHtml(set.name)}')">
         <img src="${set.image}?v=${ASSET_VERSION}" alt="${escapeHtml(set.name)}" loading="lazy">
-        <div class="set-zoom-badge">${ICONS.search} Збільшити фото</div>
-        ${set.badge ? `<div class="set-badge-float">${set.badge}</div>` : ''}
+        <span class="set-badge-float">${set.badge || 'ТОП-Набір'}</span>
+        <button class="set-zoom-btn" type="button" aria-label="Збільшити фото" title="Збільшити фото">
+          ${ICONS.search}
+        </button>
       </div>
       <div class="set-card-body">
         <h3 class="set-title">${escapeHtml(set.name)}</h3>
-        <p class="set-desc">${escapeHtml(set.desc)}</p>
-        <div class="set-price-bar">
-          <div class="price-box">
-            <span class="price-main">${set.price} грн</span>
-            ${set.oldPrice ? `<span class="price-old">${set.oldPrice} грн</span>` : ''}
+        ${formatSetVarieties(set.desc)}
+        <div class="set-bottom-block">
+          <div class="set-price-bar">
+            <div class="price-box">
+              <span class="price-main">${set.price} грн</span>
+              ${set.oldPrice ? `<span class="price-old">${set.oldPrice} грн</span>` : ''}
+            </div>
+            <span class="set-badge-stock">${ICONS.check} В наявності</span>
           </div>
-          <span class="set-badge-stock">${ICONS.check} В наявності</span>
+          <button class="btn-buy-set" id="btnSet_${set.id}" onclick="addSetToCart('${set.id}')">
+            ${ICONS.bag} Замовити набір (${set.price} грн)
+          </button>
         </div>
-        <button class="btn-buy-set" id="btnSet_${set.id}" onclick="addSetToCart('${set.id}')">
-          ${ICONS.bag} Замовити набір (${set.price} грн)
-        </button>
       </div>
     `;
     container.appendChild(card);
@@ -533,30 +570,34 @@ function renderCatalog() {
       ${p.image ? `
         <div class="product-card-img" onclick="openImagePreview('${p.image}?v=${ASSET_VERSION}', '${escapeHtml(cleanName)}')">
           <img src="${p.image}?v=${ASSET_VERSION}" alt="${escapeHtml(cleanName)}" loading="lazy">
-          <span class="img-zoom-hint">${ICONS.search} Фото</span>
+          <button class="img-zoom-btn" type="button" aria-label="Збільшити фото" title="Збільшити фото">
+            ${ICONS.search}
+          </button>
         </div>
       ` : ''}
-      <div class="product-top-row">
-        <span class="product-category-tag">${catSvg} ${catName}</span>
-        ${p.season ? `<span class="product-season-badge">${ICONS.clock} ${escapeHtml(p.season)}</span>` : ''}
-      </div>
-      <h3 class="product-name">${escapeHtml(cleanName)}</h3>
-      ${inCartQty > 0 ? `<div class="product-in-cart-indicator">${ICONS.check} Вже у кошику: <strong>${inCartQty} шт.</strong></div>` : ''}
-      <p class="product-desc">${escapeHtml(p.desc || '')}</p>
-      <div class="product-bottom-block">
-        <div class="product-price-row">
-          <div class="product-price-val">${p.price} грн</div>
-          <div class="product-price-unit">${p.isSet ? 'за весь набір' : 'за 1 саджанець'}</div>
+      <div class="product-card-body">
+        <div class="product-top-row">
+          <span class="product-category-tag">${catSvg} ${catName}</span>
+          ${p.season ? `<span class="product-season-badge">${ICONS.clock} ${escapeHtml(p.season)}</span>` : ''}
         </div>
-        <div class="product-buy-row">
-          <div class="card-qty-stepper">
-            <button class="card-qty-btn" type="button" onclick="stepCardQty('${p.id}', -1)" aria-label="Зменшити">−</button>
-            <span class="card-qty-val" id="cardQty_${p.id}">1</span>
-            <button class="card-qty-btn" type="button" onclick="stepCardQty('${p.id}', 1)" aria-label="Збільшити">+</button>
+        <h3 class="product-name">${escapeHtml(cleanName)}</h3>
+        ${inCartQty > 0 ? `<div class="product-in-cart-indicator">${ICONS.check} Вже у кошику: <strong>${inCartQty} шт.</strong></div>` : ''}
+        <p class="product-desc">${escapeHtml(p.desc || '')}</p>
+        <div class="product-bottom-block">
+          <div class="product-price-row">
+            <div class="product-price-val">${p.price} грн</div>
+            <div class="product-price-unit">${p.isSet ? 'за весь набір' : 'за 1 саджанець'}</div>
           </div>
-          <button class="btn-add-cart" id="btnBuy_${p.id}" type="button" onclick="addFromCard('${p.id}')">
-            <span>В кошик</span> ${ICONS.bag}
-          </button>
+          <div class="product-buy-row">
+            <div class="card-qty-stepper">
+              <button class="card-qty-btn" type="button" onclick="stepCardQty('${p.id}', -1)" aria-label="Зменшити">−</button>
+              <span class="card-qty-val" id="cardQty_${p.id}">1</span>
+              <button class="card-qty-btn" type="button" onclick="stepCardQty('${p.id}', 1)" aria-label="Збільшити">+</button>
+            </div>
+            <button class="btn-add-cart" id="btnBuy_${p.id}" type="button" onclick="addFromCard('${p.id}')">
+              <span>В кошик</span> ${ICONS.bag}
+            </button>
+          </div>
         </div>
       </div>
     `;
@@ -955,12 +996,20 @@ function showToast(message) {
 
 // Навігація до каталогу
 function scrollToCatalog(categoryId) {
-  if (categoryId) {
-    selectCategory(categoryId);
-  }
-  const el = document.getElementById('catalogSection');
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth' });
+  if (categoryId === 'sets') {
+    selectCategory('sets');
+    const el = document.getElementById('promoSetsSection');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  } else {
+    if (categoryId) {
+      selectCategory(categoryId);
+    }
+    const el = document.getElementById('catalogSection');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }
 
