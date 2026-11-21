@@ -3592,3 +3592,61 @@ input, select, textarea, button {
   font-size: 0.85rem;
   color: var(--text-muted);
 }
+
+/* HIGH CONTRAST MONOCHROME MOBILE BOTTOM BAR */
+.mobile-bottom-bar {
+  background: rgba(250, 247, 242, 0.98) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-top: 1.5px solid #DDD5C7 !important;
+  box-shadow: 0 -4px 20px rgba(26, 46, 34, 0.08) !important;
+}
+
+.mobile-bar-btn {
+  color: #1A2E22 !important;
+  font-weight: 700 !important;
+  font-size: 0.74rem !important;
+  opacity: 1 !important;
+}
+
+.mobile-bar-btn .icon svg {
+  stroke: #1A2E22 !important;
+  stroke-width: 2.2 !important;
+  width: 21px !important;
+  height: 21px !important;
+  display: block;
+  margin: 0 auto;
+}
+
+.mobile-bar-btn:active {
+  color: #C85A32 !important;
+}
+
+.mobile-bar-btn:active .icon svg {
+  stroke: #C85A32 !important;
+}
+
+.mobile-bar-btn.cart-highlight {
+  color: #C85A32 !important;
+  font-weight: 800 !important;
+}
+
+.mobile-bar-btn.cart-highlight .icon svg {
+  stroke: #C85A32 !important;
+  stroke-width: 2.4 !important;
+}
+
+.mobile-cart-badge {
+  background: #C85A32 !important;
+  color: #FFFFFF !important;
+  font-size: 0.68rem !important;
+  font-weight: 800 !important;
+  box-shadow: 0 2px 6px rgba(200, 90, 50, 0.35) !important;
+}
+
+/* Category pills emoji style */
+.cat-tab-btn .cat-emoji {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateY(-1px);
+}

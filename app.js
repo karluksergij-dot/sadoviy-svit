@@ -205,32 +205,8 @@ function selectCategory(catId) {
 
 function updateCategoryBanner(catId) {
   const bannerContainer = document.getElementById('categoryShowcaseBanner');
-  if (!bannerContainer || typeof CATALOG_DATA === 'undefined' || !CATALOG_DATA.categories) return;
-
-  const catObj = CATALOG_DATA.categories.find(c => c.id === catId);
-  if (!catObj || !catObj.banner) {
+  if (bannerContainer) {
     bannerContainer.style.display = 'none';
-    return;
-  }
-
-  bannerContainer.style.display = '';
-  const imgEl = document.getElementById('categoryBannerImg');
-  const titleEl = document.getElementById('categoryBannerTitle');
-  const tagEl = document.getElementById('categoryBannerTag');
-  const descEl = document.getElementById('categoryBannerDesc');
-
-  if (imgEl && catObj.banner) {
-    imgEl.src = `${catObj.banner}?v=${ASSET_VERSION}`;
-    imgEl.alt = catObj.title || catObj.name;
-  }
-  if (titleEl) {
-    titleEl.textContent = catObj.title || catObj.name;
-  }
-  if (tagEl) {
-    tagEl.textContent = catObj.tag || catObj.name;
-  }
-  if (descEl) {
-    descEl.textContent = catObj.desc || '';
   }
 }
 
@@ -260,7 +236,7 @@ function initCategoryTabs() {
     btn.className = `cat-tab-btn ${cat.id === currentCategory ? 'active' : ''}`;
     btn.dataset.category = cat.id;
     btn.innerHTML = `
-      <span class="cat-icon">${getCategorySvg(cat.id)}</span>
+      <span class="cat-icon cat-emoji" style="font-size: 1.25rem; line-height: 1;">${cat.icon || '🌱'}</span>
       <span class="cat-name">${cat.name.replace(/^[^\w\sа-яА-Яіїєґ]/u, '').trim()}</span>
       <span class="cat-count">${count}</span>
     `;
@@ -577,7 +553,7 @@ function renderCatalog() {
       ` : ''}
       <div class="product-card-body">
         <div class="product-top-row">
-          <span class="product-category-tag">${catSvg} ${catName}</span>
+          <span class="product-category-tag"><span class="card-cat-emoji" style="font-size: 1rem; line-height: 1; vertical-align: middle;">${catObj && catObj.icon ? catObj.icon : '🌱'}</span> ${catName}</span>
           ${p.season ? `<span class="product-season-badge">${ICONS.clock} ${escapeHtml(p.season)}</span>` : ''}
         </div>
         <h3 class="product-name">${escapeHtml(cleanName)}</h3>

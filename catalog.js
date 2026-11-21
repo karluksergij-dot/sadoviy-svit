@@ -205,7 +205,7 @@ const CATALOG_DATA = {
       "desc": "Сорт з відмінною лежкістю до весни. Плоди великі, кисло-солодкі, щільні.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_66_2026-11-20_23-57-03.jpg"
+      "image": "images/products/customer_apl-1_photo_66_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "apl-2",
@@ -260,7 +260,7 @@ const CATALOG_DATA = {
       "desc": "Золотисті солодкі яблука найвищої якості. Улюбленець садівників.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-6.jpg"
+      "image": "images/products/customer_apl-6_photo_64_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "apl-7",
@@ -271,7 +271,7 @@ const CATALOG_DATA = {
       "desc": "Темно-бордові, майже чорні плоди з високим вмістом цукру та антоціанів.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-7.jpg"
+      "image": "images/products/customer_apl-7_photo_10_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "apl-8",
@@ -293,7 +293,7 @@ const CATALOG_DATA = {
       "desc": "Прекрасна транспортабельність, плоди гарні, кисло-солодкі, лежать до травня.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-9.jpg"
+      "image": "images/products/customer_apl-9_photo_65_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "apl-10",
@@ -315,7 +315,7 @@ const CATALOG_DATA = {
       "desc": "Італійський сорт з червоними хрусткими яблуками. Підвищена стійкість до хвороб.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-11.jpg"
+      "image": "images/products/customer_apl-11_photo_11_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "apl-12",
@@ -337,7 +337,7 @@ const CATALOG_DATA = {
       "desc": "Суперсолодкі щільні яблука тривалого зберігання. Світовий лідер смаку.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-13.jpg"
+      "image": "images/products/customer_apl-13_photo_12_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "apl-14",
@@ -348,7 +348,7 @@ const CATALOG_DATA = {
       "desc": "Насичено-бордовий клон Ред Делішес з відмінною товарністю та соковитістю.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-14.jpg"
+      "image": "images/products/customer_apl-14_photo_63_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "apl-15",
@@ -370,7 +370,7 @@ const CATALOG_DATA = {
       "desc": "Класичне зелене яблуко з винно-солодким пряним смаком. Чудово зберігається.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-16.jpg"
+      "image": "images/products/customer_apl-16_photo_16_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "apl-17",
@@ -392,7 +392,7 @@ const CATALOG_DATA = {
       "desc": "Надзвичайно соковитий та ароматний осінньо-зимовий український сорт.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-18.jpg"
+      "image": "images/products/customer_apl-18_photo_62_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "apl-19",
@@ -414,7 +414,7 @@ const CATALOG_DATA = {
       "desc": "Літній сорт з цукерковим ароматом та білосніжною танучою м’якоттю.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-20.jpg"
+      "image": "images/products/customer_apl-20_photo_15_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "apl-21",
@@ -447,7 +447,7 @@ const CATALOG_DATA = {
       "desc": "Польський скороплідний високоврожайний сорт з великими круглими плодами.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-23.jpg"
+      "image": "images/products/customer_apl-23_photo_2_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "apl-24",
@@ -491,7 +491,7 @@ const CATALOG_DATA = {
       "desc": "Німецький червоном’якотний сорт. Не окислюється при нарізанні, цілюще яблуко.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-27.jpg"
+      "image": "images/products/customer_apl-27_photo_14_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "apl-28",
@@ -513,7 +513,7 @@ const CATALOG_DATA = {
       "desc": "Сорт з ніжним маслянистим десертним смаком і високою врожайністю.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_26_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pear-1_photo_26_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pear-2",
@@ -524,7 +524,7 @@ const CATALOG_DATA = {
       "desc": "Подовжені красиві плоди з яскравим рум’янцем. Хрустка, надзвичайно солодка.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_25_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pear-2_photo_25_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pear-3",
@@ -535,7 +535,7 @@ const CATALOG_DATA = {
       "desc": "Зимовий сорт відмінної транспортабельності. Зберігається до весни без втрати соковитості.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_24_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pear-3_photo_24_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pear-4",
@@ -546,7 +546,7 @@ const CATALOG_DATA = {
       "desc": "Італійський високоврожайний сорт з ніжною танучою кремовою м’якоттю.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_23_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pear-4_photo_23_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pear-5",
@@ -557,7 +557,7 @@ const CATALOG_DATA = {
       "desc": "Одна з найкращих зимових груш у світі. Великі плоди, маслянистий медовий смак.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_22_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pear-5_photo_22_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pear-6",
@@ -568,7 +568,7 @@ const CATALOG_DATA = {
       "desc": "Класична рання груша. Соковита, солодка, буквально тане в роті.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_pear-6.jpg"
+      "image": "images/products/customer_pear-6_photo_21_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pear-7",
@@ -579,7 +579,7 @@ const CATALOG_DATA = {
       "desc": "Пізньозимовий сорт для тривалого зберігання. Насичений солодкий смак.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_pear-7.jpg"
+      "image": "images/products/customer_pear-7_photo_20_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pear-8",
@@ -590,7 +590,7 @@ const CATALOG_DATA = {
       "desc": "Невибагливий ранній сорт. Жовті плоди з пікантним лимонним ароматом.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_19_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pear-8_photo_19_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pear-9",
@@ -601,7 +601,7 @@ const CATALOG_DATA = {
       "desc": "Еталон світового смаку груші Дюшес. Мускатний десертний аромат.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_18_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pear-9_photo_18_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pear-10",
@@ -612,7 +612,7 @@ const CATALOG_DATA = {
       "desc": "Старовинний французький сорт. Солодка щільна м’якоть, рясний урожай.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_15_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pear-10_photo_15_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pear-11",
@@ -623,7 +623,7 @@ const CATALOG_DATA = {
       "desc": "Відомий комерційний сорт. Стабільне регулярне плодоношення, дуже солодка.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_14_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pear-11_photo_14_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pear-12",
@@ -634,7 +634,7 @@ const CATALOG_DATA = {
       "desc": "Компактне деревце для невеликих садів. Великі смачні осінні плоди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_17_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pear-12_photo_17_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pear-13",
@@ -645,7 +645,7 @@ const CATALOG_DATA = {
       "desc": "Займає мінімум місця (до 1 м ширини). Рясний медовий урожай.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_16_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pear-13_photo_16_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pear-14",
@@ -656,7 +656,7 @@ const CATALOG_DATA = {
       "desc": "Екзотична яблуко-груша (Наші). Хрустка, освіжаюча, неймовірно соковита.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_27_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pear-14_photo_27_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pear-15",
@@ -667,7 +667,7 @@ const CATALOG_DATA = {
       "desc": "Бронзова округла азіатська груша з ніжним екзотичним квітковим смаком.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_pear-15.jpg"
+      "image": "images/products/customer_pear-15_photo_28_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "pch-1",
@@ -700,7 +700,7 @@ const CATALOG_DATA = {
       "desc": "Перевірений український сорт, чудово зимує в усіх регіонах України.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_pch-3.jpg"
+      "image": "images/products/customer_pch-3_photo_44_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "pch-4",
@@ -711,7 +711,7 @@ const CATALOG_DATA = {
       "desc": "Американський сорт з насиченим кармінним рум’янцем та десертним ароматом.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_3_2026-11-20_23-58-03.jpg"
+      "image": "images/products/customer_pch-4_photo_42_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "pch-5",
@@ -722,7 +722,7 @@ const CATALOG_DATA = {
       "desc": "Білом’якотний делікатесний персик без кислинки. Дуже ніжний і солодкий.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_2_2026-11-20_23-58-03.jpg"
+      "image": "images/products/customer_pch-5_photo_41_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "pch-6",
@@ -733,7 +733,7 @@ const CATALOG_DATA = {
       "desc": "Світовий стандарт персика. Стабільний урожай, великі смачні плоди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_pch-6.jpg"
+      "image": "images/products/customer_pch-6_photo_1_2026-11-20_23-58-03.jpg"
     },
     {
       "id": "pch-7",
@@ -744,7 +744,7 @@ const CATALOG_DATA = {
       "desc": "Ексклюзивний білий персик (прозоро-біла м’якоть) з вишуканим смаком.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_39_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pch-7_photo_39_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "pch-8",
@@ -755,7 +755,7 @@ const CATALOG_DATA = {
       "desc": "Один із найбільш великоплідних персиків у світі (до 350 г і більше).",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_pch-8.jpg"
+      "image": "images/products/customer_pch-8_photo_38_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "pch-9",
@@ -766,7 +766,7 @@ const CATALOG_DATA = {
       "desc": "Канадський сорт найвищої дегустаційної оцінки. Стійкий до кучерявості листя.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_pch-9.jpg"
+      "image": "images/products/customer_pch-9_photo_37_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "pch-10",
@@ -777,7 +777,7 @@ const CATALOG_DATA = {
       "desc": "Гармонійний кисло-солодкий смак, щільна м’якоть, висока транспортабельність.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_35_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pch-10_photo_36_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "pch-11",
@@ -788,7 +788,7 @@ const CATALOG_DATA = {
       "desc": "Плоский дисковидний персик з маленькою кісточкою. Медово-солодкий.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_36_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pch-11_photo_34_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "pch-12",
@@ -799,7 +799,7 @@ const CATALOG_DATA = {
       "desc": "Гладкий глянцевий нектарин з твердою солодкою м’якоттю пізнього строку.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_pch-12.jpg"
+      "image": "images/products/customer_pch-12_photo_28_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "pch-13",
@@ -810,7 +810,7 @@ const CATALOG_DATA = {
       "desc": "Яскраво-червоний нектарин з ароматною танучою м’якоттю без опушення.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_37_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pch-13_photo_32_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "pch-14",
@@ -821,7 +821,7 @@ const CATALOG_DATA = {
       "desc": "Компактний сорт для балкона або вузьких грядок. Солодкі плоди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_31_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pch-14_photo_30_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "pch-15",
@@ -832,7 +832,7 @@ const CATALOG_DATA = {
       "desc": "Стовбурове мініатюрне деревце з великими смачними персиками.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_32_2026-11-20_23-57-47.jpg"
+      "image": "images/products/customer_pch-15_photo_31_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "apr-1",
@@ -843,7 +843,7 @@ const CATALOG_DATA = {
       "desc": "Стійкий до морозів пізній сорт, який уникає весняних заморозків.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apr-1.jpg"
+      "image": "images/products/customer_apr-1_photo_11_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "apr-2",
@@ -854,7 +854,7 @@ const CATALOG_DATA = {
       "desc": "Французький ранній сорт суцільного рубіново-червоного забарвлення.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apr-2.jpg"
+      "image": "images/products/customer_apr-2_photo_10_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "apr-3",
@@ -865,7 +865,7 @@ const CATALOG_DATA = {
       "desc": "Суперранній термін дозрівання (початок червня). Солодкі товарні плоди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apr-3.jpg"
+      "image": "images/products/customer_apr-3_photo_19_2026-11-20_23-58-03.jpg"
     },
     {
       "id": "apr-4",
@@ -876,7 +876,7 @@ const CATALOG_DATA = {
       "desc": "Американський промисловий сорт з великими яскраво-оранжевими плодами.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apr-4.jpg"
+      "image": "images/products/customer_apr-4_photo_70_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "apr-5",
@@ -887,7 +887,7 @@ const CATALOG_DATA = {
       "desc": "Французький ранній абрикос з видатним солодким десертним смаком.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apr-5.jpg"
+      "image": "images/products/customer_apr-5_photo_69_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "apr-6",
@@ -898,7 +898,7 @@ const CATALOG_DATA = {
       "desc": "Адаптований до умов України невибагливий і щедрий на врожай сорт.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apr-6.jpg"
+      "image": "images/products/customer_apr-6_photo_20_2026-11-20_23-58-03.jpg"
     },
     {
       "id": "apr-7",
@@ -909,7 +909,7 @@ const CATALOG_DATA = {
       "desc": "Світло-жовті соковиті плоди з неповторним ананасним присмаком.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apr-7.jpg"
+      "image": "images/products/customer_apr-7_photo_21_2026-11-20_23-58-03.jpg"
     },
     {
       "id": "apr-8",
@@ -920,7 +920,7 @@ const CATALOG_DATA = {
       "desc": "Один із найбільш ранніх сортів у світі з великими гарними плодами.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apr-8.jpg"
+      "image": "images/products/customer_apr-8_photo_22_2026-11-20_23-58-03.jpg"
     },
     {
       "id": "apr-9",
@@ -931,7 +931,7 @@ const CATALOG_DATA = {
       "desc": "Великі плоди розміром з персик. Солодка ніжна ароматна м’якоть.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apr-9.jpg"
+      "image": "images/products/customer_apr-9_photo_23_2026-11-20_23-58-03.jpg"
     },
     {
       "id": "apr-10",
@@ -942,7 +942,7 @@ const CATALOG_DATA = {
       "desc": "Народний улюбленець. Висока врожайність, самоплідний та надійний.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apr-10.jpg"
+      "image": "images/products/customer_apr-10_photo_2_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "apr-11",
@@ -953,7 +953,7 @@ const CATALOG_DATA = {
       "desc": "Рідкісний гібрид абрикоса та аличі. Темно-фіолетовий, надзвичайно ароматний.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apr-11.jpg"
+      "image": "images/products/customer_apr-11_photo_1_2026-11-20_23-57-47.jpg"
     },
     {
       "id": "apr-12",
@@ -964,7 +964,7 @@ const CATALOG_DATA = {
       "desc": "Компактна форма дерева (ширина крони до 80 см). Ідеально для малої площі.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apr-12.jpg"
+      "image": "images/products/customer_apr-12_photo_68_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "chr-1",
@@ -975,7 +975,7 @@ const CATALOG_DATA = {
       "desc": "Німецька елітна черешня. Темно-червоні тверді ягоди, не розтріскуються від дощу.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-1.jpg"
+      "image": "images/products/customer_chr-1_photo_39_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "chr-2",
@@ -986,7 +986,7 @@ const CATALOG_DATA = {
       "desc": "Велика янтарно-жовта черешня з щільною м’якоттю, не уражується птахами.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-2.jpg"
+      "image": "images/products/customer_chr-2_photo_38_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "chr-3",
@@ -1008,7 +1008,7 @@ const CATALOG_DATA = {
       "desc": "Класична великоплідна темно-бордова черешня з густим соком.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-4.jpg"
+      "image": "images/products/customer_chr-4_photo_36_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "chr-5",
@@ -1019,7 +1019,7 @@ const CATALOG_DATA = {
       "desc": "Український надійний сорт черешні з високою щорічною продуктивністю.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-5.jpg"
+      "image": "images/products/customer_chr-5_photo_35_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "chr-6",
@@ -1030,7 +1030,7 @@ const CATALOG_DATA = {
       "desc": "Канадський самоплідний сорт пізнього строку. Великі ягоди до 12-14 г.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-6.jpg"
+      "image": "images/products/customer_chr-6_photo_34_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "chr-7",
@@ -1041,7 +1041,7 @@ const CATALOG_DATA = {
       "desc": "«Королева» пізніх черешень з Чехії. Тверді серцеподібні солодкі ягоди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-7.jpg"
+      "image": "images/products/customer_chr-7_photo_33_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "chr-8",
@@ -1052,7 +1052,7 @@ const CATALOG_DATA = {
       "desc": "Суперрання соковита черешня, відкриває сезон ягід у вашому саду.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-8.jpg"
+      "image": "images/products/customer_chr-8_photo_32_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "chr-9",
@@ -1063,7 +1063,7 @@ const CATALOG_DATA = {
       "desc": "Гігантські темно-бордові серцевидні плоди з насиченим смаком.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-9.jpg"
+      "image": "images/products/customer_chr-9_photo_37_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "chr-10",
@@ -1074,7 +1074,7 @@ const CATALOG_DATA = {
       "desc": "Рання майже чорна черешня з високим вмістом природних цукрів.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_1_2026-11-20_23-57-03.jpg"
+      "image": "images/products/customer_chr-10_photo_31_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "chr-11",
@@ -1085,7 +1085,7 @@ const CATALOG_DATA = {
       "desc": "Український сорт-рекордсмен: ягоди досягають ваги до 14-15 грамів!",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-11.jpg"
+      "image": "images/products/customer_chr-11_photo_30_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "chr-12",
@@ -1096,7 +1096,7 @@ const CATALOG_DATA = {
       "desc": "Компактне деревце черешні для маленьких садів і діжок.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-12.jpg"
+      "image": "images/products/customer_chr-12_photo_29_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "chr-13",
@@ -1118,7 +1118,7 @@ const CATALOG_DATA = {
       "desc": "Ранньо-пізній сорт з великими круглими синьо-фіолетовими плодами.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_plm-1.jpg"
+      "image": "images/products/customer_plm-1_photo_67_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "plm-2",
@@ -1129,7 +1129,7 @@ const CATALOG_DATA = {
       "desc": "Сербський сорт. Раннє дозрівання, висока стійкість до хвороб, великі сливи.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_plm-2.jpg"
+      "image": "images/products/customer_plm-2_photo_66_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "plm-3",
@@ -1140,7 +1140,7 @@ const CATALOG_DATA = {
       "desc": "Класична слива для сушіння на чорнослив, варення та свіжого вживання.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_plm-3.jpg"
+      "image": "images/products/customer_plm-3_photo_65_2026-11-20_23-57-25.jpg"
     },
     {
       "id": "plm-4",
@@ -1151,7 +1151,7 @@ const CATALOG_DATA = {
       "desc": "Англійський великоплідний сорт. Маса плоду до 70 г, дуже солодкий.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_plm-4.jpg"
+      "image": "images/products/customer_plm-4_photo_58_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "plm-5",
@@ -1162,7 +1162,7 @@ const CATALOG_DATA = {
       "desc": "Американо-польський сорт. Кісточка повністю вільна, відмінний смак.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_plm-5.jpg"
+      "image": "images/products/customer_plm-5_photo_57_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "plm-6",
@@ -1173,7 +1173,7 @@ const CATALOG_DATA = {
       "desc": "Світовий еталон сливи венгерки. Самоплідна, рясно плодоносить щороку.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_plm-6.jpg"
+      "image": "images/products/customer_plm-6_photo_56_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "plm-7",
@@ -1184,7 +1184,7 @@ const CATALOG_DATA = {
       "desc": "Пізня соковита слива. Довго висить на дереві, набираючи максимум цукру.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_plm-7.jpg"
+      "image": "images/products/customer_plm-7_photo_55_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "plm-8",
@@ -1195,7 +1195,7 @@ const CATALOG_DATA = {
       "desc": "Світло-жовта медова рання слива з прозорою м’якоттю.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_plm-8.jpg"
+      "image": "images/products/customer_plm-8_photo_53_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "plm-9",
@@ -1206,7 +1206,7 @@ const CATALOG_DATA = {
       "desc": "Десертний сорт з ніжною танучою текстурою та тонким ароматом.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_photo_41_2026-11-20_23-55-36.jpg"
+      "image": "images/products/customer_plm-9_photo_48_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "plm-10",
@@ -1217,7 +1217,7 @@ const CATALOG_DATA = {
       "desc": "Німецький сорт із надзвичайно великими плодами (до 80-100 г).",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_plm-10.jpg"
+      "image": "images/products/customer_plm-10_photo_49_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "plm-11",
@@ -1228,7 +1228,7 @@ const CATALOG_DATA = {
       "desc": "Слива-гігант округлої форми з темно-фіолетовою шкіркою. Зберігається до зими.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_plm-11.jpg"
+      "image": "images/products/customer_plm-11_photo_52_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "plm-12",
@@ -1239,7 +1239,7 @@ const CATALOG_DATA = {
       "desc": "Диво-гібрид сливи, абрикоса та персика! Морозостійкий, унікальний смак.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_plm-12.jpg"
+      "image": "images/products/customer_plm-12_photo_51_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "plm-13",
@@ -1250,7 +1250,7 @@ const CATALOG_DATA = {
       "desc": "Величезна диплоїдна слива селекції Лютера Бербанка.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_plm-13.jpg"
+      "image": "images/products/customer_plm-13_photo_47_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "plm-14",
@@ -1261,7 +1261,7 @@ const CATALOG_DATA = {
       "desc": "Стовбурове струнке деревце, всіяне великими синіми сливами.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_plm-14.jpg"
+      "image": "images/products/customer_plm-14_photo_46_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "plm-15",
@@ -1272,7 +1272,7 @@ const CATALOG_DATA = {
       "desc": "Золотиста слива з неперевершеним сильним ароматом липового меду.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_plm-15.jpg"
+      "image": "images/products/customer_plm-15_photo_54_2026-11-20_23-57-03.jpg"
     },
     {
       "id": "grp-1",
@@ -1881,7 +1881,3 @@ const CATALOG_DATA = {
     }
   ]
 };
-
-if (typeof window !== 'undefined') {
-  window.CATALOG_DATA = CATALOG_DATA;
-}
