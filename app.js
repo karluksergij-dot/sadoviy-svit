@@ -33,7 +33,50 @@ const STORE_CONTACTS = {
 };
 
 // Конфігурація пагінації та версіонування ассетів
-const ASSET_VERSION = '2026.2.7';
+// ============================================================
+// ПРЕМІАЛЬНІ INLINE SVG-ІКОНКИ (LUCIDE STYLE, STROKE 1.75)
+// ============================================================
+const ICONS = {
+  check: `<svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>`,
+  checkLg: `<svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>`,
+  clock: `<svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  search: `<svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+  searchLg: `<svg class="ui-icon" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+  bag: `<svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
+  trash: `<svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`,
+  x: `<svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
+  sprout: `<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22v-9"/><path d="M12 13a5 5 0 0 0 5-5c0-3-2-5-5-5-3 0-5 2-5 5a5 5 0 0 0 5 5z"/></svg>`,
+  flame: `<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>`,
+  leaf: `<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`
+};
+
+function getCategorySvg(catId) {
+  switch (catId) {
+    case 'all':
+      return `<svg class="ui-icon cat-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`;
+    case 'sets':
+      return `<svg class="ui-icon cat-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`;
+    case 'apples':
+    case 'pears':
+    case 'peaches':
+    case 'apricots':
+      return `<svg class="ui-icon cat-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a4 4 0 0 1 3 3.6 4 4 0 0 1 4 4.4C19 16 14.5 21 12 21S5 16 5 10a4 4 0 0 1 4-4.4A4 4 0 0 1 12 2z"/><path d="M12 2c0 3-2 4-2 4"/></svg>`;
+    case 'cherries':
+    case 'plums':
+      return `<svg class="ui-icon cat-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="17" r="4"/><circle cx="17" cy="17" r="4"/><path d="M7 13c0-6 4-9 9-11"/><path d="M17 13c-2-4-2-7 0-9"/><path d="M9 4c2 0 4 1 7 0"/></svg>`;
+    case 'grapes':
+    case 'berries':
+      return `<svg class="ui-icon cat-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="2.5"/><circle cx="9" cy="11.5" r="2.5"/><circle cx="15" cy="11.5" r="2.5"/><circle cx="7" cy="16" r="2.5"/><circle cx="12" cy="16" r="2.5"/><circle cx="17" cy="16" r="2.5"/><circle cx="12" cy="20.5" r="2"/><path d="M12 2v2.5"/></svg>`;
+    case 'exotics':
+      return `<svg class="ui-icon cat-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8c0-3.5 2-6 5-6-1.5 2.5-1 4.5 0 6"/><path d="M11 8c0-3.5-2-6-5-6 1.5 2.5 1 4.5 0 6"/><path d="M12 8v14"/><path d="M4 14c2.5-1 4.5-.5 6 1"/><path d="M20 14c-2.5-1-4.5-.5-6 1"/></svg>`;
+    case 'flowers':
+      return `<svg class="ui-icon cat-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 16.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 1 1 4.5 4.5 4.5 4.5 0 1 1-4.5 4.5z"/></svg>`;
+    default:
+      return `<svg class="ui-icon cat-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22v-9"/><path d="M12 13a5 5 0 0 0 5-5c0-3-2-5-5-5-3 0-5 2-5 5a5 5 0 0 0 5 5z"/></svg>`;
+  }
+}
+
+const ASSET_VERSION = '2026.3.0';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -127,7 +170,7 @@ function updateCardInCartIndicators() {
           titleEl.insertAdjacentElement('afterend', indicator);
         }
       }
-      indicator.innerHTML = `✓ Вже у кошику: <strong>${inCartItem.quantity} шт.</strong>`;
+      indicator.innerHTML = `${ICONS.check} Вже у кошику: <strong>${inCartItem.quantity} шт.</strong>`;
     } else {
       card.classList.remove('has-in-cart');
       if (indicator) {
@@ -217,7 +260,7 @@ function initCategoryTabs() {
     btn.className = `cat-tab-btn ${cat.id === currentCategory ? 'active' : ''}`;
     btn.dataset.category = cat.id;
     btn.innerHTML = `
-      <span class="cat-icon">${cat.icon}</span>
+      <span class="cat-icon">${getCategorySvg(cat.id)}</span>
       <span class="cat-name">${cat.name.replace(/^[^\w\sа-яА-Яіїєґ]/u, '').trim()}</span>
       <span class="cat-count">${count}</span>
     `;
@@ -385,7 +428,7 @@ function renderPromoSets() {
     card.innerHTML = `
       <div class="set-card-media" onclick="openImagePreview('${set.image}?v=${ASSET_VERSION}', '${escapeHtml(set.name)}')">
         <img src="${set.image}?v=${ASSET_VERSION}" alt="${escapeHtml(set.name)}" loading="lazy">
-        <div class="set-zoom-badge">🔍 Збільшити фото</div>
+        <div class="set-zoom-badge">${ICONS.search} Збільшити фото</div>
         ${set.badge ? `<div class="set-badge-float">${set.badge}</div>` : ''}
       </div>
       <div class="set-card-body">
@@ -396,10 +439,10 @@ function renderPromoSets() {
             <span class="price-main">${set.price} грн</span>
             ${set.oldPrice ? `<span class="price-old">${set.oldPrice} грн</span>` : ''}
           </div>
-          <span class="set-badge-stock">✓ В наявності</span>
+          <span class="set-badge-stock">${ICONS.check} В наявності</span>
         </div>
         <button class="btn-buy-set" id="btnSet_${set.id}" onclick="addSetToCart('${set.id}')">
-          🛒 Замовити набір (${set.price} грн)
+          ${ICONS.bag} Замовити набір (${set.price} грн)
         </button>
       </div>
     `;
@@ -413,7 +456,7 @@ function addSetToCart(setId) {
   if (btn) {
     const orig = btn.innerHTML;
     btn.style.background = '#0B2416';
-    btn.innerHTML = '✓ Набір додано в кошик!';
+    btn.innerHTML = `${ICONS.check} Набір додано в кошик!`;
     setTimeout(() => {
       btn.style.background = '';
       btn.innerHTML = orig;
@@ -457,10 +500,10 @@ function renderCatalog() {
 
   if (totalFiltered === 0) {
     container.innerHTML = `
-      <div style="grid-column: 1 / -1; text-align: center; padding: 48px 16px; background: #fff; border-radius: 18px; border: 1px dashed var(--border-strong);">
-        <div style="font-size: 3rem; margin-bottom: 12px;">🔍</div>
-        <h3 style="font-size: 1.35rem; color: #123722; margin-bottom: 8px; font-weight: 800;">Нічого не знайдено за вашим запитом</h3>
-        <p style="color: #627367; font-size: 1rem;">Спробуйте змінити слово або обрати іншу категорію зверху</p>
+      <div style="grid-column: 1 / -1; text-align: center; padding: 48px 16px; background: #fff; border-radius: 18px; border: 1px solid var(--border-card);">
+        <div style="display: flex; justify-content: center; margin-bottom: 14px; color: var(--cta-primary);">${ICONS.searchLg}</div>
+        <h3 style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-headline); margin-bottom: 8px; font-weight: 700;">Нічого не знайдено за вашим запитом</h3>
+        <p style="color: var(--text-muted); font-size: 1rem;">Спробуйте змінити слово або обрати іншу категорію зверху</p>
       </div>
     `;
     if (paginationWrap) paginationWrap.style.display = 'none';
@@ -477,7 +520,7 @@ function renderCatalog() {
 
     const catObj = CATALOG_DATA.categories.find(c => c.id === p.category);
     const catName = catObj ? catObj.name.replace(/^[^\w\sа-яА-Яіїєґ]/u, '').trim() : 'Саджанці';
-    const catIcon = catObj ? catObj.icon : '🌱';
+    const catSvg = getCategorySvg(p.category);
 
     const inCartItem = cart.find(i => i.id === p.id);
     const inCartQty = inCartItem ? inCartItem.quantity : 0;
@@ -490,15 +533,15 @@ function renderCatalog() {
       ${p.image ? `
         <div class="product-card-img" onclick="openImagePreview('${p.image}?v=${ASSET_VERSION}', '${escapeHtml(cleanName)}')">
           <img src="${p.image}?v=${ASSET_VERSION}" alt="${escapeHtml(cleanName)}" loading="lazy">
-          <span class="img-zoom-hint">🔍 Фото</span>
+          <span class="img-zoom-hint">${ICONS.search} Фото</span>
         </div>
       ` : ''}
       <div class="product-top-row">
-        <span class="product-category-tag">${catIcon} ${catName}</span>
-        ${p.season ? `<span class="product-season-badge">⏱ ${escapeHtml(p.season)}</span>` : ''}
+        <span class="product-category-tag">${catSvg} ${catName}</span>
+        ${p.season ? `<span class="product-season-badge">${ICONS.clock} ${escapeHtml(p.season)}</span>` : ''}
       </div>
       <h3 class="product-name">${escapeHtml(cleanName)}</h3>
-      ${inCartQty > 0 ? `<div class="product-in-cart-indicator">✓ Вже у кошику: <strong>${inCartQty} шт.</strong></div>` : ''}
+      ${inCartQty > 0 ? `<div class="product-in-cart-indicator">${ICONS.check} Вже у кошику: <strong>${inCartQty} шт.</strong></div>` : ''}
       <p class="product-desc">${escapeHtml(p.desc || '')}</p>
       <div class="product-bottom-block">
         <div class="product-price-row">
@@ -512,7 +555,7 @@ function renderCatalog() {
             <button class="card-qty-btn" type="button" onclick="stepCardQty('${p.id}', 1)" aria-label="Збільшити">+</button>
           </div>
           <button class="btn-add-cart" id="btnBuy_${p.id}" type="button" onclick="addFromCard('${p.id}')">
-            <span>В кошик</span> 🛒
+            <span>В кошик</span> ${ICONS.bag}
           </button>
         </div>
       </div>
@@ -570,7 +613,7 @@ function addFromCard(productId) {
   if (btn) {
     const origHtml = btn.innerHTML;
     btn.classList.add('added');
-    btn.innerHTML = '<span>✓ Додано!</span>';
+    btn.innerHTML = `<span>${ICONS.check} Додано!</span>`;
     setTimeout(() => {
       btn.classList.remove('added');
       btn.innerHTML = origHtml;
@@ -599,7 +642,7 @@ function addToCart(productId, quantity = 1, showCartDrawer = false) {
   }
 
   saveCartToStorage();
-  showToast(`🌿 Додано в кошик: ${cleanName} (${qty} шт.)`);
+  showToast(`${ICONS.check} Додано в кошик: ${cleanName} (${qty} шт.)`);
 
   if (showCartDrawer) {
     openCartModal();
@@ -643,11 +686,13 @@ function renderCartModal() {
 
   if (cart.length === 0) {
     container.innerHTML = `
-      <div class="cart-empty-state">
-        <div class="cart-empty-icon">🪴</div>
-        <h4 style="font-size: 1.3rem; color: #123722; margin-bottom: 8px; font-weight: 800;">Ваш кошик порожній</h4>
-        <p style="font-size: 1rem; color: #627367; margin-bottom: 20px;">Оберіть сортові саджанці або акційні набори у нашому каталозі</p>
-        <button class="btn-hero-primary" onclick="closeModal('cartModal')">Перейти до покупок</button>
+      <div class="cart-empty-state" style="text-align: center; padding: 40px 16px;">
+        <div class="cart-empty-icon" style="display: flex; justify-content: center; margin-bottom: 16px; color: var(--cta-primary);">
+          <svg class="ui-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h4 style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--text-headline); margin-bottom: 8px; font-weight: 700;">Ваш кошик порожній</h4>
+        <p style="font-size: 1rem; color: var(--text-muted); margin-bottom: 24px;">Оберіть сортові саджанці або акційні набори у нашому каталозі</p>
+        <button class="btn-hero-primary" style="justify-content: center; width: auto; min-width: 220px; margin: 0 auto;" onclick="closeModal('cartModal')">Перейти до покупок</button>
       </div>
     `;
     totalBox.style.display = 'none';
@@ -662,7 +707,7 @@ function renderCartModal() {
   let itemsHtml = `
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
       <span style="font-size:0.95rem; color:#627367; font-weight:700;">Всього у кошику: ${totalCount} шт.</span>
-      <button style="background:none; border:none; color:#B02A2A; font-size:0.88rem; font-weight:700; cursor:pointer;" onclick="clearCart()">🗑 Очистити</button>
+      <button style="background:none; border:none; color:#B02A2A; font-size:0.88rem; font-weight:700; cursor:pointer;" onclick="clearCart()">${ICONS.trash} Очистити</button>
     </div>
     <div class="cart-items-list">
   `;
@@ -681,7 +726,7 @@ function renderCartModal() {
           <button class="card-qty-btn" type="button" onclick="changeCartItemQty('${item.id}', 1)" aria-label="Збільшити">+</button>
         </div>
         <div class="cart-item-price">${itemTotal} грн</div>
-        <button class="cart-item-remove" type="button" title="Видалити" onclick="removeCartItem('${item.id}')">✕</button>
+        <button class="cart-item-remove" type="button" title="Видалити" onclick="removeCartItem(\'${item.id}\')" aria-label="Видалити">${ICONS.trash}</button>
       </div>
     `;
   });
@@ -755,7 +800,7 @@ async function handleOrderSubmit(e, viaViber = false) {
     finalizeOrder(orderData, telegramSent);
     if (submitBtn) {
       submitBtn.disabled = false;
-      submitBtn.textContent = '🌿 Оформити замовлення';
+      submitBtn.innerHTML = `${ICONS.bag} Оформити замовлення`;
     }
     return;
   }
@@ -764,7 +809,7 @@ async function handleOrderSubmit(e, viaViber = false) {
   finalizeOrder(orderData, telegramSent);
   if (submitBtn) {
     submitBtn.disabled = false;
-    submitBtn.textContent = '🌿 Оформити замовлення';
+    submitBtn.innerHTML = `${ICONS.bag} Оформити замовлення`;
   }
 }
 
@@ -840,7 +885,7 @@ function finalizeOrder(order, telegramSent = false) {
   const botDesc = document.getElementById('botNoticeDesc');
   if (botTitle && botDesc) {
     if (telegramSent) {
-      botTitle.textContent = '✓ Замовлення надіслано в Telegram!';
+      botTitle.innerHTML = `${ICONS.check} Замовлення надіслано в Telegram!`;
       botDesc.innerHTML = 'Сповіщення успішно доставлено менеджеру <b>Любов</b> у Telegram. Ми зв\'яжемося з вами найближчим часом.';
     } else {
       botTitle.textContent = 'Замовлення зафіксовано в системі';
