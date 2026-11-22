@@ -21,7 +21,7 @@ const CATALOG_DATA = {
       "banner": "images/banners/banner-all.webp",
       "title": "🌱 Повний асортимент розплідника «Садовий світ»",
       "desc": "Понад 150 сортових плодових дерев, ягідних культур та декоративних рослин. Власне вирощування з гарантією 100% приживлюваності.",
-      "tag": "161 сорти саджанців"
+      "tag": "162 сорти саджанців"
     },
     {
       "id": "sets",
@@ -102,7 +102,7 @@ const CATALOG_DATA = {
       "banner": "images/banners/banner-berries.webp",
       "title": "🫐 Лохина в горщиках, Жимолость та Ягідні кущі",
       "desc": "Сортова високоросла лохина у контейнерах із закритою кореневою системою, рання жимолость, дерево-малина Крепиш та безколючковий крижовнік.",
-      "tag": "13 видів ягідних"
+      "tag": "14 видів ягідних"
     },
     {
       "id": "exotics",
@@ -1476,13 +1476,24 @@ const CATALOG_DATA = {
     {
       "id": "bry-5",
       "category": "berries",
-      "name": "Саджанець: Малина ремонтантна (рясний урожай до морозів)",
+      "name": "Саджанець: Малина ремонтантна «Полана»",
       "price": 30,
       "season": "ремонтантна сортова",
       "desc": "Плодоносить все літо та осінь аж до перших заморозків.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_bry-5.webp"
+      "image": "images/products/tg_bry-5.webp"
+    },
+    {
+      "id": "bry-14",
+      "category": "berries",
+      "name": "Саджанець: Малина ремонтантна «Зюгана»",
+      "price": 30,
+      "season": "ремонтантна сортова",
+      "desc": "Плодоносить все літо та осінь аж до перших заморозків.",
+      "inStock": true,
+      "badge": "100% СОРТОВИЙ",
+      "image": "images/products/tg_bry-14.webp"
     },
     {
       "id": "bry-6",
@@ -1834,7 +1845,7 @@ const CATALOG_DATA = {
       "desc": "Сортовий щеплений бузок з величезними ароматними суцвіттями.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-8.webp"
+      "image": "images/products/tg_flw-8.webp"
     },
     {
       "id": "flw-9",
@@ -1889,7 +1900,7 @@ const CATALOG_DATA = {
       "desc": "Пишний кущ із запашними білосніжними квітами, невибагливий у догляді.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-13.webp"
+      "image": "images/products/tg_flw-13.webp"
     },
     {
       "id": "flw-14",
@@ -1955,7 +1966,7 @@ const CATALOG_DATA = {
       "desc": "Комплект із 5 сортових троянд різних забарвлень (по 50 грн/кущ у наборі!).",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/tg_flw-19.webp"
+      "image": "images/products/tg_roses-collage.webp"
     },
     {
       "id": "flw-20",
@@ -1966,7 +1977,7 @@ const CATALOG_DATA = {
       "desc": "10 щеплених троянд різних забарвлень для створення розкішного розарію (50 грн/кущ).",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/tg_flw-20.webp"
+      "image": "images/products/tg_roses-collage.webp"
     }
   ]
 };
