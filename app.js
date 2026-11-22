@@ -412,11 +412,12 @@ function formatSetVarieties(desc) {
 
       return `
         <div class="set-content-wrap">
+          <details class="desc-plate" open><summary>Склад набору <span class="desc-chev" aria-hidden="true">⌄</span></summary>
           <p class="set-intro-text">${escapeHtml(intro)}:</p>
           <ul class="set-varieties-list">
             ${listHtml}
           </ul>
-          ${extra ? `<p class="set-extra-text">${escapeHtml(extra)}</p>` : ''}
+          ${extra ? `<p class="set-extra-text">${escapeHtml(extra)}</p>` : ''}</details>
         </div>
       `;
     }
@@ -597,7 +598,7 @@ function renderCatalog() {
         </div>
         <h3 class="product-name">${escapeHtml(cleanName)}</h3>
         ${inCartQty > 0 ? `<div class="product-in-cart-indicator">${ICONS.check} Вже у кошику: <strong>${inCartQty} шт.</strong></div>` : ''}
-        <p class="product-desc">${escapeHtml(p.desc || '')}</p>
+        ${p.desc ? `<details class="desc-plate"><summary>Про сорт <span class="desc-chev" aria-hidden="true">⌄</span></summary><p class="product-desc">${escapeHtml(p.desc)}</p></details>` : ''}
         <div class="product-bottom-block">
           <div class="product-price-row">
             <div class="product-price-val">${p.price} грн</div>
