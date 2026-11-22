@@ -1503,7 +1503,7 @@ const CATALOG_DATA = {
       "desc": "Великоплідний сорт без колючок з високим вмістом вітаміну C.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/owner_exo-2.webp?v=7"
+      "image": "images/products/tg_exo-2.webp?v=10"
     },
     {
       "id": "exo-3",
