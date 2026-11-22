@@ -76,7 +76,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.3.1';
+const ASSET_VERSION = '2026.4.20';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
