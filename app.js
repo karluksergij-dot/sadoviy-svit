@@ -910,7 +910,7 @@ async function sendToTelegram(order, honeypot = '', formTime = 0) {
   try {
     let msg = `🌿 <b>НОВЕ ЗАМОВЛЕННЯ #${order.orderId}</b>\n\n`;
     msg += `👤 <b>Клієнт:</b> ${escapeHtml(order.name)}\n`;
-    msg += `📞 <b>Телефон:</b> <a href="tel:${order.phone}">${order.phone}</a>\n`;
+    msg += `📞 <b>Телефон:</b> <a href="tel:${order.phone.replace(/[^\d+]/g, '')}">${escapeHtml(order.phone)}</a>\n`;
     if (order.address) {
       msg += `📍 <b>Доставка:</b> ${escapeHtml(order.address)}\n`;
     }
@@ -942,7 +942,7 @@ async function sendToTelegram(order, honeypot = '', formTime = 0) {
     if (!data.ok && !data.filtered) {
       console.warn('Telegram response:', data);
     }
-    return data.ok === true;
+    return data.ok === true && !data.filtered;
   } catch (err) {
     console.error('Помилка надсилання в Telegram:', err);
     return false;
@@ -979,8 +979,8 @@ function finalizeOrder(order, telegramSent = false) {
       botTitle.innerHTML = `${ICONS.check} Замовлення надіслано в Telegram!`;
       botDesc.innerHTML = 'Сповіщення успішно доставлено менеджеру <b>Любов</b> у Telegram. Ми зв\'яжемося з вами найближчим часом.';
     } else {
-      botTitle.textContent = 'Замовлення зафіксовано в системі';
-      botDesc.innerHTML = 'Якщо бот ще не запущено в Telegram, обов\'язково запустіть <b>@Sadovsviit_bot</b> або підтвердіть заявку у Viber.';
+      botTitle.textContent = 'Підтвердіть замовлення у Viber';
+      botDesc.innerHTML = 'Автоматично передати замовлення не вдалося. Щоб ми точно його отримали, натисніть <b>«Надіслати у Viber»</b> нижче або зателефонуйте: <b>096 639 47 13</b>.';
     }
   }
 

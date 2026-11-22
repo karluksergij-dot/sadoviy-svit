@@ -7,8 +7,8 @@ const rateLimitMap = new Map();
 function isRateLimited(ip) {
   const now = Date.now();
   const windowMs = 60 * 1000; // 1 хвилина
-  const maxRequestsPerMinute = 3;
-  const blockDurationMs = 5 * 60 * 1000; // 5 хвилин блокування при зловживанні
+  const maxRequestsPerMinute = 8;
+  const blockDurationMs = 2 * 60 * 1000; // 2 хвилини блокування при зловживанні
 
   let record = rateLimitMap.get(ip);
   if (!record) {
@@ -86,7 +86,7 @@ export default async function handler(req, res) {
 
     // 4. АНТИСПАМ: Перевірка швидкості заповнення (Time-Trap)
     // Людина фізично не може відкрити форму, ввести ім'я, номер та оформити замовлення швидше ніж за 1.8 секунди
-    if (typeof formTime === 'number' && formTime > 0 && formTime < 1800) {
+    if (typeof formTime === 'number' && formTime > 0 && formTime < 400) {
       console.warn(`[AntiSpam TimeTrap] Надшвидке надсилання (${formTime}ms) від IP ${clientIp}. Схоже на бота.`);
       return res.status(200).json({ ok: true, filtered: true });
     }
@@ -96,7 +96,7 @@ export default async function handler(req, res) {
     }
 
     // 5. АНТИСПАМ: Перевірка на заборонений спам-контент (реклама казино, крипти, сумнівні посилання)
-    const spamRegex = /(casino|казино|vulkan|крипта|crypto|bitcoin|forex|заработок|займ|кредит|viagra|porn|seo)/i;
+    const spamRegex = /(casino|казино|vulkan|bitcoin|forex|viagra|porn)/i;
     if (spamRegex.test(text)) {
       console.warn(`[AntiSpam Content] Відхилено спам за ключовими словами від IP ${clientIp}`);
       return res.status(200).json({ ok: true, filtered: true });
@@ -104,18 +104,28 @@ export default async function handler(req, res) {
 
     // 6. Надсилаємо легітимне замовлення в Telegram-канал/чат замовниці
     const tgUrl = `https://api.telegram.org/bot${token}/sendMessage`;
-    const response = await fetch(tgUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: text,
-        parse_mode: 'HTML'
-      })
-    });
+    const send = async (payload) => {
+      const r = await fetch(tgUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      return r.json();
+    };
 
-    const data = await response.json();
-    return res.status(200).json(data);
+    let data = await send({ chat_id: chatId, text, parse_mode: 'HTML', disable_web_page_preview: true });
+
+    // Якщо Telegram не зміг розібрати HTML-розмітку — надсилаємо те саме простим текстом
+    if (!data.ok && /parse entities|can't parse/i.test(data.description || '')) {
+      const plain = text.replace(/<[^>]+>/g, '');
+      data = await send({ chat_id: chatId, text: plain, disable_web_page_preview: true });
+    }
+
+    if (!data.ok) {
+      console.error('[Telegram ERROR]', data.error_code, data.description);
+      return res.status(502).json({ ok: false, error: data.description || 'Telegram error', code: data.error_code });
+    }
+    return res.status(200).json({ ok: true });
   } catch (err) {
     console.error('Помилка відправки в Telegram через Vercel API:', err);
     return res.status(500).json({ ok: false, error: err.message });
