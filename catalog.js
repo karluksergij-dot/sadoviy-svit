@@ -1107,18 +1107,18 @@ const CATALOG_DATA = {
       "desc": "Перевірений часом сорт вишні. Ідеальний баланс солодкості та кислинки.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-13.webp"
+      "image": "images/products/owner_chr-13.webp"
     },
     {
       "id": "chr-14",
       "category": "cherries",
       "name": "Саджанець: Шпанка",
       "price": 150,
-      "season": "середня",
-      "desc": "Вишня сорту «Шпанка». Строк достигання: середня. Ціна 150 грн за саджанець.",
+      "season": "рання",
+      "desc": "Вишня сорту «Шпанка». Термін дозрівання: ранній.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/placeholder-soon.webp"
+      "image": "images/products/owner_chr-14.webp"
     },
     {
       "id": "chr-15",
@@ -1126,10 +1126,10 @@ const CATALOG_DATA = {
       "name": "Саджанець: Зустріч",
       "price": 150,
       "season": "рання",
-      "desc": "Вишня сорту «Зустріч». Строк достигання: рання. Ціна 150 грн за саджанець.",
+      "desc": "Вишня сорту «Зустріч». Термін дозрівання: ранній.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/placeholder-soon.webp"
+      "image": "images/products/owner_chr-15.webp"
     },
     {
       "id": "chr-16",
@@ -1137,10 +1137,10 @@ const CATALOG_DATA = {
       "name": "Саджанець: Черевишня",
       "price": 150,
       "season": "середня",
-      "desc": "Вишня сорту «Черевишня». Строк достигання: середня. Ціна 150 грн за саджанець.",
+      "desc": "Вишня сорту «Черевишня». Термін дозрівання: середній.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/placeholder-soon.webp"
+      "image": "images/products/owner_chr-16.webp"
     },
     {
       "id": "chr-17",
@@ -1148,10 +1148,10 @@ const CATALOG_DATA = {
       "name": "Саджанець: Чудо вишня",
       "price": 150,
       "season": "середня",
-      "desc": "Вишня сорту «Чудо вишня». Строк достигання: середня. Ціна 150 грн за саджанець.",
+      "desc": "Вишня сорту «Чудо вишня». Термін дозрівання: середній.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/placeholder-soon.webp"
+      "image": "images/products/owner_chr-17.webp"
     },
     {
       "id": "chr-18",
@@ -1159,10 +1159,10 @@ const CATALOG_DATA = {
       "name": "Саджанець: Шоколадниця",
       "price": 150,
       "season": "середня",
-      "desc": "Вишня сорту «Шоколадниця». Строк достигання: середня. Ціна 150 грн за саджанець.",
+      "desc": "Вишня сорту «Шоколадниця». Термін дозрівання: середній.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/placeholder-soon.webp"
+      "image": "images/products/owner_chr-18.webp"
     },
     {
       "id": "chr-19",
@@ -1170,21 +1170,21 @@ const CATALOG_DATA = {
       "name": "Саджанець: Норд Старт",
       "price": 150,
       "season": "пізня",
-      "desc": "Вишня сорту «Норд Старт». Строк достигання: пізня. Ціна 150 грн за саджанець.",
+      "desc": "Вишня сорту «Норд Старт». Термін дозрівання: пізній.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/placeholder-soon.webp"
+      "image": "images/products/owner_chr-19.webp"
     },
     {
       "id": "chr-20",
       "category": "cherries",
       "name": "Саджанець: Чорнокорка",
       "price": 150,
-      "season": "середня",
-      "desc": "Вишня сорту «Чорнокорка». Строк достигання: середня. Ціна 150 грн за саджанець.",
+      "season": "середньо-рання",
+      "desc": "Вишня сорту «Чорнокорка». Термін дозрівання: середньо-ранній.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/placeholder-soon.webp"
+      "image": "images/products/owner_chr-20.webp"
     },
     {
       "id": "chr-21",
@@ -1192,10 +1192,10 @@ const CATALOG_DATA = {
       "name": "Саджанець: Колоновидна Королева",
       "price": 150,
       "season": "середня",
-      "desc": "Вишня сорту «Колоновидна Королева». Строк достигання: середня. Ціна 150 грн за саджанець.",
+      "desc": "Вишня сорту «Колоновидна Королева». Термін дозрівання: середній.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/placeholder-soon.webp"
+      "image": "images/products/owner_chr-21.webp"
     },
     {
       "id": "plm-1",
