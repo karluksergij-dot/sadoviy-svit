@@ -216,7 +216,7 @@ const CATALOG_DATA = {
       "desc": "Японський десертний сорт. Великі зеленувато-жовті яблука з медовим присмаком.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-2.webp?v=5"
+      "image": "images/products/owner_apl-2.webp?v=7"
     },
     {
       "id": "apl-3",
@@ -227,7 +227,7 @@ const CATALOG_DATA = {
       "desc": "Елітний голландський сорт. Яскравий рум’янець, хрустка соковита м’якоть.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-3.webp?v=5"
+      "image": "images/products/owner_apl-3.webp?v=7"
     },
     {
       "id": "apl-4",
@@ -249,7 +249,7 @@ const CATALOG_DATA = {
       "desc": "Легендарний український сорт. Білосніжна ніжна м’якоть з пряним ароматом.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-5.webp?v=5"
+      "image": "images/products/owner_apl-5.webp?v=7"
     },
     {
       "id": "apl-6",
@@ -282,7 +282,7 @@ const CATALOG_DATA = {
       "desc": "Американський класичний сорт із темно-кармінними конічними плодами.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-8.webp?v=5"
+      "image": "images/products/owner_apl-8.webp?v=7"
     },
     {
       "id": "apl-9",
@@ -326,7 +326,7 @@ const CATALOG_DATA = {
       "desc": "Французький імунний сорт. Не потребує частих обробок, ароматні хрусткі плоди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-12.webp?v=5"
+      "image": "images/products/owner_apl-12.webp?v=7"
     },
     {
       "id": "apl-13",
@@ -381,7 +381,7 @@ const CATALOG_DATA = {
       "desc": "Клон Джонагольда з суцільним яскраво-червоним мармуровим рум’янцем.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-17.webp?v=5"
+      "image": "images/products/owner_apl-17.webp?v=7"
     },
     {
       "id": "apl-18",
@@ -480,7 +480,7 @@ const CATALOG_DATA = {
       "desc": "Швейцарська селекція Redlove. Червона м’якоть, збалансований ягідний смак.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-26.webp?v=5"
+      "image": "images/products/owner_apl-26.webp?v=7"
     },
     {
       "id": "apl-27",
@@ -777,7 +777,7 @@ const CATALOG_DATA = {
       "desc": "Гармонійний кисло-солодкий смак, щільна м’якоть, висока транспортабельність.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/customer_pch-10_photo_36_2026-11-20_23-57-03.webp?v=6"
+      "image": "images/products/owner_pch-10.webp?v=7"
     },
     {
       "id": "pch-11",
@@ -1250,7 +1250,7 @@ const CATALOG_DATA = {
       "desc": "Величезна диплоїдна слива селекції Лютера Бербанка.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/customer_plm-13_photo_47_2026-11-20_23-57-03.webp?v=5"
+      "image": "images/products/owner_plm-13.webp?v=7"
     },
     {
       "id": "plm-14",
@@ -1503,7 +1503,7 @@ const CATALOG_DATA = {
       "desc": "Великоплідний сорт без колючок з високим вмістом вітаміну C.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-2.webp?v=5"
+      "image": "images/products/owner_exo-2.webp?v=7"
     },
     {
       "id": "exo-3",
