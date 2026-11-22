@@ -3977,3 +3977,60 @@ img { content-visibility: auto; }
 .cat-tab-btn.active { background: var(--cta-primary) !important; color: #fff; }
 .cat-tab-btn { border-radius: 9999px; border: 1px solid rgba(255,255,255,.7); box-shadow: var(--shadow-sm); }
 .product-card { background: #fff; }
+
+/* ============================================================
+   PASTEL BOOST — насиченіші пастельні поверхні, кольорові секції
+   ============================================================ */
+:root {
+  --pastel-peach: #FFD9CC;
+  --pastel-mint: #CDEBD3;
+  --pastel-lilac: #E4D5F5;
+  --pastel-butter: #FFEBB8;
+  --pastel-sky: #CFE4F8;
+  --pastel-rose: #FFD1E0;
+  --cta-primary: #E4715A;
+  --cta-primary-hover: #D4604A;
+}
+body { background:
+  radial-gradient(700px 420px at 0% 0%, #FFD9CC 0%, transparent 65%),
+  radial-gradient(700px 480px at 100% 8%, #CDEBD3 0%, transparent 65%),
+  radial-gradient(800px 520px at 0% 55%, #E4D5F5 0%, transparent 65%),
+  radial-gradient(800px 520px at 100% 90%, #FFEBB8 0%, transparent 65%),
+  #FFF9F5; background-attachment: fixed; }
+@media (max-width: 768px) { body { background-attachment: scroll; } }
+
+.main-header { background: rgba(255, 244, 238, .82) !important; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid #FFD9CC; }
+.hero-section { background: linear-gradient(160deg, #FFD9CC 0%, #FFE9F0 45%, #E4D5F5 100%) !important; border-radius: 0 0 36px 36px; }
+.hero-title, .section-title { color: #3A3340; }
+.hero-title span, .hero-title-accent { color: #D9604A; }
+.hero-pill, .hero-badges span, .hero-badge { background: rgba(255,255,255,.75); border: 1px solid #FFD1E0; }
+
+.promo-section { background: linear-gradient(180deg, #FFEBB8 0%, #FFD9CC 100%) !important; border-radius: 36px; margin: 16px 8px; }
+.catalog-section { background: linear-gradient(180deg, #CDEBD3 0%, #E6F4E9 100%) !important; border-radius: 36px; margin: 16px 8px; }
+.features-section { background: linear-gradient(180deg, #E4D5F5 0%, #F1E8FA 100%) !important; border-radius: 36px; margin: 16px 8px; }
+.contacts-section { background: linear-gradient(180deg, #CFE4F8 0%, #E3F0FC 100%) !important; border-radius: 36px; margin: 16px 8px; }
+.site-footer { background: linear-gradient(180deg, #FFD1E0 0%, #FFE6EE 100%) !important; color: #3A3340; }
+.site-footer a, .site-footer p, .site-footer h3, .site-footer h4 { color: #3A3340 !important; }
+
+.product-card, .set-card, .feature-card { border: 0 !important; border-radius: 26px !important; box-shadow: 0 8px 22px rgba(140, 100, 150, .14) !important; }
+.product-card:nth-child(4n+1) { background: #FFF1EB; }
+.product-card:nth-child(4n+2) { background: #F3FAF4; }
+.product-card:nth-child(4n+3) { background: #F9F3FD; }
+.product-card:nth-child(4n+4) { background: #FFF8E6; }
+.product-card-img { border-radius: 22px; overflow: hidden; }
+.set-card:nth-child(4n+1) { background: #FFE3D8 !important; }
+.set-card:nth-child(4n+2) { background: #D9F0DE !important; }
+.set-card:nth-child(4n+3) { background: #EBDDF8 !important; }
+.set-card:nth-child(4n+4) { background: #FFF0C8 !important; }
+
+.cat-tab-btn:not(.active):nth-child(6n+1) { background: #FFD9CC !important; }
+.cat-tab-btn:not(.active):nth-child(6n+2) { background: #CDEBD3 !important; }
+.cat-tab-btn:not(.active):nth-child(6n+3) { background: #E4D5F5 !important; }
+.cat-tab-btn:not(.active):nth-child(6n+4) { background: #FFEBB8 !important; }
+.cat-tab-btn:not(.active):nth-child(6n+5) { background: #CFE4F8 !important; }
+.cat-tab-btn:not(.active):nth-child(6n+6) { background: #FFD1E0 !important; }
+.cat-tab-btn { color: #3A3340 !important; }
+.cat-tab-btn.active { background: #E4715A !important; color: #fff !important; }
+
+.mobile-bottom-bar { background: rgba(255, 249, 245, .88) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 1px solid #FFD9CC; }
+.cta-primary, .btn-primary { box-shadow: 0 8px 20px rgba(228, 113, 90, .35); }
