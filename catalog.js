@@ -1724,7 +1724,7 @@ const CATALOG_DATA = {
       "desc": "Український сорт ліщини з круглими великими горіхами та тонкою шкаралупою.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-13.webp"
+      "image": "images/products/web_exo-13.webp"
     },
     {
       "id": "exo-14",
