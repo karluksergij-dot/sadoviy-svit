@@ -76,7 +76,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.4';
+const ASSET_VERSION = '2026.5.5';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -445,7 +445,7 @@ function renderPromoSets() {
     }
     card.innerHTML = `
       <div class="set-card-media" onclick="openImagePreview('${set.image}?v=${ASSET_VERSION}', '${escapeHtml(set.name)}')">
-        <img src="${set.image}?v=${ASSET_VERSION}" alt="${escapeHtml(set.name)}" loading="lazy">
+        <img src="${(set.cardImage || set.image)}?v=${ASSET_VERSION}" alt="${escapeHtml(set.name)}" loading="lazy">
         <span class="set-badge-float">${set.badge || 'ТОП-Набір'}</span>
         <button class="set-zoom-btn" type="button" aria-label="Збільшити фото" title="Збільшити фото">
           ${ICONS.search}
