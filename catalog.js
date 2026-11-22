@@ -502,7 +502,7 @@ const CATALOG_DATA = {
       "desc": "Декоративні та компактні яблучка для райського варення, компотів та прикраси саду.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-28.webp?v=5"
+      "image": "images/products/owner_apl-28.webp?v=8"
     },
     {
       "id": "pear-1",
