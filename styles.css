@@ -4067,3 +4067,8 @@ body { background:
   .desc-chev { font-size: .95rem; }
   .desc-plate .product-desc { font-size: .82rem; margin-bottom: 10px; }
 }
+
+/* ПК: акційні набори по 3 в ряд */
+@media (min-width: 992px) {
+  .promo-section .sets-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 22px !important; max-width: 1160px !important; margin-left: auto; margin-right: auto; }
+}

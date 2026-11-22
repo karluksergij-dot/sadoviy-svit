@@ -434,7 +434,7 @@ function renderPromoSets() {
   const sets = CATALOG_DATA.products.filter(p => p.category === 'sets');
   container.innerHTML = '';
 
-  const initialLimit = 2; // Показувати спочатку 2 набори для швидкого переходу до каталогу
+  const initialLimit = window.innerWidth >= 992 ? 3 : 2; // ПК: 3 в ряд; мобільні: 2 для швидкого переходу до каталогу
 
   sets.forEach((set, idx) => {
     const card = document.createElement('div');
@@ -1102,3 +1102,12 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 }
+
+// Перерахунок кількості наборів при переході між мобільним і ПК розміром
+(function () {
+  let wasDesktop = window.innerWidth >= 992;
+  window.addEventListener('resize', function () {
+    const isDesktop = window.innerWidth >= 992;
+    if (isDesktop !== wasDesktop) { wasDesktop = isDesktop; if (typeof renderPromoSets === 'function') renderPromoSets(); }
+  }, { passive: true });
+})();
