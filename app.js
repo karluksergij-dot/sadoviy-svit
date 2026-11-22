@@ -570,9 +570,15 @@ function renderCatalog() {
   visibleItems.forEach(p => {
     // Прибираємо префікс «Саджанець: » або «Саджанець »
     const cleanName = p.name.replace(/^Саджанець[:\s]+/i, '').trim();
+    // Назва: головна частина + (уточнення в дужках) окремим підзаголовком
+    const _m = cleanName.match(/^(.*?)\s*\((.+)\)\s*$/);
+    const nameMain = _m ? _m[1].trim() : cleanName;
+    const nameSub = _m ? _m[2].trim() : '';
 
     const catObj = CATALOG_DATA.categories.find(c => c.id === p.category);
     const catName = catObj ? catObj.name.replace(/^[^\w\sа-яА-Яіїєґ]/u, '').trim() : 'Саджанці';
+    const _catShort = {apples:'Яблуні', pears:'Груші', peaches:'Персики', apricots:'Абрикоси', cherries:'Черешні', plums:'Сливи', grapes:'Виноград', berries:'Ягоди', exotics:'Екзоти', flowers:'Квіти', sets:'Набір'};
+    const catLabel = _catShort[p.category] || catName;
     const catSvg = getCategorySvg(p.category);
 
     const inCartItem = cart.find(i => i.id === p.id);
@@ -594,10 +600,11 @@ function renderCatalog() {
       ` : ''}
       <div class="product-card-body">
         <div class="product-top-row">
-          <span class="product-category-tag"><span class="card-cat-emoji" style="font-size: 1rem; line-height: 1; vertical-align: middle;">${catObj && catObj.icon ? catObj.icon : '🌱'}</span> ${catName}</span>
-          ${p.season ? `<span class="product-season-badge">${ICONS.clock} ${escapeHtml(p.season)}</span>` : ''}
+          <span class="product-category-tag"><span class="card-cat-emoji" style="font-size: 1rem; line-height: 1; vertical-align: middle;">${catObj && catObj.icon ? catObj.icon : '🌱'}</span><span class="tag-text">${catLabel}</span></span>
         </div>
-        <h3 class="product-name">${escapeHtml(cleanName)}</h3>
+        <h3 class="product-name">${escapeHtml(nameMain)}</h3>
+        ${nameSub ? `<p class="product-subname">${escapeHtml(nameSub)}</p>` : ''}
+        ${p.season ? `<p class="product-season-line"><span class="season-ico">${ICONS.clock}</span><span class="season-txt">${escapeHtml(p.season)}</span></p>` : ''}
         ${inCartQty > 0 ? `<div class="product-in-cart-indicator">${ICONS.check} Вже у кошику: <strong>${inCartQty} шт.</strong></div>` : ''}
         ${p.desc ? `<details class="desc-plate"><summary>Про сорт <span class="desc-chev" aria-hidden="true">⌄</span></summary><p class="product-desc">${escapeHtml(p.desc)}</p></details>` : ''}
         <div class="product-bottom-block">
