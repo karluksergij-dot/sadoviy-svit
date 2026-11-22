@@ -1338,7 +1338,7 @@ const CATALOG_DATA = {
       "desc": "Безнасінний сорт для свіжого вживання та приготування якісних соків.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_grp-6.webp?v=5"
+      "image": "images/products/tg_grp-6.webp?v=9"
     },
     {
       "id": "bry-1",
