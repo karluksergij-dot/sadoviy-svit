@@ -4125,3 +4125,77 @@ body { background:
 @media (max-width: 768px) {
   .product-card, .set-card, .product-card:nth-child(n), .set-card:nth-child(n) { border-width: 1.5px !important; }
 }
+
+/* ============================================================
+   ALIGNMENT + CONTRAST FIX (Android/iOS)
+   ============================================================ */
+/* Секції з бічним відступом не повинні виходити за екран */
+.promo-section, .catalog-section, .features-section, .contacts-section {
+  width: auto !important;
+  max-width: calc(100% - 16px) !important;
+  margin-left: 8px !important;
+  margin-right: 8px !important;
+  box-sizing: border-box !important;
+}
+html, body { max-width: 100%; overflow-x: clip; }
+@supports not (overflow: clip) { html, body { overflow-x: hidden; } }
+.container { box-sizing: border-box; }
+
+/* Кнопка «Показати ще» — читабельна */
+.btn-load-more, .btn-toggle-sets {
+  background: #FFFFFF !important;
+  color: #2F3A34 !important;
+  border: 2px solid #8A6F9E !important;
+  font-weight: 800 !important;
+  opacity: 1 !important;
+  box-shadow: 0 6px 16px rgba(90, 60, 110, .18) !important;
+}
+.btn-load-more *, .btn-toggle-sets * { color: #2F3A34 !important; opacity: 1 !important; }
+.btn-load-more:hover, .btn-toggle-sets:hover { background: #F6EEF8 !important; border-color: #6B4F80 !important; }
+
+/* Контрастніші шрифти скрізь */
+:root {
+  --text-headline: #231F2A;
+  --text-body: #26302B;
+  --text-muted: #3E4A44;
+}
+body { color: #26302B; }
+.hero-subtitle, .section-subtitle, .catalog-subtitle, .feature-box-desc, .product-desc, .set-desc,
+.product-price-unit, .brand-subtitle, .footer-desc, .contact-desc { color: #3E4A44 !important; }
+.cat-count, .cat-pill-count { color: #2F3A34 !important; font-weight: 800; }
+.product-season-badge { color: #5A4310 !important; }
+.product-category-tag { color: #2E5A40 !important; }
+
+/* Контраст: темніший корал — білий текст ≥ 4.5:1, коралові ціни/написи ≥ 4.5:1 */
+:root { --cta-primary: #C24A34; --cta-primary-hover: #A93D2A; }
+.btn-add-cart { background: linear-gradient(135deg, #CF5640, #BA442F) !important; color: #FFFFFF !important; box-shadow: 0 8px 18px rgba(186, 68, 47, .32) !important; }
+.btn-buy-set, .btn-hero-primary, .cart-btn-header, .btn-checkout, .btn-submit-order { background: #BE4731 !important; color: #FFFFFF !important; }
+.btn-buy-set:hover, .btn-hero-primary:hover, .cart-btn-header:hover { background: #A93D2A !important; }
+.btn-hero-primary *, .cart-btn-header *, .btn-buy-set * { color: #FFFFFF !important; }
+.set-badge-float { background: #B03F2B !important; color: #FFFFFF !important; }
+.price-main, .product-price-val { color: #A93D2A !important; }
+.set-extra-text { color: #9A3524 !important; }
+.metric-num { color: #A93D2A !important; }
+.cat-pill-count { background: #FFFFFF !important; color: #2F3A34 !important; border: 1px solid #CDB8C9; }
+.set-badge-stock { color: #1F5A39 !important; }
+.hero-title span, .hero-title-accent { color: #B3402C !important; }
+.cat-tab-btn.active { background: #BE4731 !important; color: #FFFFFF !important; }
+.cat-tab-btn.active * { color: #FFFFFF !important; }
+.desc-chev { color: #A93D2A; }
+
+/* Контакти: кнопки на світлій плашці — суцільні, з контрастним текстом */
+.btn-phone-large { background: #2F5D44 !important; color: #FFFFFF !important; border: none !important; }
+.btn-phone-large * { color: #FFFFFF !important; }
+.btn-phone-large:hover { background: #244A37 !important; }
+.mobile-bar-btn.cart-highlight, .mobile-bar-btn.cart-highlight span { color: #A93D2A !important; }
+.mobile-bottom-bar .mobile-bar-btn, .mobile-bottom-bar .mobile-bar-btn span { color: #2B3A33; }
+.mobile-bottom-bar .mobile-bar-btn.cart-highlight, .mobile-bottom-bar .mobile-bar-btn.cart-highlight span { color: #A93D2A !important; }
+
+/* iOS: безпечні зони (виїмка/Dynamic Island) у горизонтальній орієнтації */
+@supports (padding: env(safe-area-inset-left)) {
+  .main-header, .site-footer, .hero-section { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  .mobile-bottom-bar { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); padding-bottom: env(safe-area-inset-bottom); }
+}
+/* Android/iOS: без підсвітки тапу та з плавним скролом */
+a, button, summary { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
