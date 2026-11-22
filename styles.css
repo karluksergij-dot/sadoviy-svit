@@ -4117,3 +4117,11 @@ body { background:
   .product-buy-row .btn-add-cart { width: 100% !important; height: 40px !important; flex: none !important; font-size: .92rem !important; padding: 0 10px !important; border-radius: 9999px !important; }
   .card-qty-stepper { background: #F6EEF8 !important; border: 1.5px solid #E2D2EC !important; border-radius: 9999px !important; }
 }
+
+/* Єдина обводка карток — один спокійний теплий коричневий колір */
+.product-card, .set-card,
+.product-card:nth-child(n), .set-card:nth-child(n) { border: 1.5px solid #C9B2A4 !important; }
+.product-card:hover, .set-card:hover { border-color: #A98F80 !important; }
+@media (max-width: 768px) {
+  .product-card, .set-card, .product-card:nth-child(n), .set-card:nth-child(n) { border-width: 1.5px !important; }
+}
