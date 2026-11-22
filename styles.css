@@ -4072,3 +4072,48 @@ body { background:
 @media (min-width: 992px) {
   .promo-section .sets-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 22px !important; max-width: 1160px !important; margin-left: auto; margin-right: auto; }
 }
+
+/* ============================================================
+   CARD CONTRAST — чіткі обводки, білі картки, різкі фото
+   ============================================================ */
+.product-card, .set-card {
+  background: #FFFFFF !important;
+  border: 1.5px solid #E7C9DC !important;
+  box-shadow: 0 6px 18px rgba(120, 80, 130, .16), 0 1px 3px rgba(120, 80, 130, .12) !important;
+}
+.product-card:nth-child(4n+1), .set-card:nth-child(4n+1) { border-color: #F2B8A4 !important; }
+.product-card:nth-child(4n+2), .set-card:nth-child(4n+2) { border-color: #9FD3AC !important; }
+.product-card:nth-child(4n+3), .set-card:nth-child(4n+3) { border-color: #CDB4EA !important; }
+.product-card:nth-child(4n+4), .set-card:nth-child(4n+4) { border-color: #EBCB6E !important; }
+.product-card { background-image: linear-gradient(180deg, rgba(255,255,255,0) 55%, rgba(246,238,250,.55) 100%) !important; }
+.set-card:nth-child(4n+1) .set-card-body { background: #FFF5F0; }
+.set-card:nth-child(4n+2) .set-card-body { background: #F2FAF4; }
+.set-card:nth-child(4n+3) .set-card-body { background: #F9F4FD; }
+.set-card:nth-child(4n+4) .set-card-body { background: #FFFAEB; }
+
+.product-card-img, .set-card-media { background: #F6EEF8; border-bottom: 1.5px solid rgba(160, 120, 170, .22); }
+.product-card-img img, .set-card-media img {
+  image-rendering: -webkit-optimize-contrast;
+  filter: contrast(1.05) saturate(1.06);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+.desc-plate { background: #F8F2FB !important; border: 1.5px solid #E2D2EC !important; }
+.desc-plate[open] { background: #FFFFFF !important; }
+.product-category-tag { background: #F6EEF8 !important; border: 1px solid #E2D2EC; }
+.cat-tab-btn { border: 1.5px solid rgba(140, 100, 150, .28) !important; }
+
+/* Секції: трохи насиченіший фон, щоб білі картки відділялися */
+.catalog-section { background: linear-gradient(180deg, #BDE5C6 0%, #D7EFDC 100%) !important; }
+.promo-section { background: linear-gradient(180deg, #FFE3A0 0%, #FFCDB8 100%) !important; }
+
+@media (max-width: 768px) {
+  .product-card, .set-card { border-width: 2px !important; }
+  .product-card-img img { filter: contrast(1.06) saturate(1.08); }
+}
+
+/* Мобільна кнопка «В кошик» — на всю ширину картки, без обрізання */
+@media (max-width: 768px) {
+  .product-buy-row .btn-add-cart { width: 100% !important; height: 40px !important; flex: none !important; font-size: .92rem !important; padding: 0 10px !important; border-radius: 9999px !important; }
+  .card-qty-stepper { background: #F6EEF8 !important; border: 1.5px solid #E2D2EC !important; border-radius: 9999px !important; }
+}
