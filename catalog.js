@@ -437,7 +437,7 @@ const CATALOG_DATA = {
       "desc": "Улюблений сорт дитинства. Раннє дозрівання, соковиті ароматні плоди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-22.webp"
+      "image": "images/products/user_apl-22.webp"
     },
     {
       "id": "apl-23",
