@@ -1866,7 +1866,7 @@ const CATALOG_DATA = {
       "desc": "Комплект із 5 сортових троянд різних забарвлень (по 50 грн/кущ у наборі!).",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-19.webp?v=5"
+      "image": "images/products/tg_flw-19.webp?v=11"
     },
     {
       "id": "flw-20",
