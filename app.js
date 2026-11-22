@@ -76,7 +76,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.18';
+const ASSET_VERSION = '2026.5.19';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -592,7 +592,6 @@ function renderCatalog() {
       ${p.image ? `
         <div class="product-card-img" onclick="openImagePreview('${p.image}?v=${ASSET_VERSION}', '${escapeHtml(cleanName)}')">
           <img src="${p.image}?v=${ASSET_VERSION}" alt="${escapeHtml(cleanName)}" loading="lazy">
-          ${p.badge ? `<span class="product-badge-float">${escapeHtml(p.badge)}</span>` : ''}
           <button class="img-zoom-btn" type="button" aria-label="Збільшити фото" title="Збільшити фото">
             ${ICONS.search}
           </button>
