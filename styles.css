@@ -3900,3 +3900,80 @@ html, body {
   }
 }
 
+
+/* ============================================================
+   PASTEL THEME 2026 — м'які пастельні тони (override-шар)
+   Змінюються лише змінні та поверхні; логіка/верстка без змін
+   ============================================================ */
+:root {
+  --bg-page: #FBF8F4;
+  --surface-card: #FFFFFF;
+  --border-card: #EEE6EE;
+  --border-subtle: #F3ECF1;
+  --border-strong: #E2D6E0;
+
+  --surface-sage: #E4F1E6;      /* м'ята */
+  --surface-sand: #FFF4DE;      /* вершково-масляний */
+  --surface-peach: #FFE9E0;     /* персиковий */
+  --surface-subtle: #F6EEF8;    /* ліловий серпанок */
+  --surface-blush: #FFE6EE;     /* пудровий рожевий */
+  --surface-sky: #E6F0FB;       /* небесний */
+
+  --text-headline: #2B3A33;
+  --text-body: #2B3A33;
+  --text-muted: #5B6B63;
+
+  --cta-primary: #D8664B;
+  --cta-primary-hover: #C45439;
+  --btn-secondary: #4B7A63;
+  --btn-secondary-hover: #3C6650;
+  --btn-secondary-border: #4B7A63;
+
+  --shadow-sm: 0 2px 12px rgba(120, 90, 130, 0.07);
+  --shadow-md: 0 10px 28px rgba(120, 90, 130, 0.10);
+  --shadow-lg: 0 18px 40px rgba(120, 90, 130, 0.14);
+
+  --radius-md: 22px;
+  --radius-lg: 28px;
+}
+
+body {
+  background:
+    radial-gradient(900px 500px at 0% 0%, #FFE9E0 0%, transparent 60%),
+    radial-gradient(800px 500px at 100% 10%, #E4F1E6 0%, transparent 60%),
+    radial-gradient(900px 600px at 50% 100%, #F6EEF8 0%, transparent 60%),
+    var(--bg-page);
+  background-attachment: fixed;
+}
+
+.promo-section { background: linear-gradient(180deg, #FFE9E0 0%, #FFF4DE 100%); }
+.set-card, .product-card, .card {
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+.set-card-media, .product-card-img { background: var(--surface-subtle); }
+.set-card:nth-child(4n+1) { background: #FFF1EA; }
+.set-card:nth-child(4n+2) { background: #EEF7EF; }
+.set-card:nth-child(4n+3) { background: #F6EEF8; }
+.set-card:nth-child(4n+4) { background: #FFF6E3; }
+
+/* Пастельні «таблетки» категорій по колу */
+.cat-tab-btn:not(.active):nth-child(6n+1) { background: #FFE9E0; }
+.cat-tab-btn:not(.active):nth-child(6n+2) { background: #E4F1E6; }
+.cat-tab-btn:not(.active):nth-child(6n+3) { background: #F6EEF8; }
+.cat-tab-btn:not(.active):nth-child(6n+4) { background: #FFF4DE; }
+.cat-tab-btn:not(.active):nth-child(6n+5) { background: #E6F0FB; }
+.cat-tab-btn:not(.active):nth-child(6n+6) { background: #FFE6EE; }
+
+/* Плавність і легкість на мобільних */
+@media (max-width: 768px) {
+  body { background-attachment: scroll; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+img { content-visibility: auto; }
+.cat-tab-btn.active { background: var(--cta-primary) !important; color: #fff; }
+.cat-tab-btn { border-radius: 9999px; border: 1px solid rgba(255,255,255,.7); box-shadow: var(--shadow-sm); }
+.product-card { background: #fff; }

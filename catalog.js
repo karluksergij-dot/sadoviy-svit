@@ -18,7 +18,7 @@ const CATALOG_DATA = {
       "id": "all",
       "name": "Всі саджанці",
       "icon": "🌱",
-      "banner": "images/banners/banner-all.jpg",
+      "banner": "images/banners/banner-all.webp",
       "title": "🌱 Повний асортимент розплідника «Садовий світ»",
       "desc": "Понад 150 сортових плодових дерев, ягідних культур та декоративних рослин. Власне вирощування з гарантією 100% приживлюваності.",
       "tag": "153 сорти саджанців"
@@ -27,7 +27,7 @@ const CATALOG_DATA = {
       "id": "sets",
       "name": "🔥 Акційні набори",
       "icon": "🎁",
-      "banner": "images/banners/banner-sets.jpg",
+      "banner": "images/banners/banner-sets.webp",
       "title": "🎁 Вигідні акційні набори від Любові Пирог",
       "desc": "Спеціальні комплекти по 5 дерев за 500 грн та великий набір із 7 дерев за 700 грн. Економія до 35% порівняно з поштучною купівлею!",
       "tag": "Економія до 35%"
@@ -36,7 +36,7 @@ const CATALOG_DATA = {
       "id": "apples",
       "name": "Яблуні",
       "icon": "🍎",
-      "banner": "images/banners/banner-apples.jpg",
+      "banner": "images/banners/banner-apples.webp",
       "title": "🍎 Сортові Яблуні на надійних підщепах",
       "desc": "Зимові, осінні та літні сорти з чудовою лежкістю до весни. Ексклюзивні яблуні з червоною соковитою м’якоттю (Байя Маріса, Ера, Сірена).",
       "tag": "28 перевірених сортів"
@@ -45,7 +45,7 @@ const CATALOG_DATA = {
       "id": "pears",
       "name": "Груші",
       "icon": "🍐",
-      "banner": "images/banners/banner-pears.jpg",
+      "banner": "images/banners/banner-pears.webp",
       "title": "🍐 Десертні та Азіатські сортові Груші",
       "desc": "Медові літні, маслянисті осінні та лежкі зимові сорти. Хрусткі круглі азіатські груші Коко Суї та Шинсейкі з неперевершеним освіжаючим смаком.",
       "tag": "15 сортів груш"
@@ -54,7 +54,7 @@ const CATALOG_DATA = {
       "id": "peaches",
       "name": "Персики та Нектарини",
       "icon": "🍑",
-      "banner": "images/banners/banner-peaches.jpg",
+      "banner": "images/banners/banner-peaches.webp",
       "title": "🍑 Персики, Нектарини та Інжирні сорти",
       "desc": "Великі ароматні плоди з соковитою м’якоттю. Білі десертні персики Айс Піч, морозостійкий Редхевен, інжирний Сатурн та компактні колоновидні форми.",
       "tag": "15 соковитих сортів"
@@ -63,7 +63,7 @@ const CATALOG_DATA = {
       "id": "apricots",
       "name": "Абрикоси",
       "icon": "🍑",
-      "banner": "images/banners/banner-apricots.jpg",
+      "banner": "images/banners/banner-apricots.webp",
       "title": "🍑 Ранні та пізні сортові Абрикоси",
       "desc": "Стійкі до поворотних весняних заморозків та моніліозу. Солодкі сорти Ананасний, Краснощокий, ультраранній Цунамі та ексклюзивний Чорний абрикос.",
       "tag": "12 сортів абрикос"
@@ -72,7 +72,7 @@ const CATALOG_DATA = {
       "id": "cherries",
       "name": "Черешні та Вишні",
       "icon": "🍒",
-      "banner": "images/banners/banner-cherries.jpg",
+      "banner": "images/banners/banner-cherries.webp",
       "title": "🍒 Великоплідні Черешні та врожайні Вишні",
       "desc": "М’ясисті темно-рубінові та бурштинові черешні (Регіна, Кордія, Дрогана), десертні дюки Чудо-вишня та витривалі сорти для компотів і варення.",
       "tag": "13 сортів черешень та вишень"
@@ -81,7 +81,7 @@ const CATALOG_DATA = {
       "id": "plums",
       "name": "Сливи та Гібриди",
       "icon": "🫐",
-      "banner": "images/banners/banner-plums.jpg",
+      "banner": "images/banners/banner-plums.webp",
       "title": "🫐 Сливи, Диплоїдні гіганти та Шарафуга",
       "desc": "Великі солодкі плоди з легко віддільною кісточкою (Стенлей, Президент), гіганти Бербанк і Анжеліна та унікальний тригібрид Шарафуга (персик+абрикос+слива).",
       "tag": "15 сортів слив"
@@ -90,7 +90,7 @@ const CATALOG_DATA = {
       "id": "grapes",
       "name": "Виноград",
       "icon": "🍇",
-      "banner": "images/banners/banner-grapes.jpg",
+      "banner": "images/banners/banner-grapes.webp",
       "title": "🍇 Столовий та десертний Виноград",
       "desc": "Великі солодкі грона без кісточок або з тонкою шкіркою (Юпітер, Кристал, Вікторія, Монарх). Висока стійкість до грибкових хвороб та морозів.",
       "tag": "6 топових сортів"
@@ -99,7 +99,7 @@ const CATALOG_DATA = {
       "id": "berries",
       "name": "Ягідні та кущі",
       "icon": "🫐",
-      "banner": "images/banners/banner-berries.jpg",
+      "banner": "images/banners/banner-berries.webp",
       "title": "🫐 Лохина в горщиках, Жимолость та Ягідні кущі",
       "desc": "Сортова високоросла лохина у контейнерах із закритою кореневою системою, рання жимолость, дерево-малина Крепиш та безколючковий крижовнік.",
       "tag": "13 видів ягідних"
@@ -108,7 +108,7 @@ const CATALOG_DATA = {
       "id": "exotics",
       "name": "Хурма, Ківі та Екзоти",
       "icon": "🌴",
-      "banner": "images/banners/banner-exotics.jpg",
+      "banner": "images/banners/banner-exotics.webp",
       "title": "🌴 Морозостійка Хурма, Ківі, Інжир та Шовковиця",
       "desc": "Адаптовані до клімату України екзотичні культури: самоплідна хурма Божий Дар, солодкий кримський інжир, ківі Закарпатське та шовковиця-велетень.",
       "tag": "16 екзотичних культур"
@@ -117,7 +117,7 @@ const CATALOG_DATA = {
       "id": "flowers",
       "name": "Квіти, Сакури, Троянди",
       "icon": "🌸",
-      "banner": "images/banners/banner-flowers.jpg",
+      "banner": "images/banners/banner-flowers.webp",
       "title": "🌸 Сакури на штамбі, Магнолії, Лаванда та Троянди",
       "desc": "Розкішне озеленення саду: штамбові та кущові сакури Канзан, морозостійкі магнолії, запашна лаванда, деревовидні піони та набори троянд.",
       "tag": "20 декоративних культур"
@@ -216,7 +216,7 @@ const CATALOG_DATA = {
       "desc": "Японський десертний сорт. Великі зеленувато-жовті яблука з медовим присмаком.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-2.webp"
+      "image": "images/products/prod_apl-2.webp?v=5"
     },
     {
       "id": "apl-3",
@@ -227,7 +227,7 @@ const CATALOG_DATA = {
       "desc": "Елітний голландський сорт. Яскравий рум’янець, хрустка соковита м’якоть.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-3.webp"
+      "image": "images/products/prod_apl-3.webp?v=5"
     },
     {
       "id": "apl-4",
@@ -238,7 +238,7 @@ const CATALOG_DATA = {
       "desc": "Швидкоплідний чеський сорт. Дуже солодкі яблука з тонкою шкіркою.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-4.webp"
+      "image": "images/products/prod_apl-4.webp?v=5"
     },
     {
       "id": "apl-5",
@@ -249,7 +249,7 @@ const CATALOG_DATA = {
       "desc": "Легендарний український сорт. Білосніжна ніжна м’якоть з пряним ароматом.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-5.webp"
+      "image": "images/products/prod_apl-5.webp?v=5"
     },
     {
       "id": "apl-6",
@@ -282,7 +282,7 @@ const CATALOG_DATA = {
       "desc": "Американський класичний сорт із темно-кармінними конічними плодами.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-8.webp"
+      "image": "images/products/prod_apl-8.webp?v=5"
     },
     {
       "id": "apl-9",
@@ -304,7 +304,7 @@ const CATALOG_DATA = {
       "desc": "Один із найпопулярніших світових сортів з насиченим десертним смаком.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-10.webp"
+      "image": "images/products/prod_apl-10.webp?v=5"
     },
     {
       "id": "apl-11",
@@ -326,7 +326,7 @@ const CATALOG_DATA = {
       "desc": "Французький імунний сорт. Не потребує частих обробок, ароматні хрусткі плоди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-12.webp"
+      "image": "images/products/prod_apl-12.webp?v=5"
     },
     {
       "id": "apl-13",
@@ -359,7 +359,7 @@ const CATALOG_DATA = {
       "desc": "Компактне дерево з великими глянцевими темно-рубіновими яблуками.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-15.webp"
+      "image": "images/products/prod_apl-15.webp?v=5"
     },
     {
       "id": "apl-16",
@@ -381,7 +381,7 @@ const CATALOG_DATA = {
       "desc": "Клон Джонагольда з суцільним яскраво-червоним мармуровим рум’янцем.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-17.webp"
+      "image": "images/products/prod_apl-17.webp?v=5"
     },
     {
       "id": "apl-18",
@@ -403,7 +403,7 @@ const CATALOG_DATA = {
       "desc": "Ранньолітній сорт. Перші ніжні білі яблука з приємною освіжаючою кислинкою.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-19.webp?v=2"
+      "image": "images/products/prod_apl-19.webp?v=5"
     },
     {
       "id": "apl-20",
@@ -425,7 +425,7 @@ const CATALOG_DATA = {
       "desc": "Суперранній сорт літнього дозрівання. Гарний рум’янець, прекрасний смак.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-21.webp?v=3"
+      "image": "images/products/prod_apl-21.webp?v=5"
     },
     {
       "id": "apl-22",
@@ -436,7 +436,7 @@ const CATALOG_DATA = {
       "desc": "Улюблений сорт дитинства. Раннє дозрівання, соковиті ароматні плоди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-22.webp?v=3"
+      "image": "images/products/prod_apl-22.webp?v=5"
     },
     {
       "id": "apl-23",
@@ -458,7 +458,7 @@ const CATALOG_DATA = {
       "desc": "Унікальний сорт із тонким десертним ароматом та ніжним смаком стиглого персика.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-24.webp"
+      "image": "images/products/prod_apl-24.webp?v=5"
     },
     {
       "id": "apl-25",
@@ -469,7 +469,7 @@ const CATALOG_DATA = {
       "desc": "Червоне всередині яблуко! Багате антиоксидантами, дуже ефектне та корисне.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-25.webp"
+      "image": "images/products/prod_apl-25.webp?v=5"
     },
     {
       "id": "apl-26",
@@ -480,7 +480,7 @@ const CATALOG_DATA = {
       "desc": "Швейцарська селекція Redlove. Червона м’якоть, збалансований ягідний смак.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-26.webp"
+      "image": "images/products/prod_apl-26.webp?v=5"
     },
     {
       "id": "apl-27",
@@ -502,7 +502,7 @@ const CATALOG_DATA = {
       "desc": "Декоративні та компактні яблучка для райського варення, компотів та прикраси саду.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_apl-28.webp?v=2"
+      "image": "images/products/prod_apl-28.webp?v=5"
     },
     {
       "id": "pear-1",
@@ -678,7 +678,7 @@ const CATALOG_DATA = {
       "desc": "Великі пізні плоди з високим вмістом цукру. Кісточка добре відділяється.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_pch-1.webp?v=2"
+      "image": "images/products/prod_pch-1.webp?v=5"
     },
     {
       "id": "pch-2",
@@ -689,7 +689,7 @@ const CATALOG_DATA = {
       "desc": "Канадський морозостійкий ранній сорт. Оксамитова шкірка, солодкий смак.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_pch-2.webp"
+      "image": "images/products/prod_pch-2.webp?v=5"
     },
     {
       "id": "pch-3",
@@ -997,7 +997,7 @@ const CATALOG_DATA = {
       "desc": "Ніжна рожева черешня десертного солодкого смаку з високою врожайністю.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-3.webp?v=2"
+      "image": "images/products/prod_chr-3.webp?v=5"
     },
     {
       "id": "chr-4",
@@ -1107,7 +1107,7 @@ const CATALOG_DATA = {
       "desc": "Перевірений часом сорт вишні. Ідеальний баланс солодкості та кислинки.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_chr-13.webp?v=2"
+      "image": "images/products/prod_chr-13.webp?v=5"
     },
     {
       "id": "plm-1",
@@ -1283,7 +1283,7 @@ const CATALOG_DATA = {
       "desc": "Угорський надранній сорт. Стійкий до морозів до -29°C і хвороб.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_grp-1.webp?v=2"
+      "image": "images/products/prod_grp-1.webp?v=5"
     },
     {
       "id": "grp-2",
@@ -1294,7 +1294,7 @@ const CATALOG_DATA = {
       "desc": "Великі рожеві ягоди з мускатним ароматом та вагою грона до 1,5 кг.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_grp-2.webp?v=2"
+      "image": "images/products/prod_grp-2.webp?v=5"
     },
     {
       "id": "grp-3",
@@ -1305,7 +1305,7 @@ const CATALOG_DATA = {
       "desc": "Ранній сорт з красивими малиново-рожевими ягодами приємного смаку.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_grp-3.webp?v=2"
+      "image": "images/products/prod_grp-3.webp?v=5"
     },
     {
       "id": "grp-4",
@@ -1316,7 +1316,7 @@ const CATALOG_DATA = {
       "desc": "Гігантські білі ягоди розміром зі сливу. М’якоть щільна, хрустка.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_grp-4.webp?v=2"
+      "image": "images/products/prod_grp-4.webp?v=5"
     },
     {
       "id": "grp-5",
@@ -1327,7 +1327,7 @@ const CATALOG_DATA = {
       "desc": "Безнасінний сорт (кишмиш) з США. Морозостійкий, з мускатно-ягідним смаком.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_grp-5.webp?v=2"
+      "image": "images/products/prod_grp-5.webp?v=5"
     },
     {
       "id": "grp-6",
@@ -1338,7 +1338,7 @@ const CATALOG_DATA = {
       "desc": "Безнасінний сорт для свіжого вживання та приготування якісних соків.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_grp-6.webp?v=2"
+      "image": "images/products/prod_grp-6.webp?v=5"
     },
     {
       "id": "bry-1",
@@ -1349,7 +1349,7 @@ const CATALOG_DATA = {
       "desc": "Сортова високоросла лохина у горщиках із закритою кореневою системою. Солодкі ягоди-велетні.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_bry-1.webp"
+      "image": "images/products/prod_bry-1.webp?v=5"
     },
     {
       "id": "bry-2",
@@ -1360,7 +1360,7 @@ const CATALOG_DATA = {
       "desc": "Найперша ягода весни (дозріває раніше за полуницю!). Джерело вітамінів та мікроелементів.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_bry-2.webp"
+      "image": "images/products/prod_bry-2.webp?v=5"
     },
     {
       "id": "bry-3",
@@ -1371,7 +1371,7 @@ const CATALOG_DATA = {
       "desc": "Пагони без шипів — збирати врожай легко та приємно. Солодкі соковиті ягоди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_bry-3.webp"
+      "image": "images/products/prod_bry-3.webp?v=5"
     },
     {
       "id": "bry-4",
@@ -1382,7 +1382,7 @@ const CATALOG_DATA = {
       "desc": "Штамбова малина з товстим стовбуром без шпалери. Рясні великі ягоди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_bry-4.webp"
+      "image": "images/products/prod_bry-4.webp?v=5"
     },
     {
       "id": "bry-5",
@@ -1393,7 +1393,7 @@ const CATALOG_DATA = {
       "desc": "Плодоносить все літо та осінь аж до перших заморозків.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_bry-5.webp"
+      "image": "images/products/prod_bry-5.webp?v=5"
     },
     {
       "id": "bry-6",
@@ -1404,7 +1404,7 @@ const CATALOG_DATA = {
       "desc": "Бурштинові десертні ягоди без кислоти. Гіпоалергенна малина для дітей.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_bry-6.webp"
+      "image": "images/products/prod_bry-6.webp?v=5"
     },
     {
       "id": "bry-7",
@@ -1415,7 +1415,7 @@ const CATALOG_DATA = {
       "desc": "Великі ароматні чорні ягоди на довгих китицях. Високий імунітет до борошнистої роси.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_bry-7.webp"
+      "image": "images/products/prod_bry-7.webp?v=5"
     },
     {
       "id": "bry-8",
@@ -1426,7 +1426,7 @@ const CATALOG_DATA = {
       "desc": "Прозоро-рубінові кисло-солодкі ягоди на довгих китицях для освіжаючих напоїв і желе.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_bry-8.webp"
+      "image": "images/products/prod_bry-8.webp?v=5"
     },
     {
       "id": "bry-9",
@@ -1437,7 +1437,7 @@ const CATALOG_DATA = {
       "desc": "Гладенькі пагони без колючок. Гігантські солодкі чорні ягоди до 10-12 г.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_bry-9.webp"
+      "image": "images/products/prod_bry-9.webp?v=5"
     },
     {
       "id": "bry-10",
@@ -1448,7 +1448,7 @@ const CATALOG_DATA = {
       "desc": "Природні ліки для нормалізації тиску і судин. Дуже невибаглива рослина.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_bry-10.webp"
+      "image": "images/products/prod_bry-10.webp?v=5"
     },
     {
       "id": "bry-11",
@@ -1459,7 +1459,7 @@ const CATALOG_DATA = {
       "desc": "Великі запашні золотисті плоди для варення, м’ясних страв та чаю.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_bry-11.webp"
+      "image": "images/products/prod_bry-11.webp?v=5"
     },
     {
       "id": "bry-12",
@@ -1470,7 +1470,7 @@ const CATALOG_DATA = {
       "desc": "Солодкі сині ягоди з чорничним присмаком. Кущ дуже декоративний навесні та восени.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_bry-12.webp"
+      "image": "images/products/prod_bry-12.webp?v=5"
     },
     {
       "id": "bry-13",
@@ -1481,7 +1481,7 @@ const CATALOG_DATA = {
       "desc": "Ідеальний чагарник для створення вічнозелених бордюрів, огорож та садових фігур.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_bry-13.webp"
+      "image": "images/products/prod_bry-13.webp?v=5"
     },
     {
       "id": "exo-1",
@@ -1492,7 +1492,7 @@ const CATALOG_DATA = {
       "desc": "Комплект з 2 рослин для запилення. Солодкі ягоди ківі розміром з аґрус, не потребує укриття.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-1.webp"
+      "image": "images/products/prod_exo-1.webp?v=5"
     },
     {
       "id": "exo-2",
@@ -1503,7 +1503,7 @@ const CATALOG_DATA = {
       "desc": "Великоплідний сорт без колючок з високим вмістом вітаміну C.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-2.webp"
+      "image": "images/products/prod_exo-2.webp?v=5"
     },
     {
       "id": "exo-3",
@@ -1514,7 +1514,7 @@ const CATALOG_DATA = {
       "desc": "Пара саджанців обліпихи для гарантованого щедрого щорічного врожаю.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-3.webp"
+      "image": "images/products/prod_exo-3.webp?v=5"
     },
     {
       "id": "exo-4",
@@ -1525,7 +1525,7 @@ const CATALOG_DATA = {
       "desc": "Солодкий сортовий мигдаль з тонкою шкаралупою, яка лущиться руками.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-4.webp"
+      "image": "images/products/prod_exo-4.webp?v=5"
     },
     {
       "id": "exo-5",
@@ -1536,7 +1536,7 @@ const CATALOG_DATA = {
       "desc": "Витримує до -28°C! Самоплідна, великі солодкі плоди без терпкості.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-5.webp"
+      "image": "images/products/prod_exo-5.webp?v=5"
     },
     {
       "id": "exo-6",
@@ -1547,7 +1547,7 @@ const CATALOG_DATA = {
       "desc": "Величезні плоди хурми конічної форми з желеподібною медовою м’якоттю.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-6.webp"
+      "image": "images/products/prod_exo-6.webp?v=5"
     },
     {
       "id": "exo-7",
@@ -1558,7 +1558,7 @@ const CATALOG_DATA = {
       "desc": "Сорт селекції Нової Каховки, адаптований під клімат України.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-7.webp"
+      "image": "images/products/prod_exo-7.webp?v=5"
     },
     {
       "id": "exo-8",
@@ -1569,7 +1569,7 @@ const CATALOG_DATA = {
       "desc": "Дає 2 врожаї на рік солодких фіолетових плодів. Легко формується кущем.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-8.webp"
+      "image": "images/products/prod_exo-8.webp?v=5"
     },
     {
       "id": "exo-9",
@@ -1580,7 +1580,7 @@ const CATALOG_DATA = {
       "desc": "Справжнє волохате велике ківі, що чудово росте та плодоносить у відкритому ґрунті України!",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-9.webp"
+      "image": "images/products/prod_exo-9.webp?v=5"
     },
     {
       "id": "exo-10",
@@ -1591,7 +1591,7 @@ const CATALOG_DATA = {
       "desc": "Солодкі ягоди довжиною до 4-5 см. Рясний урожай щоліта.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-10.webp"
+      "image": "images/products/prod_exo-10.webp?v=5"
     },
     {
       "id": "exo-11",
@@ -1602,7 +1602,7 @@ const CATALOG_DATA = {
       "desc": "Ексклюзивне дерево-парасолька. Гілки спадають до самої землі, всипані солодкими ягодами.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-11.webp"
+      "image": "images/products/prod_exo-11.webp?v=5"
     },
     {
       "id": "exo-12",
@@ -1613,7 +1613,7 @@ const CATALOG_DATA = {
       "desc": "Починає плодоносити вже на 2-3 рік після посадки. Тонка шкаралупа, повне ядро.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-12.webp"
+      "image": "images/products/prod_exo-12.webp?v=5"
     },
     {
       "id": "exo-13",
@@ -1624,7 +1624,7 @@ const CATALOG_DATA = {
       "desc": "Український сорт ліщини з круглими великими горіхами та тонкою шкаралупою.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-13.webp"
+      "image": "images/products/prod_exo-13.webp?v=5"
     },
     {
       "id": "exo-14",
@@ -1635,7 +1635,7 @@ const CATALOG_DATA = {
       "desc": "Один із найкращих сортів фундука у світі з високим виходом ядра.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-14.webp?v=2"
+      "image": "images/products/prod_exo-14.webp?v=5"
     },
     {
       "id": "exo-15",
@@ -1646,7 +1646,7 @@ const CATALOG_DATA = {
       "desc": "Пара саджанців для взаємного запилення. Темно-червоні цілющі ягоди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-15.webp"
+      "image": "images/products/prod_exo-15.webp?v=5"
     },
     {
       "id": "exo-16",
@@ -1657,7 +1657,7 @@ const CATALOG_DATA = {
       "desc": "Щеплений грушоподібний кизил з плодами масою до 8-9 грамів.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_exo-16.webp"
+      "image": "images/products/prod_exo-16.webp?v=5"
     },
     {
       "id": "flw-1",
@@ -1668,7 +1668,7 @@ const CATALOG_DATA = {
       "desc": "Щеплена сакура на штамбі заввишки 1,5-1,8 м. Розкішне весняне рожеве цвітіння.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-1.webp"
+      "image": "images/products/prod_flw-1.webp?v=5"
     },
     {
       "id": "flw-2",
@@ -1679,7 +1679,7 @@ const CATALOG_DATA = {
       "desc": "Дворічний міцний саджанець японської сакури з пишними густомахровими суцвіттями.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-2.webp"
+      "image": "images/products/prod_flw-2.webp?v=5"
     },
     {
       "id": "flw-3",
@@ -1690,7 +1690,7 @@ const CATALOG_DATA = {
       "desc": "Ефектна сакура з пурпурово-винним листям та яскравими квітами.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-3.webp"
+      "image": "images/products/prod_flw-3.webp?v=5"
     },
     {
       "id": "flw-4",
@@ -1701,7 +1701,7 @@ const CATALOG_DATA = {
       "desc": "Однорічний саджанець магнолії з фіолетово-рожевими чашовидними квітами.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-4.webp"
+      "image": "images/products/prod_flw-4.webp?v=5"
     },
     {
       "id": "flw-5",
@@ -1712,7 +1712,7 @@ const CATALOG_DATA = {
       "desc": "Дворічний сформований кущ магнолії, готовий до цвітіння великими тюльпановими квітами.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-5.webp"
+      "image": "images/products/prod_flw-5.webp?v=5"
     },
     {
       "id": "flw-6",
@@ -1723,7 +1723,7 @@ const CATALOG_DATA = {
       "desc": "Вічнозелені кущі рододендрона з шапками яскравих квітів для напівтінистих зон.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-6.webp"
+      "image": "images/products/prod_flw-6.webp?v=5"
     },
     {
       "id": "flw-7",
@@ -1734,7 +1734,7 @@ const CATALOG_DATA = {
       "desc": "Кущовий деревовидний піон із величезними квітами діаметром до 20-25 см.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-7.webp"
+      "image": "images/products/prod_flw-7.webp?v=5"
     },
     {
       "id": "flw-8",
@@ -1745,7 +1745,7 @@ const CATALOG_DATA = {
       "desc": "Сортовий щеплений бузок з величезними ароматними суцвіттями.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-8.webp"
+      "image": "images/products/prod_flw-8.webp?v=5"
     },
     {
       "id": "flw-9",
@@ -1756,7 +1756,7 @@ const CATALOG_DATA = {
       "desc": "Швидкоросла ліана з водоспадами духмяних фіолетових суцвіть довжиною до 40 см.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-9.webp"
+      "image": "images/products/prod_flw-9.webp?v=5"
     },
     {
       "id": "flw-10",
@@ -1767,7 +1767,7 @@ const CATALOG_DATA = {
       "desc": "Сирійський деревовидний гібіскус. Цвіте все літо великими мальвоподібними квітами.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-10.webp"
+      "image": "images/products/prod_flw-10.webp?v=5"
     },
     {
       "id": "flw-11",
@@ -1778,7 +1778,7 @@ const CATALOG_DATA = {
       "desc": "Однорічний саджанець справжньої англійської морозостійкої лаванди.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-11.webp?v=2"
+      "image": "images/products/prod_flw-11.webp?v=5"
     },
     {
       "id": "flw-12",
@@ -1789,7 +1789,7 @@ const CATALOG_DATA = {
       "desc": "Сформований двохрічний кущ лаванди для ароматних клумб і бордюрів.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-12.webp"
+      "image": "images/products/prod_flw-12.webp?v=5"
     },
     {
       "id": "flw-13",
@@ -1800,7 +1800,7 @@ const CATALOG_DATA = {
       "desc": "Пишний кущ із запашними білосніжними квітами, невибагливий у догляді.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-13.webp"
+      "image": "images/products/prod_flw-13.webp?v=5"
     },
     {
       "id": "flw-14",
@@ -1811,7 +1811,7 @@ const CATALOG_DATA = {
       "desc": "Красивоквітучий чагарник з дзвіночкоподібними рожевими суцвіттями.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-14.webp"
+      "image": "images/products/prod_flw-14.webp?v=5"
     },
     {
       "id": "flw-15",
@@ -1822,7 +1822,7 @@ const CATALOG_DATA = {
       "desc": "Зацвітає яскраво-жовтим килимом ще до появи першого листя на початку весни.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-15.webp"
+      "image": "images/products/prod_flw-15.webp?v=5"
     },
     {
       "id": "flw-16",
@@ -1833,7 +1833,7 @@ const CATALOG_DATA = {
       "desc": "Вічнозелений блискучий чагарник із жовтими суцвіттями навесні та синіми ягодами восени.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-16.webp"
+      "image": "images/products/prod_flw-16.webp?v=5"
     },
     {
       "id": "flw-17",
@@ -1844,7 +1844,7 @@ const CATALOG_DATA = {
       "desc": "Сріблясто-зелена ароматна куляста рослина для бордюрів та альпійських гірок.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-17.webp"
+      "image": "images/products/prod_flw-17.webp?v=5"
     },
     {
       "id": "flw-18",
@@ -1855,7 +1855,7 @@ const CATALOG_DATA = {
       "desc": "Ажурний кущ, всипаний дрібними рожевими квіточками, наче бісером.",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-18.webp"
+      "image": "images/products/prod_flw-18.webp?v=5"
     },
     {
       "id": "flw-19",
@@ -1866,7 +1866,7 @@ const CATALOG_DATA = {
       "desc": "Комплект із 5 сортових троянд різних забарвлень (по 50 грн/кущ у наборі!).",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-19.webp"
+      "image": "images/products/prod_flw-19.webp?v=5"
     },
     {
       "id": "flw-20",
@@ -1877,7 +1877,7 @@ const CATALOG_DATA = {
       "desc": "10 щеплених троянд різних забарвлень для створення розкішного розарію (50 грн/кущ).",
       "inStock": true,
       "badge": "100% СОРТОВИЙ",
-      "image": "images/products/prod_flw-20.webp"
+      "image": "images/products/prod_flw-20.webp?v=5"
     }
   ]
 };
