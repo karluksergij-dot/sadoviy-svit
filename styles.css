@@ -4053,3 +4053,9 @@ body { background:
 .product-category-tag { background: rgba(255,255,255,.8); border-radius: 9999px; }
 .product-season-badge { background: #FFEBB8; color: #6B5320; border-radius: 9999px; }
 .btn-add-cart { border-radius: 9999px; background: linear-gradient(135deg, #F08A70, #E4715A); box-shadow: 0 8px 18px rgba(228,113,90,.35); }
+
+/* Логотип-аватарка власниці в шапці й футері */
+.brand-logo-emblem.has-logo { background: #fff; border: 2px solid #FFD1E0; padding: 0; overflow: hidden; width: 46px; height: 46px; box-shadow: 0 4px 12px rgba(228,113,90,.25); }
+.brand-logo-emblem.has-logo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
+.brand-wrapper:hover .brand-logo-emblem.has-logo { background: #fff; transform: scale(1.05) rotate(-3deg); }
+.glass-logo, .footer-logo { border: 2px solid #FFD1E0; box-shadow: 0 4px 12px rgba(228,113,90,.25); }
