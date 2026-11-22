@@ -4199,3 +4199,67 @@ body { color: #26302B; }
 /* Android/iOS: без підсвітки тапу та з плавним скролом */
 a, button, summary { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* ============================================================
+   MODERN PASTEL 2026 — три спокійні тони: крем · пудровий рожевий · шавлія
+   (фінальний шар, перекриває «райдужні» фони)
+   ============================================================ */
+:root {
+  --m-cream: #FBF6F1;
+  --m-blush: #FBE9E4;
+  --m-blush-2: #F6D9D3;
+  --m-sage: #E7F1E9;
+  --m-sage-2: #D5E7D9;
+  --m-line: #E9DDD8;
+  --m-ink: #2B2630;
+}
+html, body { background: var(--m-cream) !important; }
+body { background-image: radial-gradient(900px 520px at 85% -5%, rgba(246,217,211,.65), transparent 70%) !important; background-attachment: scroll !important; }
+
+/* Секції: 3 тони, плоскі, чисті */
+.hero-section { background: linear-gradient(180deg, var(--m-blush) 0%, var(--m-cream) 100%) !important; border-radius: 0 0 32px 32px; }
+.promo-section { background: var(--m-cream) !important; border: 1px solid var(--m-line); border-radius: 32px; }
+.catalog-section { background: var(--m-sage) !important; border: 1px solid var(--m-sage-2); border-radius: 32px; }
+.features-section { background: var(--m-cream) !important; border: 1px solid var(--m-line); border-radius: 32px; }
+.contacts-section { background: var(--m-blush) !important; border: 1px solid var(--m-blush-2); border-radius: 32px; }
+.site-footer { background: var(--m-blush-2) !important; }
+.main-header { background: rgba(251,246,241,.86) !important; border-bottom: 1px solid var(--m-line) !important; }
+
+/* Картки: однакові, білі, тонка лінія — без різнокольорових тел */
+.set-card:nth-child(n), .set-card:nth-child(n) .set-card-body { background: #FFFFFF !important; }
+.product-card { background: #FFFFFF !important; background-image: none !important; }
+.product-card, .set-card { border: 1px solid #DCCFC9 !important; box-shadow: 0 10px 28px rgba(60, 40, 50, .07) !important; border-radius: 24px !important; }
+.product-card:hover, .set-card:hover { box-shadow: 0 16px 36px rgba(60, 40, 50, .12) !important; transform: translateY(-2px); }
+.product-card-img, .set-card-media { background: var(--m-cream) !important; }
+.desc-plate { background: var(--m-cream) !important; border: 1px solid var(--m-line) !important; }
+.desc-plate[open] { background: #FFFFFF !important; }
+.product-category-tag { background: var(--m-sage) !important; border: 1px solid var(--m-sage-2) !important; color: #2E5A40 !important; }
+.product-season-badge { background: var(--m-blush) !important; color: #7A3A2C !important; border: 1px solid var(--m-blush-2); }
+
+/* Категорії: єдині «таблетки», активна — глибока шавлія */
+.cat-tab-btn:not(.active):nth-child(n) { background: #FFFFFF !important; border: 1px solid #D9CDC7 !important; color: var(--m-ink) !important; box-shadow: none !important; }
+.cat-tab-btn:not(.active):hover { border-color: #9DBBA6 !important; background: #F6FAF7 !important; }
+.cat-tab-btn.active, .cat-pill-main.active { background: #2F5D44 !important; color: #FFFFFF !important; border-color: #2F5D44 !important; }
+.cat-tab-btn.active *, .cat-pill-main.active * { color: #FFFFFF !important; }
+.cat-tab-btn.active .cat-count, .cat-pill-main.active .cat-pill-count { background: rgba(255,255,255,.22) !important; color: #FFFFFF !important; border-color: transparent !important; }
+
+/* Заголовки секцій */
+.section-title { color: var(--m-ink) !important; letter-spacing: -0.01em; }
+.section-badge, .promo-eyebrow, .section-eyebrow { background: #FFFFFF !important; border: 1px solid var(--m-line) !important; color: #5A4B52 !important; }
+.hero-pill, .hero-badges span, .hero-badge, .hero-trust span { background: #FFFFFF !important; border: 1px solid var(--m-line) !important; }
+
+/* Кнопка «Показати ще» */
+.btn-load-more, .btn-toggle-sets { border: 1.5px solid #2F5D44 !important; color: #234632 !important; background: #FFFFFF !important; }
+.btn-load-more *, .btn-toggle-sets * { color: #234632 !important; }
+.btn-load-more:hover, .btn-toggle-sets:hover { background: #2F5D44 !important; }
+.btn-load-more:hover *, .btn-toggle-sets:hover * { color: #FFFFFF !important; }
+
+/* Мобільний: відступи між секціями */
+@media (max-width: 768px) {
+  .promo-section, .catalog-section, .features-section, .contacts-section { margin-top: 14px !important; margin-bottom: 14px !important; border-radius: 26px; }
+}
+
+/* Єдина тонка верхня лінія карток (без «світлофора» за категоріями) */
+.product-card::before, .set-card::before { background: linear-gradient(90deg, #F2C9C0, #CFE2D3) !important; height: 3px !important; }
+@media (max-width: 768px) { .card-qty-stepper { background: var(--m-cream) !important; border: 1px solid #DCCFC9 !important; } }
+.card-qty-stepper { background: var(--m-cream); border-color: #DCCFC9; }
