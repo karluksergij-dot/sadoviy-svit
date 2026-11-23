@@ -76,7 +76,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.19';
+const ASSET_VERSION = '2026.5.23';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -1117,4 +1117,98 @@ function escapeHtml(str) {
     const isDesktop = window.innerWidth >= 992;
     if (isDesktop !== wasDesktop) { wasDesktop = isDesktop; if (typeof renderPromoSets === 'function') renderPromoSets(); }
   }, { passive: true });
+})();
+
+// ============================================================
+// ПІДКАЗКИ НАСЕЛЕНОГО ПУНКТУ В ПОЛІ АДРЕСИ (OpenStreetMap / Nominatim)
+// Передається лише те, що клієнт вводить у поле (назва населеного пункту).
+// ============================================================
+(function initAddressAutocomplete() {
+  function setup() {
+    const input = document.getElementById('customerAddress');
+    if (!input || input.dataset.acReady) return;
+    input.dataset.acReady = '1';
+
+    const wrap = input.parentElement;
+    wrap.style.position = 'relative';
+    const list = document.createElement('ul');
+    list.className = 'addr-suggest';
+    list.setAttribute('role', 'listbox');
+    list.hidden = true;
+    wrap.appendChild(list);
+
+    let timer = null, ctrl = null, items = [], active = -1;
+
+    const prefix = (a) => {
+      if (a.city) return 'м. ';
+      if (a.town) return 'м. ';
+      if (a.village) return 'с. ';
+      if (a.hamlet) return 'с. ';
+      return '';
+    };
+    const label = (r) => {
+      const a = r.address || {};
+      const name = a.city || a.town || a.village || a.hamlet || r.name;
+      if (!name) return null;
+      const parts = [prefix(a) + name];
+      if (a.county) parts.push(a.county);
+      if (a.state) parts.push(a.state);
+      return parts.join(', ');
+    };
+
+    const hide = () => { list.hidden = true; active = -1; };
+    const render = () => {
+      list.innerHTML = '';
+      if (!items.length) { hide(); return; }
+      items.forEach((txt, i) => {
+        const li = document.createElement('li');
+        li.setAttribute('role', 'option');
+        li.textContent = txt;
+        li.className = i === active ? 'active' : '';
+        li.addEventListener('mousedown', (e) => { e.preventDefault(); pick(i); });
+        li.addEventListener('touchstart', (e) => { e.preventDefault(); pick(i); }, { passive: false });
+        list.appendChild(li);
+      });
+      list.hidden = false;
+    };
+    const pick = (i) => {
+      input.value = items[i] + ', Нова Пошта №';
+      hide();
+      input.focus();
+      const end = input.value.length;
+      try { input.setSelectionRange(end, end); } catch (e) {}
+    };
+
+    async function search(q) {
+      if (ctrl) ctrl.abort();
+      ctrl = new AbortController();
+      try {
+        const url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&accept-language=uk&countrycodes=ua&featuretype=settlement&limit=8&q=' + encodeURIComponent(q);
+        const resp = await fetch(url, { signal: ctrl.signal, headers: { 'Accept': 'application/json' } });
+        if (!resp.ok) return;
+        const data = await resp.json();
+        const seen = new Set();
+        items = data.map(label).filter(Boolean).filter(t => !seen.has(t) && seen.add(t)).slice(0, 6);
+        active = -1;
+        render();
+      } catch (e) { /* без підказок — не критично */ }
+    }
+
+    input.addEventListener('input', () => {
+      const q = input.value.trim();
+      clearTimeout(timer);
+      // підказки лише поки вводиться назва (до першої коми)
+      if (q.length < 3 || q.includes(',')) { hide(); return; }
+      timer = setTimeout(() => search(q), 450);
+    });
+    input.addEventListener('keydown', (e) => {
+      if (list.hidden) return;
+      if (e.key === 'ArrowDown') { e.preventDefault(); active = Math.min(active + 1, items.length - 1); render(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); active = Math.max(active - 1, 0); render(); }
+      else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); pick(active); }
+      else if (e.key === 'Escape') { hide(); }
+    });
+    input.addEventListener('blur', () => setTimeout(hide, 150));
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup); else setup();
 })();
