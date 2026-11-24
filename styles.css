@@ -4453,3 +4453,15 @@ body.no-viber.order-failed #successModal .btn-submit-viber { display: flex !impo
 .branch-type-btn:disabled { opacity: .45; cursor: not-allowed; }
 #customerBranch[hidden], #customerBranchNum[hidden] { display: none !important; }
 #branchInfo { margin-top: 8px; font-size: .85rem; line-height: 1.4; color: #3E4A44; }
+
+/* ===== Ще крупніше: два способи та кнопки ===== */
+.checkout-option .opt-pill { font-size: 1rem; padding: 5px 16px; }
+.checkout-option .opt-text { font-size: 1.25rem; line-height: 1.4; }
+.btn-submit-order, .btn-submit-viber { font-size: 1.25rem !important; min-height: 66px !important; padding: 12px 16px !important; }
+@media (min-width: 769px) {
+  .checkout-option .opt-text { font-size: 1.4rem; }
+  .btn-submit-order, .btn-submit-viber { font-size: 1.4rem !important; min-height: 72px !important; }
+}
+.addr-suggest li.addr-empty { cursor: default; color: #7A3A2C; font-weight: 600; background: #FFF4EF; }
+#customerBranch:disabled { opacity: .7; cursor: not-allowed; }
+#customerBranchNum { margin-top: 8px; }

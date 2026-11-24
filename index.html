@@ -61,7 +61,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=2026.5.33">
+  <link rel="stylesheet" href="styles.css?v=2026.5.34">
 </head>
 <body>
 
@@ -548,8 +548,8 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="customerAddress">Місто або село доставки</label>
-            <input type="text" id="customerAddress" class="form-input" placeholder="Почніть вводити назву, напр. Вашківці" autocomplete="off">
+            <label class="form-label" for="customerAddress">Місто або село доставки *</label>
+            <input type="text" id="customerAddress" class="form-input" placeholder="Почніть вводити назву й оберіть зі списку" required autocomplete="off">
           </div>
 
           <div class="form-group" id="branchGroup">
@@ -558,11 +558,11 @@
               <button type="button" class="branch-type-btn active" data-type="cargo" aria-pressed="true">Вантажне відділення</button>
               <button type="button" class="branch-type-btn" data-type="regular" aria-pressed="false">Звичайне відділення</button>
             </div>
-            <select id="customerBranch" class="form-select" hidden>
-              <option value="">Оберіть відділення…</option>
+            <select id="customerBranch" class="form-select" disabled>
+              <option value="">Спочатку оберіть місто зі списку</option>
             </select>
-            <input type="text" inputmode="numeric" id="customerBranchNum" class="form-input" placeholder="Номер відділення (якщо знаєте)" autocomplete="off">
-            <div class="form-note" id="branchInfo">Оберіть місто зі списку — і тут з'являться справжні відділення Нової Пошти. Не знаєте номер? Залиште порожнім, менеджер уточнить по телефону.</div>
+            <input type="text" inputmode="numeric" id="customerBranchNum" class="form-input" placeholder="Вкажіть номер відділення" autocomplete="off" hidden>
+            <div class="form-note" id="branchInfo">Почніть вводити назву міста чи села й оберіть зі списку — тоді тут з'являться справжні відділення Нової Пошти.</div>
           </div>
 
 
@@ -673,6 +673,6 @@
 
   <!-- СКРИПТИ -->
   <script src="catalog.js?v=2026.5.18"></script>
-  <script src="app.js?v=2026.5.33"></script>
+  <script src="app.js?v=2026.5.34"></script>
 </body>
 </html>
