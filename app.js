@@ -76,7 +76,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.24';
+const ASSET_VERSION = '2026.5.25';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -979,15 +979,43 @@ function finalizeOrder(order, telegramSent = false) {
   document.getElementById('successOrderPhone').textContent = order.phone;
   document.getElementById('successOrderSum').textContent = `${order.totalSum} грн`;
 
+  // Зберігаємо замовлення, щоб у разі збою передати його у Viber повністю (зі складом)
+  window.__lastOrder = order;
+  window.__lastOrderFailed = !telegramSent;
+
+  const modal = document.getElementById('successModal');
+  const mTitle = modal.querySelector('.modal-title');
+  const sTitle = modal.querySelector('.success-title');
+  const sLead = modal.querySelector('.success-lead');
+  const viberBtn = modal.querySelector('.btn-submit-viber');
   const botTitle = document.getElementById('botNoticeTitle');
   const botDesc = document.getElementById('botNoticeDesc');
-  if (botTitle && botDesc) {
-    if (telegramSent) {
+  const mgrLine = botDesc ? botDesc.nextElementSibling : null;
+
+  // Запам'ятовуємо початкові тексти (для успішного сценарію)
+  [[mTitle, 'm'], [sTitle, 's'], [sLead, 'l'], [viberBtn, 'v']].forEach(([el, k]) => {
+    if (el && el.dataset['orig' + k] === undefined) el.dataset['orig' + k] = el.innerHTML;
+  });
+
+  if (telegramSent) {
+    if (mTitle) mTitle.innerHTML = mTitle.dataset.origm;
+    if (sTitle) sTitle.innerHTML = sTitle.dataset.origs;
+    if (sLead) sLead.innerHTML = sLead.dataset.origl;
+    if (viberBtn) viberBtn.innerHTML = viberBtn.dataset.origv;
+    if (mgrLine) mgrLine.style.display = '';
+    if (botTitle && botDesc) {
       botTitle.innerHTML = `${ICONS.check} Замовлення надіслано в Telegram!`;
       botDesc.innerHTML = 'Сповіщення успішно доставлено менеджеру <b>Любов</b> у Telegram. Ми зв\'яжемося з вами найближчим часом.';
-    } else {
-      botTitle.textContent = 'Підтвердіть замовлення у Viber';
-      botDesc.innerHTML = 'Автоматично передати замовлення не вдалося. Щоб ми точно його отримали, натисніть <b>«Надіслати у Viber»</b> нижче або зателефонуйте: <b>096 639 47 13</b>.<br><small style="opacity:.7">Код: ' + (window.__orderErr || '—') + '</small>';
+    }
+  } else {
+    if (mTitle) mTitle.textContent = 'Останній крок';
+    if (sTitle) sTitle.textContent = 'Надішліть замовлення у Viber';
+    if (sLead) sLead.textContent = 'Автоматично передати замовлення нам не вдалося — це не ваша помилка. Щоб ми точно його отримали, натисніть фіолетову кнопку нижче.';
+    if (viberBtn) viberBtn.innerHTML = 'Надіслати замовлення у Viber';
+    if (mgrLine) mgrLine.style.display = 'none';
+    if (botTitle && botDesc) {
+      botTitle.textContent = 'Або зателефонуйте нам';
+      botDesc.innerHTML = '<b>096 639 47 13</b><br><small style="opacity:.7">Код: ' + (window.__orderErr || '—') + '</small>';
     }
   }
 
@@ -998,6 +1026,7 @@ function finalizeOrder(order, telegramSent = false) {
 }
 
 function sendCurrentOrderToViber() {
+  if (window.__lastOrderFailed && window.__lastOrder) { sendToViber(window.__lastOrder); return; }
   const orderId = document.getElementById('successOrderId').textContent;
   const phone = document.getElementById('successOrderPhone').textContent;
   const sum = document.getElementById('successOrderSum').textContent;
