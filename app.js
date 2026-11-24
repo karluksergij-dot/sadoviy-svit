@@ -76,7 +76,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.25';
+const ASSET_VERSION = '2026.5.26';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -956,20 +956,57 @@ async function sendToTelegram(order, honeypot = '', formTime = 0) {
   }
 }
 
-function sendToViber(order) {
-  let msg = `Добрий день! Оформлюю замовлення #${order.orderId} на саджанці:\n`;
-  msg += `Ім'я: ${order.name}\n`;
-  msg += `Телефон: ${order.phone}\n`;
-  if (order.address) msg += `Доставка: ${order.address}\n`;
-  msg += `\nТовари:\n`;
+function buildViberText(order) {
+  let msg = `Добрий день! Оформлюю замовлення #${order.orderId} на саджанці:
+`;
+  msg += `Ім'я: ${order.name}
+`;
+  msg += `Телефон: ${order.phone}
+`;
+  if (order.address) msg += `Доставка: ${order.address}
+`;
+  msg += `
+Товари:
+`;
   order.items.forEach((item, i) => {
-    msg += `${i + 1}. ${item.name} - ${item.quantity} шт. (${item.price * item.quantity} грн)\n`;
+    msg += `${i + 1}. ${item.name} - ${item.quantity} шт. (${item.price * item.quantity} грн)
+`;
   });
-  msg += `\nЗагальна сума: ${order.totalSum} грн.`;
+  msg += `
+Загальна сума: ${order.totalSum} грн.`;
+  return msg;
+}
+
+// Копіювання тексту в буфер обміну (працює і на старих телефонах)
+function copyToClipboard(text) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).catch(() => {});
+      return true;
+    }
+  } catch (e) {}
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;font-size:16px;';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select(); ta.setSelectionRange(0, text.length);
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  } catch (e) { return false; }
+}
+
+function sendToViber(order) {
+  const msg = buildViberText(order);
+  // Viber не завжди підставляє текст у чат сам, тому копіюємо замовлення в буфер — клієнту лишається «Вставити»
+  const copied = copyToClipboard(msg);
+  if (copied) showToast('Текст замовлення скопійовано. У Viber натисніть «Вставити» і надішліть.');
 
   const encoded = encodeURIComponent(msg);
   const viberUrl = `viber://chat?number=%2B${STORE_CONTACTS.viberNumber}&text=${encoded}`;
-  window.open(viberUrl, '_blank');
+  setTimeout(() => window.open(viberUrl, '_blank'), copied ? 700 : 0);
 }
 
 function finalizeOrder(order, telegramSent = false) {
@@ -1001,11 +1038,11 @@ function finalizeOrder(order, telegramSent = false) {
     if (mTitle) mTitle.innerHTML = mTitle.dataset.origm;
     if (sTitle) sTitle.innerHTML = sTitle.dataset.origs;
     if (sLead) sLead.innerHTML = sLead.dataset.origl;
-    if (viberBtn) viberBtn.innerHTML = viberBtn.dataset.origv;
-    if (mgrLine) mgrLine.style.display = '';
+    if (viberBtn) viberBtn.innerHTML = 'Написати нам у Viber';
+    if (mgrLine) mgrLine.style.display = 'none';
     if (botTitle && botDesc) {
-      botTitle.innerHTML = `${ICONS.check} Замовлення надіслано в Telegram!`;
-      botDesc.innerHTML = 'Сповіщення успішно доставлено менеджеру <b>Любов</b> у Telegram. Ми зв\'яжемося з вами найближчим часом.';
+      botTitle.innerHTML = `${ICONS.check} Ми вам зателефонуємо`;
+      botDesc.innerHTML = 'Менеджер зв\'яжеться з вами найближчим часом, щоб підтвердити наявність та домовитись про відправку Новою Поштою.';
     }
   } else {
     if (mTitle) mTitle.textContent = 'Останній крок';
@@ -1026,7 +1063,7 @@ function finalizeOrder(order, telegramSent = false) {
 }
 
 function sendCurrentOrderToViber() {
-  if (window.__lastOrderFailed && window.__lastOrder) { sendToViber(window.__lastOrder); return; }
+  if (window.__lastOrder) { sendToViber(window.__lastOrder); return; }
   const orderId = document.getElementById('successOrderId').textContent;
   const phone = document.getElementById('successOrderPhone').textContent;
   const sum = document.getElementById('successOrderSum').textContent;
