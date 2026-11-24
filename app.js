@@ -29,6 +29,7 @@ const STORE_CONTACTS = {
   phone: "0966394713",
   phoneFormatted: "+38 (096) 639-47-13",
   viberNumber: "380966394713",
+  showViber: true, // false = сховати всі кнопки Viber на сайті (лишаються телефон і замовлення на сайті)
   tiktokUrl: "https://www.tiktok.com/@lujbow_pirog777"
 };
 
@@ -76,7 +77,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.26';
+const ASSET_VERSION = '2026.5.27';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -1034,6 +1035,7 @@ function finalizeOrder(order, telegramSent = false) {
     if (el && el.dataset['orig' + k] === undefined) el.dataset['orig' + k] = el.innerHTML;
   });
 
+  document.body.classList.toggle('order-failed', !telegramSent);
   if (telegramSent) {
     if (mTitle) mTitle.innerHTML = mTitle.dataset.origm;
     if (sTitle) sTitle.innerHTML = sTitle.dataset.origs;
@@ -1060,6 +1062,12 @@ function finalizeOrder(order, telegramSent = false) {
   saveCartToStorage();
 
   openModal('successModal');
+}
+
+function copyCurrentOrder() {
+  if (!window.__lastOrder) return;
+  const ok = copyToClipboard(buildViberText(window.__lastOrder));
+  showToast(ok ? 'Замовлення скопійовано' : 'Не вдалося скопіювати — виділіть текст вручну');
 }
 
 function sendCurrentOrderToViber() {
@@ -1285,3 +1293,8 @@ function escapeHtml(str) {
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup); else setup();
 })();
+
+// Перемикач: сховати Viber на сайті, якщо власниця цього хоче
+if (typeof STORE_CONTACTS !== 'undefined' && STORE_CONTACTS.showViber === false) {
+  document.body.classList.add('no-viber');
+}
