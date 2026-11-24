@@ -7,8 +7,8 @@ const rateLimitMap = new Map();
 function isRateLimited(ip) {
   const now = Date.now();
   const windowMs = 60 * 1000; // 1 хвилина
-  const maxRequestsPerMinute = 8;
-  const blockDurationMs = 2 * 60 * 1000; // 2 хвилини блокування при зловживанні
+  const maxRequestsPerMinute = 15;
+  const blockDurationMs = 60 * 1000; // 1 хвилина блокування при зловживанні
 
   let record = rateLimitMap.get(ip);
   if (!record) {
