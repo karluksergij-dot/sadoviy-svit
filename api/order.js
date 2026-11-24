@@ -77,18 +77,12 @@ export default async function handler(req, res) {
   try {
     const { text, orderId, website, formTime } = req.body || {};
 
-    // 3. АНТИСПАМ: Honeypot-пастка (якщо поле website заповнене — це автоматичний спам-бот)
+    // 3. Honeypot: автозаповнення телефону може заповнити приховане поле — тому замовлення НЕ відкидаємо,
+    //    а доставляємо з позначкою (краще один зайвий спам, ніж втрачене справжнє замовлення)
+    let flagged = false;
     if (website && typeof website === 'string' && website.trim().length > 0) {
-      console.warn(`[AntiSpam Honeypot] Спам-бот спійманий з IP ${clientIp}, honeypot="${website}"`);
-      // Повертаємо 200 ok: true, щоб бот не перебирав інші форми, але в Telegram нічого НЕ надсилаємо!
-      return res.status(200).json({ ok: true, filtered: true });
-    }
-
-    // 4. АНТИСПАМ: Перевірка швидкості заповнення (Time-Trap)
-    // Людина фізично не може відкрити форму, ввести ім'я, номер та оформити замовлення швидше ніж за 1.8 секунди
-    if (typeof formTime === 'number' && formTime > 0 && formTime < 400) {
-      console.warn(`[AntiSpam TimeTrap] Надшвидке надсилання (${formTime}ms) від IP ${clientIp}. Схоже на бота.`);
-      return res.status(200).json({ ok: true, filtered: true });
+      console.warn(`[AntiSpam Honeypot] заповнене приховане поле з IP ${clientIp}: "${website}" — доставляємо з позначкою`);
+      flagged = true;
     }
 
     if (!text || typeof text !== 'string') {
@@ -113,11 +107,12 @@ export default async function handler(req, res) {
       return r.json();
     };
 
-    let data = await send({ chat_id: chatId, text, parse_mode: 'HTML', disable_web_page_preview: true });
+    const outText = flagged ? '⚠️ <i>(автозаповнення або можливий бот)</i>\n' + text : text;
+    let data = await send({ chat_id: chatId, text: outText, parse_mode: 'HTML', disable_web_page_preview: true });
 
     // Якщо Telegram не зміг розібрати HTML-розмітку — надсилаємо те саме простим текстом
     if (!data.ok && /parse entities|can't parse/i.test(data.description || '')) {
-      const plain = text.replace(/<[^>]+>/g, '');
+      const plain = outText.replace(/<[^>]+>/g, '');
       data = await send({ chat_id: chatId, text: plain, disable_web_page_preview: true });
     }
 

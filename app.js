@@ -76,7 +76,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.23';
+const ASSET_VERSION = '2026.5.24';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -927,8 +927,12 @@ async function sendToTelegram(order, honeypot = '', formTime = 0) {
     msg += `\n💰 <b>ЗАГАЛЬНА СУМА:</b> <b>${order.totalSum} грн</b>\n`;
     msg += `⏰ <i>${order.date}</i>`;
 
+    window.__orderErr = '';
+    const _ac = new AbortController();
+    const _to = setTimeout(() => _ac.abort(), 20000);
     const resp = await fetch('/api/order', {
       method: 'POST',
+      signal: _ac.signal,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         text: msg,
@@ -938,12 +942,15 @@ async function sendToTelegram(order, honeypot = '', formTime = 0) {
       })
     });
 
+    clearTimeout(_to);
     const data = await resp.json();
-    if (!data.ok && !data.filtered) {
+    if (!data.ok) {
+      window.__orderErr = 'HTTP ' + resp.status + (data.error ? ' · ' + String(data.error).slice(0, 80) : '');
       console.warn('Telegram response:', data);
     }
     return data.ok === true && !data.filtered;
   } catch (err) {
+    window.__orderErr = 'мережа: ' + String((err && err.message) || err).slice(0, 80);
     console.error('Помилка надсилання в Telegram:', err);
     return false;
   }
@@ -980,7 +987,7 @@ function finalizeOrder(order, telegramSent = false) {
       botDesc.innerHTML = 'Сповіщення успішно доставлено менеджеру <b>Любов</b> у Telegram. Ми зв\'яжемося з вами найближчим часом.';
     } else {
       botTitle.textContent = 'Підтвердіть замовлення у Viber';
-      botDesc.innerHTML = 'Автоматично передати замовлення не вдалося. Щоб ми точно його отримали, натисніть <b>«Надіслати у Viber»</b> нижче або зателефонуйте: <b>096 639 47 13</b>.';
+      botDesc.innerHTML = 'Автоматично передати замовлення не вдалося. Щоб ми точно його отримали, натисніть <b>«Надіслати у Viber»</b> нижче або зателефонуйте: <b>096 639 47 13</b>.<br><small style="opacity:.7">Код: ' + (window.__orderErr || '—') + '</small>';
     }
   }
 
