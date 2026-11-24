@@ -77,7 +77,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.29';
+const ASSET_VERSION = '2026.5.30';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -853,7 +853,7 @@ async function handleOrderSubmit(e, viaViber = false) {
   const submitBtn = document.getElementById('btnSubmitOrder');
   if (submitBtn) {
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Оформлюємо...';
+    submitBtn.textContent = 'Відправляємо...';
   }
 
   const orderId = 'SS-' + Math.floor(100000 + Math.random() * 900000);
@@ -890,7 +890,7 @@ async function handleOrderSubmit(e, viaViber = false) {
     finalizeOrder(orderData, telegramSent);
     if (submitBtn) {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = `${ICONS.bag} Оформити замовлення`;
+      submitBtn.innerHTML = `${ICONS.bag} Відправити замовлення менеджеру`;
     }
     return;
   }
@@ -899,7 +899,7 @@ async function handleOrderSubmit(e, viaViber = false) {
   finalizeOrder(orderData, telegramSent);
   if (submitBtn) {
     submitBtn.disabled = false;
-    submitBtn.innerHTML = `${ICONS.bag} Оформити замовлення`;
+    submitBtn.innerHTML = `${ICONS.bag} Відправити замовлення менеджеру`;
   }
 }
 
