@@ -77,7 +77,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.35';
+const ASSET_VERSION = '2026.5.37';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -846,10 +846,10 @@ async function handleOrderSubmit(e, viaViber = false) {
     showFieldError('customerPhone', 'Перевірте номер: потрібно 10 цифр, наприклад 096 639 47 13');
     return;
   }
-  // Місце доставки — лише зі списку Нової Пошти (щоб не замовили туди, де пошта не працює)
+  // Населений пункт: обрати зі списку (або явно вказати вручну)
   const cityInput = document.getElementById('customerAddress');
   if (!window.__npSel || !cityInput || cityInput.value.trim() !== window.__npSel.__label) {
-    showFieldError('customerAddress', 'Оберіть місто чи село зі списку, що з\'являється під час введення. Якщо вашого села там немає — оберіть найближче місто, де є відділення Нової Пошти.');
+    showFieldError('customerAddress', 'Почніть вводити назву міста чи села й оберіть зі списку. Якщо не знайшлось — натисніть «Вказати вручну».');
     return;
   }
 
@@ -1215,24 +1215,24 @@ function escapeHtml(str) {
 })();
 
 // ============================================================
-// НАСЕЛЕНИЙ ПУНКТ + СПРАВЖНІ ВІДДІЛЕННЯ НОВОЇ ПОШТИ
-// Дані: відкритий довідник Нової Пошти (data/np-branches.json): лише там, де вона реально працює.
-// Місце доставки МОЖНА ОБРАТИ ТІЛЬКИ ЗІ СПИСКУ — так замовлення не потрапить туди, де пошта не працює.
+// НАСЕЛЕНИЙ ПУНКТ: підказки зі списку місць, де Нова Пошта зараз працює
+// Дані: відкритий довідник Нової Пошти (data/np-settlements.json). Кома, район і область підставляються самі.
+// Якщо місця немає в списку — можна вказати вручну (менеджер перевірить, у замовленні буде позначка).
 // ============================================================
 let NP_DATA = null;
 let NP_LOADING = null;
-window.__npSel = null; // обране населене місце з довідника
+window.__npSel = null; // обраний/введений населений пункт
 
 function loadNpData() {
   if (NP_DATA) return Promise.resolve(NP_DATA);
   if (!NP_LOADING) {
-    NP_LOADING = fetch('data/np-branches.json?v=' + (typeof ASSET_VERSION !== 'undefined' ? ASSET_VERSION : '1'))
+    NP_LOADING = fetch('data/np-settlements.json?v=' + (typeof ASSET_VERSION !== 'undefined' ? ASSET_VERSION : '1'))
       .then(r => { if (!r.ok) throw new Error('np data ' + r.status); return r.json(); })
       .then(d => {
         NP_DATA = d.s.map(r => ({
-          name: r[0], area: r[1], region: r[2], stype: r[3],
-          reg: parseRanges(r[4]), cargo: parseRanges(r[5]),
-          lname: r[0].toLowerCase()
+          name: r[0], area: r[1], region: r[2], stype: r[3], n: r[4],
+          lname: normNp(r[0]),
+          hay: normNp(r[0] + ' ' + r[2] + ' ' + r[1])
         }));
         return NP_DATA;
       })
@@ -1241,20 +1241,13 @@ function loadNpData() {
   return NP_LOADING;
 }
 
-function parseRanges(s) {
-  const out = [];
-  if (!s) return out;
-  s.split(',').forEach(part => {
-    const m = part.split('-');
-    if (m.length === 2) { for (let i = +m[0]; i <= +m[1]; i++) out.push(i); }
-    else if (part) out.push(+part);
-  });
-  return out;
+function normNp(s) {
+  return String(s || '').toLowerCase().replace(/[’`ʼ‘]/g, "'").replace(/\s+/g, ' ').trim();
 }
 
 function npLabel(r) {
   const pfx = { 'місто': 'м. ', 'село': 'с. ', 'селище міського типу': 'смт ', 'селище': 'с-ще ' }[r.stype] || '';
-  const parts = [pfx + r.name];
+  const parts = [pfx + r.name.trim()];
   if (r.region) {
     const rg = r.region.replace(/ська$/, 'ський').replace(/цька$/, 'цький').replace(/зька$/, 'зький');
     parts.push(rg + (/район$/.test(rg) ? '' : ' район'));
@@ -1263,39 +1256,31 @@ function npLabel(r) {
   return parts.join(', ');
 }
 
+// Розумний пошук: перше слово — початок назви; решта слів (район, область) лише покращують порядок
 function searchNpLocal(q) {
   if (!NP_DATA) return [];
-  const l = q.toLowerCase().replace(/^(м\.|с\.|смт|с-ще)\s*/i, '').replace(/[’`ʼ]/g, "'").trim();
-  if (l.length < 2) return [];
-  const starts = NP_DATA.filter(r => r.lname.replace(/[’`ʼ]/g, "'").startsWith(l));
-  const rank = (r) => (r.stype === 'місто' ? 0 : 1);
-  starts.sort((a, b) => rank(a) - rank(b) || (b.reg.length + b.cargo.length) - (a.reg.length + a.cargo.length) || a.name.localeCompare(b.name, 'uk'));
-  return starts.slice(0, 8);
+  // префікс «м.», «с.», «смт» тощо прибираємо лише коли після нього крапка або пробіл (інакше «Суми» → «уми»)
+  let s = normNp(q).replace(/^(м|с|смт|с-ще|селище|місто|село)(\.\s*|\s+)(?=\S)/, '');
+  s = s.replace(/,/g, ' ').replace(/\s+/g, ' ').trim();
+  if (s.length < 2) return [];
+  const tokens = s.split(' ').filter(Boolean);
+  const first = tokens[0];
+  const rest = tokens.slice(1).map(t => t.replace(/[.]/g, '')).filter(t => t.length >= 3 && !/^(р-н|район|обл|область)$/.test(t));
+  const cands = NP_DATA.filter(r => r.lname.startsWith(first) || (tokens.length > 1 && r.lname.startsWith(s)));
+  const score = (r) => {
+    let sc = 0;
+    if (r.lname === s) sc += 50;
+    if (r.lname === first) sc += 20;
+    rest.forEach(t => { const stem = t.slice(0, Math.max(3, t.length - 2)); if (r.hay.includes(stem)) sc += 10; });
+    if (r.stype === 'місто') sc += 3;
+    return sc;
+  };
+  cands.sort((a, b) => score(b) - score(a) || b.n - a.n || a.name.localeCompare(b.name, 'uk'));
+  return cands.slice(0, 8);
 }
 
-// Вибір населеного пункту -> реальні відділення (або скидання)
 function applyNpSelection(rec) {
   window.__npSel = rec || null;
-  const sel = document.getElementById('customerBranch');
-  const num = document.getElementById('customerBranchNum');
-  const btnCargo = document.querySelector('.branch-type-btn[data-type="cargo"]');
-  const btnReg = document.querySelector('.branch-type-btn[data-type="regular"]');
-  if (!sel || !num) return;
-  num.hidden = true; num.value = '';
-
-  if (!rec) {
-    sel.disabled = true;
-    sel.innerHTML = '<option value="">Спочатку оберіть місто зі списку</option>';
-    [btnCargo, btnReg].forEach(b => { if (b) b.disabled = false; });
-    return;
-  }
-  sel.disabled = false;
-  if (btnCargo) btnCargo.disabled = rec.cargo.length === 0;
-  if (btnReg) btnReg.disabled = rec.reg.length === 0;
-  const cur = getBranchType();
-  if (cur === 'cargo' && rec.cargo.length === 0 && rec.reg.length) setBranchType('regular');
-  if (cur === 'regular' && rec.reg.length === 0 && rec.cargo.length) setBranchType('cargo');
-  fillBranchSelect();
 }
 
 (function initAddressAutocomplete() {
@@ -1315,37 +1300,48 @@ function applyNpSelection(rec) {
     let items = [], metas = [], active = -1;
 
     const hide = () => { list.hidden = true; active = -1; };
-    const renderEmpty = (q) => {
-      list.innerHTML = '';
-      const li = document.createElement('li');
-      li.className = 'addr-empty';
-      li.textContent = `«${q}» немає в списку Нової Пошти. Оберіть найближче місто, де є відділення.`;
-      list.appendChild(li);
-      list.hidden = false;
+    const clearErr = () => {
+      input.classList.remove('has-error');
+      const nxt = input.nextElementSibling;
+      if (nxt && nxt.classList && nxt.classList.contains('field-error')) nxt.remove();
     };
-    const render = () => {
+    const choose = (text, rec) => {
+      input.value = text;
+      rec.__label = text;
+      applyNpSelection(rec);
+      hide(); clearErr();
+      const n = document.getElementById('customerBranchNum');
+      if (n) { try { n.focus(); } catch (e) {} }
+    };
+    const render = (manualText) => {
       list.innerHTML = '';
-      if (!items.length) { hide(); return; }
       items.forEach((txt, i) => {
         const li = document.createElement('li');
         li.setAttribute('role', 'option');
         li.textContent = txt;
         li.className = i === active ? 'active' : '';
-        li.addEventListener('mousedown', (e) => { e.preventDefault(); pick(i); });
-        li.addEventListener('touchstart', (e) => { e.preventDefault(); pick(i); }, { passive: false });
+        const act = () => choose(items[i], metas[i]);
+        li.addEventListener('mousedown', (e) => { e.preventDefault(); act(); });
+        li.addEventListener('touchstart', (e) => { e.preventDefault(); act(); }, { passive: false });
         list.appendChild(li);
       });
-      list.hidden = false;
-    };
-    const pick = (i) => {
-      input.value = items[i];
-      hide();
-      input.classList.remove('has-error');
-      const nxt = input.nextElementSibling;
-      if (nxt && nxt.classList && nxt.classList.contains('field-error')) nxt.remove();
-      applyNpSelection(metas[i]);
-      const sel = document.getElementById('customerBranch');
-      if (sel && !sel.disabled) { try { sel.focus(); } catch (e) {} }
+      if (manualText) {
+        const li = document.createElement('li');
+        li.className = 'addr-manual';
+        li.innerHTML = '';
+        const t = document.createElement('div');
+        t.className = 'addr-manual-title';
+        t.textContent = items.length ? 'Немає в списку?' : 'Не знайшли в списку Нової Пошти';
+        const b = document.createElement('div');
+        b.className = 'addr-manual-btn';
+        b.textContent = `Вказати вручну: «${manualText}»`;
+        li.appendChild(t); li.appendChild(b);
+        const act = () => choose(manualText, { manual: true, name: manualText });
+        li.addEventListener('mousedown', (e) => { e.preventDefault(); act(); });
+        li.addEventListener('touchstart', (e) => { e.preventDefault(); act(); }, { passive: false });
+        list.appendChild(li);
+      }
+      list.hidden = !(items.length || manualText);
     };
 
     async function onType() {
@@ -1354,28 +1350,24 @@ function applyNpSelection(rec) {
       if (window.__npSel && input.value !== window.__npSel.__label) applyNpSelection(null);
       if (q.length < 2) { hide(); return; }
       const data = await loadNpData();
-      if (!data) { hide(); return; }
+      if (!data) { items = []; metas = []; render(q); return; }
       const local = searchNpLocal(q);
-      if (local.length) {
-        items = local.map(r => { const t = npLabel(r); r.__label = t; return t; });
-        metas = local;
-        active = -1;
-        render();
-      } else if (q.length >= 3) {
-        renderEmpty(q);
-      } else { hide(); }
+      items = local.map(r => npLabel(r));
+      metas = local;
+      active = -1;
+      render(q.length >= 3 ? q : '');
     }
 
     input.addEventListener('focus', () => { loadNpData(); });
     input.addEventListener('input', onType);
     input.addEventListener('keydown', (e) => {
       if (list.hidden) return;
-      if (e.key === 'ArrowDown') { e.preventDefault(); active = Math.min(active + 1, items.length - 1); render(); }
-      else if (e.key === 'ArrowUp') { e.preventDefault(); active = Math.max(active - 1, 0); render(); }
-      else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); pick(active); }
+      if (e.key === 'ArrowDown') { e.preventDefault(); active = Math.min(active + 1, items.length - 1); render(input.value.trim()); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); active = Math.max(active - 1, 0); render(input.value.trim()); }
+      else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); choose(items[active], metas[active]); }
       else if (e.key === 'Escape') { hide(); }
     });
-    input.addEventListener('blur', () => setTimeout(hide, 150));
+    input.addEventListener('blur', () => setTimeout(hide, 180));
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup); else setup();
 })();
@@ -1425,12 +1417,11 @@ function formatUaPhone(raw) {
 }
 
 function resetOrderForm() {
-  ['customerAddress', 'customerComment', 'orderWebsite', 'customerBranch', 'customerBranchNum'].forEach(id => {
+  ['customerAddress', 'customerComment', 'orderWebsite', 'customerBranchNum'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.value = '';
   });
   if (typeof applyNpSelection === 'function') applyNpSelection(null);
-  const sb = document.getElementById('customerBranch'); if (sb && typeof fillBranchSelect === 'function') { /* стан відновлює applyNpSelection */ }
   clearFieldErrors();
 }
 
@@ -1458,78 +1449,25 @@ function resetOrderForm() {
 
 
 // ============================================================
-// ВІДДІЛЕННЯ НОВОЇ ПОШТИ: тип (вантажне/звичайне) + номер зі справжнього списку
+// АДРЕСА ДОСТАВКИ: населений пункт + номер відділення Нової Пошти
 // ============================================================
-function getBranchType() {
-  const active = document.querySelector('.branch-type-btn.active');
-  return active ? active.dataset.type : 'cargo';
-}
-
-function setBranchType(type) {
-  document.querySelectorAll('.branch-type-btn').forEach(x => {
-    const on = x.dataset.type === type;
-    x.classList.toggle('active', on);
-    x.setAttribute('aria-pressed', on ? 'true' : 'false');
-  });
-}
-
-function fillBranchSelect() {
-  const sel = document.getElementById('customerBranch');
-  const num = document.getElementById('customerBranchNum');
-  const rec = window.__npSel;
-  if (!sel) return;
-  sel.innerHTML = '';
-  if (num) { num.hidden = true; num.value = ''; }
-  const first = document.createElement('option');
-  first.value = '';
-  first.textContent = 'Оберіть відділення…';
-  sel.appendChild(first);
-  if (!rec) return;
-  const cargo = getBranchType() === 'cargo';
-  (cargo ? rec.cargo : rec.reg).forEach(n => {
-    const o = document.createElement('option');
-    o.value = String(n);
-    o.textContent = (cargo ? 'Вантажне відділення №' : 'Відділення №') + n;
-    sel.appendChild(o);
-  });
-  const other = document.createElement('option');
-  other.value = '__other';
-  other.textContent = 'Мого відділення немає в списку — вкажу номер';
-  sel.appendChild(other);
-}
-
 function composeDeliveryAddress() {
   const city = (document.getElementById('customerAddress') || { value: '' }).value.trim();
-  const sel = document.getElementById('customerBranch');
   const numEl = document.getElementById('customerBranchNum');
-  let num = '';
-  if (sel && sel.value === '__other') num = numEl ? numEl.value.replace(/\D/g, '') : '';
-  else if (sel && !sel.disabled) num = sel.value;
-  if (!num) return city;
-  const label = getBranchType() === 'cargo' ? 'вантажне відділення' : 'відділення';
-  const branch = `Нова Пошта, ${label} №${num}`;
-  return city ? `${city}, ${branch}` : branch;
+  const num = numEl ? numEl.value.replace(/\D/g, '') : '';
+  const manual = window.__npSel && window.__npSel.manual;
+  let addr = city;
+  if (num) addr += (addr ? ', ' : '') + 'Нова Пошта, відділення №' + num;
+  if (manual) addr += ' ⚠️ (населений пункт введено вручну — перевірити)';
+  return addr;
 }
 
-(function initBranchPicker() {
+(function initBranchNumber() {
   function setup() {
-    const btns = document.querySelectorAll('.branch-type-btn');
-    if (!btns.length || btns[0].dataset.ready) return;
-    btns[0].dataset.ready = '1';
-    btns.forEach(b => b.addEventListener('click', () => {
-      if (b.disabled) return;
-      setBranchType(b.dataset.type);
-      if (window.__npSel) fillBranchSelect();
-    }));
-    const sel = document.getElementById('customerBranch');
-    const num = document.getElementById('customerBranchNum');
-    if (sel && num) {
-      sel.addEventListener('change', () => {
-        const other = sel.value === '__other';
-        num.hidden = !other;
-        if (other) { try { num.focus(); } catch (e) {} } else { num.value = ''; }
-      });
-    }
+    const n = document.getElementById('customerBranchNum');
+    if (!n || n.dataset.ready) return;
+    n.dataset.ready = '1';
+    n.addEventListener('input', () => { const d = n.value.replace(/\D/g, ''); if (d !== n.value) n.value = d; });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup); else setup();
 })();
