@@ -77,7 +77,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.28';
+const ASSET_VERSION = '2026.5.29';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -939,7 +939,12 @@ async function sendToTelegram(order, honeypot = '', formTime = 0) {
         text: msg,
         orderId: order.orderId,
         website: honeypot,
-        formTime: formTime
+        formTime: formTime,
+        order: {
+          orderId: order.orderId, name: order.name, phone: order.phone, address: order.address,
+          payment: order.payment, comment: order.comment, totalSum: order.totalSum,
+          items: (order.items || []).map(i => ({ name: i.name, quantity: i.quantity, price: i.price }))
+        }
       })
     });
 

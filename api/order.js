@@ -49,6 +49,33 @@ function orderFingerprint(text) {
   return phone + '|' + items;
 }
 
+// Необов'язковий журнал у Google-таблицю: якщо задано SHEETS_WEBHOOK_URL, кожна спроба замовлення
+// (навіть невдала) записується рядком. Збій журналу НІКОЛИ не впливає на замовлення.
+async function logToSheet(order, status, flags) {
+  const url = process.env.SHEETS_WEBHOOK_URL;
+  if (!url) return;
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 4000);
+  try {
+    const o = order && typeof order === 'object' ? order : {};
+    const items = Array.isArray(o.items) ? o.items.map(i => `${i.name} × ${i.quantity}`).join('; ') : '';
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      signal: ctrl.signal,
+      body: JSON.stringify({
+        secret: process.env.SHEETS_SECRET || '',
+        time: new Date().toLocaleString('uk-UA', { timeZone: 'Europe/Kyiv' }),
+        orderId: o.orderId || '', name: o.name || '', phone: o.phone || '', address: o.address || '',
+        payment: o.payment || '', comment: o.comment || '', items, total: o.totalSum || '',
+        status, flags: (flags || []).join('; ')
+      })
+    });
+  } catch (e) {
+    console.error('[Sheets] не вдалося записати рядок:', e.message);
+  } finally { clearTimeout(timer); }
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ ok: false, error: 'Метод не підтримується' });
@@ -80,7 +107,7 @@ export default async function handler(req, res) {
   cleanup(now);
 
   try {
-    const { text, website, formTime } = req.body || {};
+    const { text, website, formTime, order } = req.body || {};
 
     if (!text || typeof text !== 'string') {
       return res.status(400).json({ ok: false, error: 'Порожній текст замовлення' });
@@ -99,6 +126,7 @@ export default async function handler(req, res) {
           });
         } catch (e) { console.error('Не вдалося надіслати попередження про потоп', e); }
       }
+      await logToSheet(order, 'ЗАБЛОКОВАНО: потоп з однієї адреси', []);
       return res.status(429).json({
         ok: false,
         error: 'Забагато замовлень з вашої адреси за короткий час. Зателефонуйте нам: 096 639 47 13'
@@ -110,6 +138,7 @@ export default async function handler(req, res) {
     const prev = recentOrders.get(fp);
     if (prev && now - prev < DUPLICATE_WINDOW_MS) {
       console.warn(`[Duplicate] те саме замовлення від ${clientIp} — не дублюємо`);
+      await logToSheet(order, 'дубль (повторний тап, не пересилали)', []);
       return res.status(200).json({ ok: true, deduped: true });
     }
 
@@ -132,12 +161,14 @@ export default async function handler(req, res) {
 
     if (!data.ok) {
       console.error('[Telegram ERROR]', data.error_code, data.description);
+      await logToSheet(order, 'ПОМИЛКА Telegram: ' + (data.description || data.error_code), flags);
       return res.status(502).json({ ok: false, error: data.description || 'Telegram error', code: data.error_code });
     }
 
     // Лічимо лише ДОСТАВЛЕНІ замовлення
     flood.rec.times.push(now);
     recentOrders.set(fp, now);
+    await logToSheet(order, 'надіслано в Telegram', flags);
     return res.status(200).json({ ok: true, flagged: flags.length > 0 });
   } catch (err) {
     console.error('Помилка відправки в Telegram через Vercel API:', err);
