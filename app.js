@@ -77,7 +77,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.34';
+const ASSET_VERSION = '2026.5.35';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -1278,17 +1278,15 @@ function applyNpSelection(rec) {
   window.__npSel = rec || null;
   const sel = document.getElementById('customerBranch');
   const num = document.getElementById('customerBranchNum');
-  const info = document.getElementById('branchInfo');
   const btnCargo = document.querySelector('.branch-type-btn[data-type="cargo"]');
   const btnReg = document.querySelector('.branch-type-btn[data-type="regular"]');
-  if (!sel || !num || !info) return;
+  if (!sel || !num) return;
   num.hidden = true; num.value = '';
 
   if (!rec) {
     sel.disabled = true;
     sel.innerHTML = '<option value="">Спочатку оберіть місто зі списку</option>';
     [btnCargo, btnReg].forEach(b => { if (b) b.disabled = false; });
-    info.textContent = 'Почніть вводити назву міста чи села й оберіть зі списку — тоді тут з\'являться справжні відділення Нової Пошти.';
     return;
   }
   sel.disabled = false;
@@ -1298,10 +1296,6 @@ function applyNpSelection(rec) {
   if (cur === 'cargo' && rec.cargo.length === 0 && rec.reg.length) setBranchType('regular');
   if (cur === 'regular' && rec.reg.length === 0 && rec.cargo.length) setBranchType('cargo');
   fillBranchSelect();
-  const parts = [];
-  if (rec.cargo.length) parts.push(`вантажних — ${rec.cargo.length}`);
-  if (rec.reg.length) parts.push(`звичайних — ${rec.reg.length}`);
-  info.textContent = `Нова Пошта тут: ${parts.join(', ')}. Оберіть зручне відділення. Не впевнені? Залиште «Оберіть відділення…», менеджер уточнить по телефону.`;
 }
 
 (function initAddressAutocomplete() {

@@ -4465,3 +4465,15 @@ body.no-viber.order-failed #successModal .btn-submit-viber { display: flex !impo
 .addr-suggest li.addr-empty { cursor: default; color: #7A3A2C; font-weight: 600; background: #FFF4EF; }
 #customerBranch:disabled { opacity: .7; cursor: not-allowed; }
 #customerBranchNum { margin-top: 8px; }
+
+/* ===== Спрощені два способи ===== */
+.checkout-sub { margin: 2px 2px 0; text-align: center; font-size: 1rem; line-height: 1.4; color: #4A5650; }
+.checkout-btn-group > .opt-text { margin: 4px 2px 6px; font-size: 1.15rem; line-height: 1.45; color: #26302B; font-weight: 500; }
+.checkout-btn-group > .opt-text b { font-weight: 800; }
+.checkout-or { margin: 16px 0 10px; font-size: 1.05rem; font-weight: 800; color: #5B4B52; }
+@media (min-width: 769px) {
+  .checkout-sub { font-size: 1.1rem; }
+  .checkout-btn-group > .opt-text { font-size: 1.25rem; }
+  .checkout-or { font-size: 1.15rem; }
+}
+.checkout-option, .opt-pill { display: none !important; }

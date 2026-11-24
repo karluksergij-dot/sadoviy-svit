@@ -61,7 +61,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=2026.5.34">
+  <link rel="stylesheet" href="styles.css?v=2026.5.35">
 </head>
 <body>
 
@@ -562,7 +562,6 @@
               <option value="">Спочатку оберіть місто зі списку</option>
             </select>
             <input type="text" inputmode="numeric" id="customerBranchNum" class="form-input" placeholder="Вкажіть номер відділення" autocomplete="off" hidden>
-            <div class="form-note" id="branchInfo">Почніть вводити назву міста чи села й оберіть зі списку — тоді тут з'являться справжні відділення Нової Пошти.</div>
           </div>
 
 
@@ -580,18 +579,14 @@
           </div>
 
           <div class="checkout-btn-group">
-            <div class="checkout-option">
-              <span class="opt-pill">Найпростіше</span>
-              <p class="opt-text">Натисніть кнопку нижче — <b>ми одразу отримаємо ваше замовлення і зателефонуємо вам.</b></p>
-            </div>
             <button type="submit" class="btn-submit-order" id="btnSubmitOrder">
               Відправити замовлення менеджеру
             </button>
-            <div class="checkout-or"><span>або</span></div>
-            <div class="checkout-option">
-              <span class="opt-pill alt">Запасний спосіб</span>
-              <p class="opt-text">Натисніть кнопку нижче — <b>замовлення скопіюється</b>, відкриється Viber. Вам лишиться <b>натиснути «Вставити» в чаті й «Надіслати».</b></p>
-            </div>
+            <p class="checkout-sub">Ми отримаємо замовлення й зателефонуємо вам.</p>
+
+            <div class="checkout-or"><span>або запасний спосіб</span></div>
+
+            <p class="opt-text">Замовлення скопіюється. У Viber вам лишиться натиснути <b>«Вставити»</b> і <b>«Надіслати»</b>.</p>
             <button type="button" class="btn-submit-viber" id="btnViberOrder" onclick="handleOrderSubmit(event, true)">
               Скопіювати замовлення і відправити у Viber
             </button>
@@ -673,6 +668,6 @@
 
   <!-- СКРИПТИ -->
   <script src="catalog.js?v=2026.5.18"></script>
-  <script src="app.js?v=2026.5.34"></script>
+  <script src="app.js?v=2026.5.35"></script>
 </body>
 </html>
