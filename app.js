@@ -77,7 +77,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.27';
+const ASSET_VERSION = '2026.5.28';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -823,7 +823,7 @@ async function handleOrderSubmit(e, viaViber = false) {
   // Захист від повторних спам-кліків (кулдаун 15 секунд)
   const lastOrderTs = sessionStorage.getItem('last_order_ts');
   const now = Date.now();
-  if (lastOrderTs && now - parseInt(lastOrderTs, 10) < 15000) {
+  if (lastOrderTs && now - parseInt(lastOrderTs, 10) < 8000) {
     alert('Ваше замовлення вже обробляється! Наш менеджер зателефонує вам найближчим часом для підтвердження.');
     return;
   }
@@ -881,8 +881,8 @@ async function handleOrderSubmit(e, viaViber = false) {
     }
   }
 
-  // Зберігаємо таймстемп успішного замовлення для захисту від спаму
-  sessionStorage.setItem('last_order_ts', Date.now().toString());
+  // Таймстемп ставимо лише після успішної відправки (щоб повторна спроба після збою не блокувалась)
+  if (telegramSent) sessionStorage.setItem('last_order_ts', Date.now().toString());
 
   // 2. Якщо клієнт натиснув "Замовити через Viber"
   if (viaViber) {
