@@ -77,7 +77,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.31';
+const ASSET_VERSION = '2026.5.32';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -830,7 +830,7 @@ async function handleOrderSubmit(e, viaViber = false) {
 
   const name = document.getElementById('customerName').value.trim();
   const phone = document.getElementById('customerPhone').value.trim();
-  const address = document.getElementById('customerAddress').value.trim();
+  const address = composeDeliveryAddress();
   const payment = document.getElementById('paymentMethod').value;
   const comment = document.getElementById('customerComment').value.trim();
 
@@ -1261,11 +1261,10 @@ function escapeHtml(str) {
       list.hidden = false;
     };
     const pick = (i) => {
-      input.value = items[i] + ', Нова Пошта №';
+      input.value = items[i];
       hide();
-      input.focus();
-      const end = input.value.length;
-      try { input.setSelectionRange(end, end); } catch (e) {}
+      const br = document.getElementById('customerBranch');
+      if (br) { try { br.focus(); } catch (e) {} } else { input.focus(); }
     };
 
     async function search(q) {
@@ -1347,7 +1346,7 @@ function formatUaPhone(raw) {
 }
 
 function resetOrderForm() {
-  ['customerAddress', 'customerComment', 'orderWebsite'].forEach(id => {
+  ['customerAddress', 'customerComment', 'orderWebsite', 'customerBranch'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.value = '';
   });
@@ -1372,6 +1371,52 @@ function resetOrderForm() {
         if (nxt && nxt.classList.contains('field-error')) nxt.remove();
       });
     });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup); else setup();
+})();
+
+
+// ============================================================
+// ВІДДІЛЕННЯ НОВОЇ ПОШТИ: тип (вантажне/звичайне) + номер 1–100
+// (це зручний вибір для клієнта; номер відділення менеджер уточнює по телефону)
+// ============================================================
+function getBranchType() {
+  const active = document.querySelector('.branch-type-btn.active');
+  return active ? active.dataset.type : 'cargo';
+}
+
+function composeDeliveryAddress() {
+  const city = (document.getElementById('customerAddress') || { value: '' }).value.trim();
+  const num = (document.getElementById('customerBranch') || { value: '' }).value;
+  if (!num) return city;
+  const label = getBranchType() === 'cargo' ? 'вантажне відділення' : 'відділення';
+  const branch = `Нова Пошта, ${label} №${num}`;
+  return city ? `${city}, ${branch}` : branch;
+}
+
+(function initBranchPicker() {
+  function setup() {
+    const sel = document.getElementById('customerBranch');
+    if (!sel || sel.dataset.ready) return;
+    sel.dataset.ready = '1';
+    for (let n = 1; n <= 100; n++) {
+      const o = document.createElement('option');
+      o.value = String(n);
+      o.textContent = 'Відділення №' + n;
+      sel.appendChild(o);
+    }
+    const btns = document.querySelectorAll('.branch-type-btn');
+    const updateLabels = () => {
+      const cargo = getBranchType() === 'cargo';
+      sel.querySelectorAll('option').forEach(o => {
+        if (o.value) o.textContent = (cargo ? 'Вантажне відділення №' : 'Відділення №') + o.value;
+      });
+    };
+    btns.forEach(b => b.addEventListener('click', () => {
+      btns.forEach(x => { x.classList.toggle('active', x === b); x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      updateLabels();
+    }));
+    updateLabels();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup); else setup();
 })();

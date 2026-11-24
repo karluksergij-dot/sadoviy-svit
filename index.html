@@ -61,7 +61,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=2026.5.31">
+  <link rel="stylesheet" href="styles.css?v=2026.5.32">
 </head>
 <body>
 
@@ -548,9 +548,22 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="customerAddress">Місто та відділення пошти</label>
-            <input type="text" id="customerAddress" class="form-input" placeholder="Почніть вводити населений пункт, напр. Вашківці" autocomplete="off">
+            <label class="form-label" for="customerAddress">Місто або село доставки</label>
+            <input type="text" id="customerAddress" class="form-input" placeholder="Почніть вводити назву, напр. Вашківці" autocomplete="off">
           </div>
+
+          <div class="form-group" id="branchGroup">
+            <label class="form-label" for="customerBranch">Відділення Нової Пошти</label>
+            <div class="branch-type" role="group" aria-label="Тип відділення">
+              <button type="button" class="branch-type-btn active" data-type="cargo" aria-pressed="true">Вантажне відділення</button>
+              <button type="button" class="branch-type-btn" data-type="regular" aria-pressed="false">Звичайне відділення</button>
+            </div>
+            <select id="customerBranch" class="form-select">
+              <option value="">Оберіть номер відділення…</option>
+            </select>
+            <div class="form-note">Не знаєте номер? Залиште порожнім, менеджер уточнить по телефону.</div>
+          </div>
+
 
           <div class="form-group">
             <label class="form-label" for="paymentMethod">Спосіб оплати</label>
@@ -566,12 +579,18 @@
           </div>
 
           <div class="checkout-btn-group">
-            <div class="checkout-option-label"><span class="opt-pill">Найпростіше</span> ми отримаємо замовлення одразу й зателефонуємо вам</div>
+            <div class="checkout-option">
+              <span class="opt-pill">Найпростіше</span>
+              <p class="opt-text">Натисніть кнопку нижче — <b>ми одразу отримаємо ваше замовлення і зателефонуємо вам.</b></p>
+            </div>
             <button type="submit" class="btn-submit-order" id="btnSubmitOrder">
               Відправити замовлення менеджеру
             </button>
             <div class="checkout-or"><span>або</span></div>
-            <div class="checkout-option-label"><span class="opt-pill alt">Запасний спосіб</span> замовлення скопіюється, а ви самі надішлете його у Viber</div>
+            <div class="checkout-option">
+              <span class="opt-pill alt">Запасний спосіб</span>
+              <p class="opt-text">Натисніть кнопку нижче — <b>замовлення скопіюється</b>, відкриється Viber. Вам лишиться <b>натиснути «Вставити» в чаті й «Надіслати».</b></p>
+            </div>
             <button type="button" class="btn-submit-viber" id="btnViberOrder" onclick="handleOrderSubmit(event, true)">
               Скопіювати замовлення і відправити у Viber
             </button>
@@ -653,6 +672,6 @@
 
   <!-- СКРИПТИ -->
   <script src="catalog.js?v=2026.5.18"></script>
-  <script src="app.js?v=2026.5.31"></script>
+  <script src="app.js?v=2026.5.32"></script>
 </body>
 </html>

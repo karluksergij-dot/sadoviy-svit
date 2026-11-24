@@ -4430,3 +4430,22 @@ body.no-viber.order-failed #successModal .btn-submit-viber { display: flex !impo
 .btn-submit-order:disabled, .btn-submit-viber:disabled { opacity: .6; cursor: not-allowed; }
 .form-input.has-error, .form-textarea.has-error { border-color: #B3402C !important; box-shadow: 0 0 0 3px rgba(179, 64, 44, .15) !important; }
 .field-error { margin: 6px 2px 0; font-size: .82rem; font-weight: 700; color: #A93D2A; }
+
+
+/* ===== Два способи: великі підписи (телефон і ПК) ===== */
+.checkout-option { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin: 6px 0 0; }
+.checkout-option .opt-pill { font-size: .9rem; padding: 4px 14px; letter-spacing: .03em; }
+.checkout-option .opt-text { margin: 0; font-size: 1.12rem; line-height: 1.4; color: #26302B; font-weight: 500; }
+.checkout-option .opt-text b { font-weight: 800; color: #1F2A24; }
+.btn-submit-order, .btn-submit-viber { min-height: 58px !important; font-size: 1.1rem !important; line-height: 1.25; }
+.checkout-or { font-size: 1rem; margin: 14px 0 8px; }
+@media (min-width: 769px) {
+  .checkout-option .opt-text { font-size: 1.2rem; }
+  .btn-submit-order, .btn-submit-viber { font-size: 1.2rem !important; min-height: 62px !important; }
+}
+.checkout-option-label { display: none; }
+
+/* ===== Вибір відділення Нової Пошти ===== */
+.branch-type { display: flex; gap: 8px; margin: 2px 0 10px; }
+.branch-type-btn { flex: 1; min-height: 46px; padding: 8px 10px; font: inherit; font-weight: 800; font-size: .95rem; line-height: 1.2; color: #26302B; background: #fff; border: 2px solid #D9CDC7; border-radius: 12px; cursor: pointer; }
+.branch-type-btn.active { color: #fff; background: #2F5D44; border-color: #2F5D44; }
