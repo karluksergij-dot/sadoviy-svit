@@ -4418,3 +4418,15 @@ body { background-image: radial-gradient(900px 520px at 85% -5%, rgba(246,217,21
 /* …але при збої відправки Viber лишається запасним шляхом */
 body.no-viber.order-failed #successModal .btn-submit-viber { display: flex !important; }
 .checkout-hint { margin: 8px 2px 0; font-size: .8rem; line-height: 1.4; color: #4A5650; text-align: center; }
+
+
+/* ===== Форма замовлення: два способи + інлайн-помилки ===== */
+.checkout-btn-group { display: flex; flex-direction: column; gap: 6px; }
+.checkout-option-label { font-size: .8rem; line-height: 1.35; color: #4A5650; margin: 4px 2px 0; }
+.opt-pill { display: inline-block; padding: 2px 9px; margin-right: 4px; border-radius: 9999px; background: #E7F1E9; color: #1F5A39; font-weight: 800; font-size: .72rem; letter-spacing: .02em; text-transform: uppercase; border: 1px solid #CFE0D4; }
+.opt-pill.alt { background: #F1ECF8; color: #4B3A78; border-color: #DCD2EE; }
+.checkout-or { display: flex; align-items: center; gap: 10px; margin: 8px 0 2px; color: #7A6F73; font-size: .8rem; font-weight: 700; }
+.checkout-or::before, .checkout-or::after { content: ""; flex: 1; height: 1px; background: #E4D8D2; }
+.btn-submit-order:disabled, .btn-submit-viber:disabled { opacity: .6; cursor: not-allowed; }
+.form-input.has-error, .form-textarea.has-error { border-color: #B3402C !important; box-shadow: 0 0 0 3px rgba(179, 64, 44, .15) !important; }
+.field-error { margin: 6px 2px 0; font-size: .82rem; font-weight: 700; color: #A93D2A; }

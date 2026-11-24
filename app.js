@@ -77,7 +77,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.30';
+const ASSET_VERSION = '2026.5.31';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -838,23 +838,22 @@ async function handleOrderSubmit(e, viaViber = false) {
   const honeypotVal = document.getElementById('orderWebsite') ? document.getElementById('orderWebsite').value.trim() : '';
   const formTimeMs = now - (cartModalOpenedAt || now);
 
-  if (!name || !phone) {
-    alert('Будь ласка, вкажіть ваше ім’я та номер телефону для зв’язку!');
-    return;
-  }
-
-  // Перевірка формату українського номера телефону
+  clearFieldErrors();
+  if (!name) { showFieldError('customerName', 'Вкажіть, будь ласка, ім’я'); return; }
+  if (!phone) { showFieldError('customerPhone', 'Вкажіть номер телефону, щоб ми могли зателефонувати'); return; }
   const phoneDigits = phone.replace(/[^\d]/g, '');
   if (phoneDigits.length < 9) {
-    alert('Будь ласка, перевірте правильність номера телефону (мінімум 9 цифр, наприклад: 096 639 47 13)!');
+    showFieldError('customerPhone', 'Перевірте номер: потрібно 10 цифр, наприклад 096 639 47 13');
     return;
   }
 
   const submitBtn = document.getElementById('btnSubmitOrder');
+  const viberBtnForm = document.getElementById('btnViberOrder');
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Відправляємо...';
   }
+  if (viberBtnForm) viberBtnForm.disabled = true;
 
   const orderId = 'SS-' + Math.floor(100000 + Math.random() * 900000);
   const { totalSum } = getCartTotals();
@@ -892,6 +891,8 @@ async function handleOrderSubmit(e, viaViber = false) {
       submitBtn.disabled = false;
       submitBtn.innerHTML = `${ICONS.bag} Відправити замовлення менеджеру`;
     }
+    if (viberBtnForm) viberBtnForm.disabled = false;
+    resetOrderForm();
     return;
   }
 
@@ -901,6 +902,8 @@ async function handleOrderSubmit(e, viaViber = false) {
     submitBtn.disabled = false;
     submitBtn.innerHTML = `${ICONS.bag} Відправити замовлення менеджеру`;
   }
+  if (viberBtnForm) viberBtnForm.disabled = false;
+  resetOrderForm();
 }
 
 async function sendToTelegram(order, honeypot = '', formTime = 0) {
@@ -1303,3 +1306,72 @@ function escapeHtml(str) {
 if (typeof STORE_CONTACTS !== 'undefined' && STORE_CONTACTS.showViber === false) {
   document.body.classList.add('no-viber');
 }
+
+
+// ============================================================
+// ФОРМА ЗАМОВЛЕННЯ: інлайн-помилки, маска телефону, очищення після відправки
+// ============================================================
+function clearFieldErrors() {
+  document.querySelectorAll('#orderForm .field-error').forEach(e => e.remove());
+  document.querySelectorAll('#orderForm .has-error').forEach(e => e.classList.remove('has-error'));
+}
+
+function showFieldError(inputId, message) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  input.classList.add('has-error');
+  const err = document.createElement('div');
+  err.className = 'field-error';
+  err.setAttribute('role', 'alert');
+  err.textContent = message;
+  input.insertAdjacentElement('afterend', err);
+  try { input.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {}
+  input.focus({ preventScroll: true });
+}
+
+function formatUaPhone(raw) {
+  const original = String(raw || '');
+  const t = original.trim();
+  // форматуємо лише українські номери (0.., 38.., +38..); інші лишаємо як є
+  if (!(t.startsWith('+38') || t.startsWith('0') || t.startsWith('38'))) return original;
+  let d = original.replace(/\D/g, '');
+  if (d.startsWith('380')) d = d.slice(2);
+  else if (d.startsWith('38')) d = d.slice(2);
+  d = d.slice(0, 10);
+  if (!d) return '';
+  let out = '+38 (' + d.slice(0, 3);
+  if (d.length > 3) out += ') ' + d.slice(3, 6);
+  if (d.length > 6) out += '-' + d.slice(6, 8);
+  if (d.length > 8) out += '-' + d.slice(8, 10);
+  return out;
+}
+
+function resetOrderForm() {
+  ['customerAddress', 'customerComment', 'orderWebsite'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  clearFieldErrors();
+}
+
+(function initOrderFormHelpers() {
+  function setup() {
+    const phone = document.getElementById('customerPhone');
+    if (phone && !phone.dataset.fmtReady) {
+      phone.dataset.fmtReady = '1';
+      phone.addEventListener('input', () => {
+        const before = phone.value;
+        const after = formatUaPhone(before);
+        if (after !== before) phone.value = after;
+      });
+    }
+    document.querySelectorAll('#orderForm .form-input, #orderForm .form-textarea').forEach(el => {
+      el.addEventListener('input', () => {
+        el.classList.remove('has-error');
+        const nxt = el.nextElementSibling;
+        if (nxt && nxt.classList.contains('field-error')) nxt.remove();
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup); else setup();
+})();

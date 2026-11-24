@@ -61,7 +61,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=2026.5.30">
+  <link rel="stylesheet" href="styles.css?v=2026.5.31">
 </head>
 <body>
 
@@ -528,7 +528,7 @@
         </div>
 
         <!-- ФОРМА ОФОРМЛЕННЯ ЗАМОВЛЕННЯ -->
-        <form id="orderForm" style="display: none;">
+        <form id="orderForm" style="display: none;" novalidate>
           <!-- Захист від спам-ботів (Honeypot) -->
           <div style="position: absolute; left: -9999px; top: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
             <label for="orderWebsite">Вебсайт компанії</label>
@@ -566,14 +566,16 @@
           </div>
 
           <div class="checkout-btn-group">
+            <div class="checkout-option-label"><span class="opt-pill">Найпростіше</span> ми отримаємо замовлення одразу й зателефонуємо вам</div>
             <button type="submit" class="btn-submit-order" id="btnSubmitOrder">
               Відправити замовлення менеджеру
             </button>
-            <button type="button" class="btn-submit-viber" onclick="handleOrderSubmit(event, true)">
+            <div class="checkout-or"><span>або</span></div>
+            <div class="checkout-option-label"><span class="opt-pill alt">Запасний спосіб</span> замовлення скопіюється, а ви самі надішлете його у Viber</div>
+            <button type="button" class="btn-submit-viber" id="btnViberOrder" onclick="handleOrderSubmit(event, true)">
               Скопіювати замовлення і відправити у Viber
             </button>
           </div>
-          <p class="checkout-hint">Другий варіант: замовлення скопіюється, а у Viber вам лишиться натиснути «Вставити» й «Надіслати».</p>
         </form>
       </div>
     </div>
@@ -651,6 +653,6 @@
 
   <!-- СКРИПТИ -->
   <script src="catalog.js?v=2026.5.18"></script>
-  <script src="app.js?v=2026.5.30"></script>
+  <script src="app.js?v=2026.5.31"></script>
 </body>
 </html>
