@@ -3,12 +3,13 @@
 //
 // ФІЛОСОФІЯ ЗАХИСТУ: втратити справжнє замовлення значно гірше, ніж отримати зайве повідомлення.
 // Тому ми НІКОЛИ не відкидаємо «підозрілі» замовлення мовчки — лише позначаємо їх (⚠️).
-// Єдина блокада — справжній потоп: 20+ замовлень з однієї адреси за 30 хвилин
-// (власниця отримує про це одне повідомлення, а справжній клієнт бачить запасний шлях: телефон/Viber).
+// Замовлення з багатьма спробами з однієї адреси ТЕЖ доходять — просто з позначкою «МОЖЛИВО СПАМ».
+// Аварійний запобіжник від масової атаки ботів — лише від 150 замовлень за 30 хвилин з однієї адреси.
 
 const WINDOW_MS = 30 * 60 * 1000;      // вікно підрахунку: 30 хвилин
-const MAX_ORDERS_PER_WINDOW = 20;      // ліміт замовлень з однієї адреси за вікно
-const DUPLICATE_WINDOW_MS = 90 * 1000; // подвійний тап: те саме замовлення двічі за 90 с
+const SPAM_MARK_AFTER = 5;             // з 6-го замовлення за вікно — позначка «можливо спам» (але доходить)
+const MAX_ORDERS_PER_WINDOW = 150;     // аварійний ліміт (лише масова атака)
+const DUPLICATE_WINDOW_MS = 30 * 1000; // подвійний тап: те саме замовлення двічі за 90 с
 const MAX_TEXT_LENGTH = 3800;          // ліміт Telegram — 4096 символів
 
 // Стан живе в пам'яті теплого інстансу (на холодному старті обнуляється — це лише робить захист м'якшим).
@@ -113,16 +114,16 @@ export default async function handler(req, res) {
       return res.status(400).json({ ok: false, error: 'Порожній текст замовлення' });
     }
 
-    // 1. ПОТОП: 20+ замовлень з однієї адреси за 30 хв — єдина реальна блокада
+    // 1. АВАРІЙНИЙ ЗАПОБІЖНИК: лише масова атака (150+ за 30 хв з однієї адреси)
     const flood = checkFlood(clientIp, now);
     if (flood.blocked) {
-      console.warn(`[Flood] ${clientIp}: ліміт ${MAX_ORDERS_PER_WINDOW}/30хв, пауза ~${flood.retryAfter}с`);
+      console.warn(`[Flood] ${clientIp}: аварійний ліміт ${MAX_ORDERS_PER_WINDOW}/30хв, пауза ~${flood.retryAfter}с`);
       if (flood.firstTime) {
         // Одне попередження власниці (не саме замовлення)
         try {
           await send({
             chat_id: chatId,
-            text: `⚠️ Підозріла активність: з однієї адреси надійшло ${MAX_ORDERS_PER_WINDOW}+ замовлень за 30 хвилин. Нові замовлення з неї тимчасово не пересилаються (орієнтовно ~${Math.ceil(flood.retryAfter / 60)} хв). Якщо це справжній клієнт — він побачить запасний шлях (телефон / Viber).`
+            text: `⚠️ Схоже на атаку ботів: з однієї адреси ${MAX_ORDERS_PER_WINDOW}+ замовлень за 30 хвилин. Нові з неї тимчасово не пересилаються (~${Math.ceil(flood.retryAfter / 60)} хв).`
           });
         } catch (e) { console.error('Не вдалося надіслати попередження про потоп', e); }
       }
@@ -145,13 +146,13 @@ export default async function handler(req, res) {
     // 3. ПОЗНАЧКИ (нічого не відкидаємо, лише попереджаємо)
     const flags = [];
     if (website && typeof website === 'string' && website.trim()) flags.push('заповнено приховане поле (автозаповнення або бот)');
-    if (typeof formTime === 'number' && formTime > 0 && formTime < 1500) flags.push('надто швидке заповнення');
+    if (flood.rec.times.length >= SPAM_MARK_AFTER) flags.push('багато замовлень з однієї адреси за короткий час');
     const phoneDigits = ((text.match(/tel:([\d+]+)/) || [])[1] || '').replace(/\D/g, '');
     if (phoneDigits && (/^(\d)\1+$/.test(phoneDigits))) flags.push('схожий на фіктивний номер телефону');
     if (/https?:\/\/(?!t\.me)/i.test(text.replace(/<a href="tel:[^"]*">/g, ''))) flags.push('у тексті є посилання');
 
     let outText = text.length > MAX_TEXT_LENGTH ? text.slice(0, MAX_TEXT_LENGTH) + '…' : text;
-    if (flags.length) outText = `⚠️ <i>Можливий спам: ${flags.join('; ')}</i>\n` + outText;
+    if (flags.length) outText = `⚠️ <b>МОЖЛИВО СПАМ</b> (${flags.join('; ')})\n\n` + outText;
 
     // 4. ВІДПРАВКА (HTML; якщо Telegram не розібрав розмітку — повтор простим текстом)
     let data = await send({ chat_id: chatId, text: outText, parse_mode: 'HTML', disable_web_page_preview: true });

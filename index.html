@@ -61,7 +61,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=2026.5.38">
+  <link rel="stylesheet" href="styles.css?v=2026.5.39">
 </head>
 <body>
 
@@ -544,7 +544,6 @@
           <div class="form-group">
             <label class="form-label" for="customerPhone">Номер телефону *</label>
             <input type="tel" id="customerPhone" class="form-input" placeholder="+38 (09_) ___-__-__" required autocomplete="tel">
-            <div class="form-note">На цей номер зателефонує менеджер для підтвердження</div>
           </div>
 
           <div class="form-group">
@@ -584,14 +583,14 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="customerDistrict">Район <span class="opt-mark">(якщо село — допоможе не помилитись)</span></label>
+            <label class="form-label" for="customerDistrict">Район <span class="opt-mark">(за бажанням)</span></label>
             <input type="text" id="customerDistrict" class="form-input" placeholder="Наприклад: Яворівський" autocomplete="off">
           </div>
 
           <div class="form-group" id="branchGroup">
             <label class="form-label" for="customerBranchNum">Номер відділення Нової Пошти</label>
             <input type="text" inputmode="numeric" id="customerBranchNum" class="form-input" placeholder="Наприклад: 3" autocomplete="off" maxlength="6">
-            <div class="form-note">Бажано вантажне відділення. Не знаєте номер? Залиште порожнім, менеджер уточнить по телефону.</div>
+            <div class="form-note">Не знаєте номер? Залиште порожнім — уточнимо по телефону.</div>
           </div>
 
 
@@ -612,13 +611,12 @@
             <button type="submit" class="btn-submit-order" id="btnSubmitOrder">
               Відправити замовлення менеджеру
             </button>
-            <p class="checkout-sub">Ми отримаємо замовлення й зателефонуємо вам.</p>
 
-            <div class="checkout-or"><span>або запасний спосіб</span></div>
+            <div class="checkout-or"><span>або</span></div>
 
-            <p class="opt-text">Замовлення скопіюється. У Viber вам лишиться натиснути <b>«Вставити»</b> і <b>«Надіслати»</b>.</p>
+            <p class="opt-text">Замовлення скопіюється — відкрийте чат Viber і натисніть <b>«Вставити»</b>.</p>
             <button type="button" class="btn-submit-viber" id="btnViberOrder" onclick="handleOrderSubmit(event, true)">
-              Скопіювати замовлення і відправити у Viber
+              Скопіювати замовлення і відкрити Viber
             </button>
           </div>
         </form>
@@ -698,6 +696,6 @@
 
   <!-- СКРИПТИ -->
   <script src="catalog.js?v=2026.5.18"></script>
-  <script src="app.js?v=2026.5.38"></script>
+  <script src="app.js?v=2026.5.39"></script>
 </body>
 </html>

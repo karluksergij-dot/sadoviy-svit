@@ -77,7 +77,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.38';
+const ASSET_VERSION = '2026.5.39';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -1016,7 +1016,7 @@ function sendToViber(order) {
   const msg = buildViberText(order);
   // Viber не завжди підставляє текст у чат сам, тому копіюємо замовлення в буфер — клієнту лишається «Вставити»
   const copied = copyToClipboard(msg);
-  if (copied) showToast('Текст замовлення скопійовано. У Viber натисніть «Вставити» і надішліть.');
+  if (copied) showToast('Скопійовано. У Viber натисніть «Вставити».');
 
   const encoded = encodeURIComponent(msg);
   const viberUrl = `viber://chat?number=%2B${STORE_CONTACTS.viberNumber}&text=${encoded}`;
