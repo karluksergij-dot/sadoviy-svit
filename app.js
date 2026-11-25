@@ -77,7 +77,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.41';
+const ASSET_VERSION = '2026.5.42';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -85,6 +85,7 @@ let visibleCount = ITEMS_PER_PAGE;
 let currentCategory = 'all';
 let currentSearch = '';
 let cart = [];
+const MAX_QTY = 999; // розумна межа кількості одного товару
 
 // ============================================================
 // ІНІЦІАЛІЗАЦІЯ ПІСЛЯ ЗАВАНТАЖЕННЯ DOM
@@ -110,7 +111,14 @@ function loadCartFromStorage() {
     const saved = localStorage.getItem('sadoviy_svit_cart');
     if (saved) {
       cart = JSON.parse(saved);
-      cart = cart.filter(item => item && item.id && item.price > 0 && item.quantity > 0);
+      // Ціну, назву й наявність беремо з ПОТОЧНОГО каталогу (у збереженому кошику вони могли застаріти)
+      cart = (Array.isArray(cart) ? cart : []).map(item => {
+        if (!item || !item.id) return null;
+        const p = CATALOG_DATA.products.find(x => x.id === item.id);
+        const qty = Math.min(MAX_QTY, parseInt(item.quantity, 10) || 0);
+        if (!p || !(p.price > 0) || qty < 1) return null;
+        return { id: p.id, name: p.name.replace(/^Саджанець[:\s]+/i, '').trim(), price: p.price, season: p.season || '', quantity: qty };
+      }).filter(Boolean);
     }
   } catch (e) {
     console.error('Помилка читання кошика:', e);
@@ -695,7 +703,7 @@ function addToCart(productId, quantity = 1, showCartDrawer = false) {
 
   const existing = cart.find(item => item.id === productId);
   if (existing) {
-    existing.quantity += qty;
+    existing.quantity = Math.min(MAX_QTY, existing.quantity + qty);
   } else {
     cart.push({
       id: product.id,
@@ -721,7 +729,7 @@ function changeCartItemQty(productId, delta) {
   const item = cart.find(i => i.id === productId);
   if (!item) return;
 
-  item.quantity = (parseInt(item.quantity, 10) || 1) + delta;
+  item.quantity = Math.min(MAX_QTY, (parseInt(item.quantity, 10) || 1) + delta);
   if (item.quantity <= 0) {
     cart = cart.filter(i => i.id !== productId);
   }
