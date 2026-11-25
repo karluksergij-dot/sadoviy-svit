@@ -77,7 +77,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.44';
+const ASSET_VERSION = '2026.5.45';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -1034,15 +1034,48 @@ function copyToClipboard(text) {
   } catch (e) { return false; }
 }
 
+// ============================================================
+// VIBER: надійне відкриття чату (на ПК без Viber і в деяких браузерах пряме посилання дає «не вдалося завершити дію»)
+// Пробуємо відкрити застосунок; якщо сторінка лишилась на місці — показуємо номер і копіюємо його.
+// ============================================================
+function openViberChat(text) {
+  const num = STORE_CONTACTS.viberNumber;
+  const mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const url = (mobile ? 'viber://chat?number=%2B' + num : 'viber://chat?number=' + num) + (text ? '&text=' + encodeURIComponent(text) : '');
+  let left = false;
+  const mark = () => { left = true; };
+  window.addEventListener('blur', mark);
+  document.addEventListener('visibilitychange', mark);
+  (window.__navigate || ((u) => { window.location.href = u; }))(url);
+  setTimeout(() => {
+    window.removeEventListener('blur', mark);
+    document.removeEventListener('visibilitychange', mark);
+    if (left) return;
+    const shown = STORE_CONTACTS.phoneFormatted;
+    if (text) {
+      showToast('Якщо Viber не відкрився: замовлення скопійоване — відкрийте Viber, знайдіть ' + shown + ' і натисніть «Вставити».', 8000);
+    } else {
+      const copiedNum = copyToClipboard('+' + num);
+      showToast('Якщо Viber не відкрився — наш номер' + (copiedNum ? ' скопійовано' : '') + ': ' + shown + '. Додайте його у Viber або зателефонуйте.', 8000);
+    }
+  }, 1800);
+}
+
+// Усі посилання «Viber» на сторінці йдуть через надійну функцію
+document.addEventListener('click', (e) => {
+  const a = e.target.closest && e.target.closest('a[href^="viber://"]');
+  if (!a) return;
+  e.preventDefault();
+  openViberChat('');
+});
+
 function sendToViber(order) {
   const msg = buildViberText(order);
   // Viber не завжди підставляє текст у чат сам, тому копіюємо замовлення в буфер — клієнту лишається «Вставити»
   const copied = copyToClipboard(msg);
   if (copied) showToast('Скопійовано. У Viber натисніть «Вставити».');
 
-  const encoded = encodeURIComponent(msg);
-  const viberUrl = `viber://chat?number=%2B${STORE_CONTACTS.viberNumber}&text=${encoded}`;
-  setTimeout(() => window.open(viberUrl, '_blank'), copied ? 700 : 0);
+  setTimeout(() => openViberChat(msg), copied ? 700 : 0);
 }
 
 function finalizeOrder(order, telegramSent = false) {
@@ -1112,8 +1145,7 @@ function sendCurrentOrderToViber() {
   const sum = document.getElementById('successOrderSum').textContent;
 
   const msg = `Добрий день! Я оформив замовлення #${orderId} на сайті «Садовий світ». Мій телефон: ${phone}. Сума: ${sum}. Прошу підтвердити наявність та відправку!`;
-  const url = `viber://chat?number=%2B${STORE_CONTACTS.viberNumber}&text=${encodeURIComponent(msg)}`;
-  window.open(url, '_blank');
+  openViberChat(msg);
 }
 
 // ============================================================
@@ -1142,7 +1174,7 @@ function closeModal(modalId) {
 
 // Toast сповіщення
 let toastTimer = null;
-function showToast(message) {
+function showToast(message, duration) {
   let toast = document.getElementById('toastNotice');
   if (!toast) {
     toast = document.createElement('div');
@@ -1157,7 +1189,7 @@ function showToast(message) {
   if (toastTimer) clearTimeout(toastTimer);
   toastTimer = setTimeout(() => {
     toast.classList.remove('show');
-  }, 2600);
+  }, duration || 2600);
 }
 
 // Навігація до каталогу
