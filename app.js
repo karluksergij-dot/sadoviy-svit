@@ -77,7 +77,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.42';
+const ASSET_VERSION = '2026.5.43';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -86,6 +86,19 @@ let currentCategory = 'all';
 let currentSearch = '';
 let cart = [];
 const MAX_QTY = 999; // розумна межа кількості одного товару
+// Слова, за якими люди шукають категорію (назви сортів їх не містять)
+const SEARCH_SYNONYMS = {
+  apples: 'яблуня яблуні яблуко яблука яблунь',
+  pears: 'груша груші груш',
+  peaches: 'персик персики нектарин нектарини',
+  apricots: 'абрикос абрикоси абрикоса',
+  cherries: 'черешня черешні вишня вишні вишень черешень',
+  plums: 'слива сливи слив',
+  grapes: 'виноград винограду лоза',
+  berries: 'ягода ягоди ягідні',
+  exotics: 'екзотика екзотичні',
+  flowers: 'квіти квітка декоративні'
+};
 
 // ============================================================
 // ІНІЦІАЛІЗАЦІЯ ПІСЛЯ ЗАВАНТАЖЕННЯ DOM
@@ -548,10 +561,11 @@ function renderCatalog() {
   // Пошук
   if (currentSearch) {
     const q = currentSearch;
+    // Кожне слово запиту (без закінчення: «яблуня» → «яблун») має зустрітись у назві, описі, сезоні чи категорії
+    const tokens = q.split(/\s+/).filter(Boolean).map(t => t.replace(/[’`ʼ]/g, "'")).map(t => t.length > 6 ? t.slice(0, -2) : (t.length > 4 ? t.slice(0, -1) : t));
     filtered = filtered.filter(p => {
-      return p.name.toLowerCase().includes(q) ||
-             (p.desc && p.desc.toLowerCase().includes(q)) ||
-             (p.season && p.season.toLowerCase().includes(q));
+      const hay = (p.name + ' ' + (p.desc || '') + ' ' + (p.season || '') + ' ' + (SEARCH_SYNONYMS[p.category] || '')).toLowerCase().replace(/[’`ʼ]/g, "'");
+      return tokens.every(t => hay.includes(t));
     });
   }
 
