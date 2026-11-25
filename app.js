@@ -77,7 +77,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.43';
+const ASSET_VERSION = '2026.5.44';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -563,10 +563,10 @@ function renderCatalog() {
     const q = currentSearch;
     // Кожне слово запиту (без закінчення: «яблуня» → «яблун») має зустрітись у назві, описі, сезоні чи категорії
     const tokens = q.split(/\s+/).filter(Boolean).map(t => t.replace(/[’`ʼ]/g, "'")).map(t => t.length > 6 ? t.slice(0, -2) : (t.length > 4 ? t.slice(0, -1) : t));
-    filtered = filtered.filter(p => {
-      const hay = (p.name + ' ' + (p.desc || '') + ' ' + (p.season || '') + ' ' + (SEARCH_SYNONYMS[p.category] || '')).toLowerCase().replace(/[’`ʼ]/g, "'");
-      return tokens.every(t => hay.includes(t));
-    });
+    const hayOf = (p, withDesc) => (p.name + ' ' + (withDesc ? (p.desc || '') + ' ' : '') + (p.season || '') + ' ' + (SEARCH_SYNONYMS[p.category] || '')).toLowerCase().replace(/[’`ʼ]/g, "'");
+    // спершу точніше: назва + сезон + категорія; якщо нічого — шукаємо ще й в описі
+    const primary = filtered.filter(p => { const h = hayOf(p, false); return tokens.every(t => h.includes(t)); });
+    filtered = primary.length ? primary : filtered.filter(p => { const h = hayOf(p, true); return tokens.every(t => h.includes(t)); });
   }
 
   const totalFiltered = filtered.length;
