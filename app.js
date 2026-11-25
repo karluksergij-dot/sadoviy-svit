@@ -77,7 +77,7 @@ function getCategorySvg(catId) {
   }
 }
 
-const ASSET_VERSION = '2026.5.40';
+const ASSET_VERSION = '2026.5.41';
 const ITEMS_PER_PAGE = 16;
 let visibleCount = ITEMS_PER_PAGE;
 
@@ -1298,8 +1298,8 @@ function composeDeliveryAddress() {
   const city = val('customerAddress');
   let district = val('customerDistrict');
   // «Сокирянський», «Сокирянський р-н», «Сокирянський рн», «Сокирянський район» → завжди «Сокирянський район»
-  district = district.replace(/[\s,.]+(район|р-н|р-он|рн|р\.?)\s*$/i, '').replace(/^(район|р-н)\s+/i, '').trim();
-  if (district) district += ' район';
+  district = district.replace(/[\s,.]+(район|р-н|р-он|рн|р)[\s.]*$/i, '').replace(/^(район|р-н)[\s.]+/i, '').trim();
+  if (district) district = district.charAt(0).toUpperCase() + district.slice(1) + ' район';
   const num = (document.getElementById('customerBranchNum') || { value: '' }).value.replace(/\D/g, '');
   const parts = [region, district, city].filter(Boolean);
   let addr = parts.join(', ');
