@@ -152,7 +152,10 @@ export default async function handler(req, res) {
     if (/https?:\/\/(?!t\.me)/i.test(text.replace(/<a href="tel:[^"]*">/g, ''))) flags.push('у тексті є посилання');
 
     let outText = text.length > MAX_TEXT_LENGTH ? text.slice(0, MAX_TEXT_LENGTH) + '…' : text;
-    if (flags.length) outText = `⚠️ <b>МОЖЛИВО СПАМ</b> (${flags.join('; ')})\n\n` + outText;
+    // Позначку «МОЖЛИВО СПАМ» вимкнено: автозаповнення телефонів давало хибні спрацювання.
+    // Ознаки лише пишемо в журнал Vercel. Щоб увімкнути позначку знову: SPAM_LABEL=1 у змінних середовища.
+    if (flags.length) console.warn('[Flags]', clientIp, flags.join('; '));
+    if (flags.length && process.env.SPAM_LABEL === '1') outText = `⚠️ <b>МОЖЛИВО СПАМ</b> (${flags.join('; ')})\n\n` + outText;
 
     // 4. ВІДПРАВКА (HTML; якщо Telegram не розібрав розмітку — повтор простим текстом)
     let data = await send({ chat_id: chatId, text: outText, parse_mode: 'HTML', disable_web_page_preview: true });
